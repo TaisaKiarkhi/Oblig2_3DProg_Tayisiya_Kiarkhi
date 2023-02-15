@@ -40,8 +40,9 @@ Window::Window()
 		glfwPollEvents();
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		glfwSwapBuffers(main_window);
 		xyz->draw();
+		glfwSwapBuffers(main_window);
+		
 	}
 
 

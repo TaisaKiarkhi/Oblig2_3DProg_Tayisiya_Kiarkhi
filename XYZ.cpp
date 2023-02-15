@@ -35,7 +35,7 @@ void XYZ::draw()
 
 	glEnableVertexAttribArray(0);
 
-	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
+	glDrawArrays(GL_LINES, 0, Vertex_Holder.size());
 	
 }
 
