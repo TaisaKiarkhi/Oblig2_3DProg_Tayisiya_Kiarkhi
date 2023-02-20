@@ -14,28 +14,23 @@ XYZ::XYZ()
 //	Vertex_Holder.push_back(Vertex{-1.0, 0.0, 0.0,  1.0, 0.0, 0.0});
 //	Vertex_Holder.push_back(Vertex{0.0, 0.0, 0.0,   0.0, 0.0, 0.0});
 
-
-	  
-		
-
-
-
 	Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.0,    1.0, 0.0, 0.0});
 	Vertex_Holder.push_back(Vertex{0.5, 0.0,  0.0,    1.0, 0.0, 0.0});
 	Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.0,    0.0, 1.0, 0.0});
 	Vertex_Holder.push_back(Vertex{0.0, 0.5,  0.0,    0.0, 1.0, 0.0});
 	Vertex_Holder.push_back(Vertex{0.0, 0.0,  0.0,    0.0, 0.0, 1.0});
 	Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.5,    0.0, 0.0, 1.0});
+
+	VAO = 0;
+	VBO = 0;
 	
 }
 
 void XYZ::draw()
 {
-	glViewport(0, 0, 300, 300);
-
-	glEnableVertexAttribArray(0);
-
-	glDrawArrays(GL_LINES, 0, Vertex_Holder.size());
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
+	glBindVertexArray(0);
 	
 }
 
@@ -43,19 +38,14 @@ void XYZ::init()
 {
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
-
-	glGenBuffers(1, &VBO);
+    glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, Vertex_Holder.size() * sizeof(Vertex), Vertex_Holder.data(), GL_STATIC_DRAW);
 	
-	glVertexAttribPointer(VBOs_Holder.size(), 3, GL_FLOAT, GL_FALSE, 0, NULL);
-	VBOs_Holder.push_back(VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertex_Holder.size(), &Vertex_Holder, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
 
-	//glGenBuffers(1, &VBO2);
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO2);
-	//glBufferData(GL_ARRAY_BUFFER, Vertex_Holder.size() * sizeof(Vertex), Vertex_Holder.data(), GL_STATIC_DRAW);
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),  (GLvoid*)(3*sizeof(float)));
-	//glEnableVertexAttribArray(1);
-	//
-	//glBindVertexArray(0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }

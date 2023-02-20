@@ -8,11 +8,12 @@ public:
 	virtual void draw();
 	virtual void init(); 
 
-	GLuint VAOs;
-	GLuint VBOs;
-	GLuint VBO2;
+	GLuint VAO;
+	GLuint VBO;
+	
 	std::vector<Vertex>Vertex_Holder; 
-	std::vector<GLuint> VBOs_Holder;
-	glm::mat4x4 mMatrix;
+	
+	
+	
 };
 

@@ -10,8 +10,7 @@ public:
 	void draw() override;
 	void init() override;
 
-	unsigned int VAO{0};
-	unsigned int VBO{0};
+	
 
 };
 
