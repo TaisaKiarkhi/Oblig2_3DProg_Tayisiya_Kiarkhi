@@ -13,13 +13,13 @@ GLfloat vertices[] = {
   0.0f,0.0f,0.0f ,
   0.0f,1.0f,0.0f ,
   0.0f,0.0f,0.0f ,
-  0.0f,0.0f,0.0f ,
+  0.0f,1.0f,0.0f ,
   0.0f,0.0f,0.0f ,
   -1.0f ,0.0f,0.0f,
   0.0f  ,0.0f,0.0f ,
   0.0f ,-1.0f,0.0f,
   0.0f  ,0.0f,0.0f ,
-  0.0f  ,0.0f,0.0f ,
+  0.0f  ,-1.0f,0.0f ,
 };
 
 
@@ -43,14 +43,14 @@ Vertex_Holder.push_back(Vertex{ 1,0,0,   0,0,0 });
 Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
 Vertex_Holder.push_back(Vertex{ 0,1,0,   0,0,0 });
 Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,0,1,   0,0,0 });
 
 Vertex_Holder.push_back(Vertex{ 0,0,0 ,     0,0,0 });
 Vertex_Holder.push_back(Vertex{ -1,0,0,     0,0,0});
 Vertex_Holder.push_back(Vertex{ 0,0,0,    0,0,0 });
 Vertex_Holder.push_back(Vertex{ 0,-1,0,      0,0,0});
 Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
-Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
+Vertex_Holder.push_back(Vertex{ 0,0,-1,        0,0,0});
 
 	
 
