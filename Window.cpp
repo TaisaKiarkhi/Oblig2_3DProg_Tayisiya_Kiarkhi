@@ -9,40 +9,51 @@
 using namespace std;
 
 
-static const char* VShader = "Oblig2_3DProg_Tayisiya_Kiarkhi/VertexShader.frag";
+static const char* VShader = "VertexShader.vert";
 
-static const char* FShader = "Oblig2_3DProg_Tayisiya_Kiarkhi/FragmentShader.frag";
+static const char* FShader = "FragmentShader.frag";
 
 Window::Window()
 {
-	GLFWwindow* main_window;
 
-	glfwInit();
+	
 	if (!glfwInit()) {
 		std::cout << "GLFW Init failed!" << std::endl;
 		glfwTerminate();
+		
 	}
 
-	main_window = glfwCreateWindow(width, heigth, window_title, NULL, NULL);
+	
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// Core Profile = No Backwards Compatibility
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	// Allow Forward Compatbility
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+	GLFWwindow* main_window = glfwCreateWindow(width, heigth, window_title, NULL, NULL);
+	if (!main_window) {
+		std::cout << "failed window";
+	}
+	
+	glfwGetFramebufferSize(main_window, &buffer_w, &buffer_h);
 	glfwMakeContextCurrent(main_window);
 
+
+	glewExperimental = GL_TRUE;
 	glewInit();
+
 	if (glewInit() != GLEW_OK) {
 		std::cout << "GLEW Init failed!" << std::endl;
 		glfwTerminate();
 	}
 
-	glfwWindowHint(GL_MAJOR_VERSION, 4);     //chose the major version of opengl
-	glfwWindowHint(GL_MINOR_VERSION, 3);    //chose the minor version of opengl
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE); //
+	
 
 
 	glViewport(0, 0, buffer_w, buffer_h);
-	glEnable(GL_DEPTH_TEST);
-	glfwGetFramebufferSize(main_window, &buffer_w, &buffer_h);
-	glewExperimental = GL_TRUE;
-
+	//glEnable(GL_DEPTH_TEST);
+	
 	Objects();
 	Adding_Shaders();
 
@@ -50,9 +61,9 @@ Window::Window()
 		
 		glfwPollEvents();
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT ); // GL_DEPTH_BUFFER_BIT 
 		shader_list.at(0)->Use_Shader();
-		meshes.at(0)->draw();
+		xyz->draw();
 		
 
 		glUseProgram(0);
@@ -60,18 +71,19 @@ Window::Window()
 		
 	}
 
+	delete main_window;
 
 }
 
 Window::~Window()
 {
+	
 }
 
 void Window::Objects()
 {
-	XYZ* xyz = new XYZ();
 	xyz->init();
-	meshes.push_back(xyz);
+	//meshes.push_back(xyz);
 
 }
 

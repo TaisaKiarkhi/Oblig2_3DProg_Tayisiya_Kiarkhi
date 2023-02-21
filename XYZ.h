@@ -1,17 +1,25 @@
 #pragma once
-#ifndef VISUAL_OBJECT
-#define VISUAL_OBJECT
-#include <VisualObject.h>
 
-class XYZ : public VisualObject
+#include <GL/glew.h>
+#include <GLFW/glfw3.h> 
+#include <VisualObject.h>
+#include <vector>
+
+
+class XYZ //: public VisualObject
 {
 public:
 	XYZ();
-	void draw() override;
-	void init() override;
+	~XYZ();
+//	void draw() override;
+//	void init() override;
 
-	
+	void draw();
+	void init();
+	void ClearMesh();
+
+	std::vector<Vertex>Vertex_Holder;
+	GLuint VAOs, VBOs;
 
 };
 
-#endif  VISUAL_OBJECT

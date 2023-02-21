@@ -4,6 +4,9 @@
 #include <VisualObject.h>
 #include <Shader.h>
 #include <vector>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <XYZ.h>
 class Window
 {
 public:
@@ -14,11 +17,10 @@ public:
 
 	GLint heigth = 1920, width = 1080;      //window size
 	const char* window_title{ "Oblig2" };
-	GLint buffer_w;
-	GLint buffer_h;
+	int buffer_w, buffer_h;
 	std::vector <VisualObject*> meshes;
 	std::vector <Shader*> shader_list;
-
+	XYZ* xyz = new XYZ();
 };
 
 #endif WINDOW

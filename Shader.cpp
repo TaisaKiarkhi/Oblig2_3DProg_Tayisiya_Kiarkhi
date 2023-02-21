@@ -1,5 +1,6 @@
 #include "Shader.h"
-
+#include <GL/glew.h>
+#include <GLFW/glfw3.h> 
 Shader::Shader()
 {
 	Shader_Program = 0;
@@ -23,6 +24,9 @@ void Shader::Create_from_file(const char* vertex_code, const char* fragment_code
 void Shader::Compile_Shaders(const char* Vertex, const char* Fragment)
 {
 	Shader_Program = glCreateProgram();
+	if (!Shader_Program) {
+		std::cout << "Failed to create shader prog";
+	}
 	Add_Shader(Shader_Program, Vertex, GL_VERTEX_SHADER);
 	Add_Shader(Shader_Program, Fragment, GL_FRAGMENT_SHADER);
 
