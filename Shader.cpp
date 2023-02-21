@@ -8,6 +8,11 @@ Shader::Shader()
 
 Shader::~Shader()
 {
+	if (Shader_Program != 0)
+	{
+		glDeleteProgram(Shader_Program);
+		Shader_Program = 0;
+	}
 }
 
 void Shader::Create_from_file(const char* vertex_code, const char* fragment_code)
@@ -31,14 +36,22 @@ void Shader::Compile_Shaders(const char* Vertex, const char* Fragment)
 	Add_Shader(Shader_Program, Fragment, GL_FRAGMENT_SHADER);
 
 	GLint result = 0;
+	GLchar eLog[1024] = { 0 };
 
 	glLinkProgram(Shader_Program);
 	glGetProgramiv(Shader_Program, GL_LINK_STATUS, &result);
+	if (!result) {
+		glGetProgramInfoLog(Shader_Program, sizeof(eLog), NULL, eLog);
+		std::cout << "Failed Link program" << eLog;
+	}
 
 	glValidateProgram(Shader_Program);
 	glGetProgramiv(Shader_Program, GL_VALIDATE_STATUS, &result);
 
-
+	if (!result) {
+		glGetProgramInfoLog(Shader_Program, sizeof(eLog), NULL, eLog);
+		std::cout << "Failed Link program" << eLog;
+	}
 
 }
 
@@ -55,8 +68,19 @@ void Shader::Add_Shader(GLuint Shader_Prog, const char* shader_code, GLenum Type
 	glCompileShader(Shader_);
 
 	GLint result = 0;
+	GLchar eLog[1024] = { 0 };
+
 	glGetShaderiv(Shader_, GL_COMPILE_STATUS, &result);
-	glAttachShader(Shader_, Shader_);
+	if (!result)
+	{
+		glGetShaderInfoLog(Shader_, sizeof(eLog), NULL, eLog);
+		printf("Error compiling the %d shader: '%s'\n", Type, eLog);
+		return;
+	}
+
+
+
+	glAttachShader(Shader_Prog, Shader_);
 }
 
 std::string Shader::Read_Files(const char* file_name)

@@ -6,6 +6,23 @@
 #include <glm/mat4x4.hpp>
 #include <vector>
 
+
+GLfloat vertices[] = {
+  0.0f,0.0f,0.0f ,
+  1.0f,0.0f,0.0f ,
+  0.0f,0.0f,0.0f ,
+  0.0f,1.0f,0.0f ,
+  0.0f,0.0f,0.0f ,
+  0.0f,0.0f,0.0f ,
+  0.0f,0.0f,0.0f ,
+  -1.0f ,0.0f,0.0f,
+  0.0f  ,0.0f,0.0f ,
+  0.0f ,-1.0f,0.0f,
+  0.0f  ,0.0f,0.0f ,
+  0.0f  ,0.0f,0.0f ,
+};
+
+
 XYZ::XYZ()
 {                                       //vert.            //rgb
 //	Vertex_Holder.push_back(Vertex{0.0, 1.0, 0.0,   0.0, 1.0, 0.0});
@@ -13,30 +30,34 @@ XYZ::XYZ()
 //	Vertex_Holder.push_back(Vertex{0.0, -1.0, 0.0,  0.0, 1.0, 0.0});
 //	Vertex_Holder.push_back(Vertex{-1.0, 0.0, 0.0,  1.0, 0.0, 0.0});
 //	Vertex_Holder.push_back(Vertex{0.0, 0.0, 0.0,   0.0, 0.0, 0.0});
-
+//
 //Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.0,    1.0, 0.0, 0.0});
 //Vertex_Holder.push_back(Vertex{0.5, 0.0,  0.0,    1.0, 0.0, 0.0});
 //Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.0,    0.0, 1.0, 0.0});
 //Vertex_Holder.push_back(Vertex{0.0, 0.5,  0.0,    0.0, 1.0, 0.0});
 //Vertex_Holder.push_back(Vertex{0.0, 0.0,  0.0,    0.0, 0.0, 1.0});
 //Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.5,    0.0, 0.0, 1.0});
+//
+Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 1,0,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,1,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
 
-	Vertex_Holder.push_back(Vertex{ 0,0,0,1,0,0 });
-	Vertex_Holder.push_back(Vertex{ 6,0,0,1,0,0 });
-	Vertex_Holder.push_back(Vertex{ 0,0,0,0,1,0 });
-	Vertex_Holder.push_back(Vertex{ 0,6,0,0,1,0 });
-	Vertex_Holder.push_back(Vertex{ 0,0,0,0,0,1 });
-	Vertex_Holder.push_back(Vertex{ 0,0,6,0,0,1 });
-	Vertex_Holder.push_back(Vertex{ 0,0,0,1,0,0 });
-	Vertex_Holder.push_back(Vertex{ -6,0,0,1,0,0 });
-	Vertex_Holder.push_back(Vertex{ 0,0,0,0,1,0 });
-	Vertex_Holder.push_back(Vertex{ 0,-6,0,0,1,0 });
-	Vertex_Holder.push_back(Vertex{ 0,0,0,0,0,1 });
-	Vertex_Holder.push_back(Vertex{ 0,0,-6,0,0,1 });
+Vertex_Holder.push_back(Vertex{ 0,0,0 ,     0,0,0 });
+Vertex_Holder.push_back(Vertex{ -1,0,0,     0,0,0});
+Vertex_Holder.push_back(Vertex{ 0,0,0,    0,0,0 });
+Vertex_Holder.push_back(Vertex{ 0,-1,0,      0,0,0});
+Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
+Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
+
+	
 
 	VAOs = 0;
 	VBOs = 0;
 
+	
 
 	
 	
@@ -50,7 +71,9 @@ XYZ::~XYZ()
 void XYZ::draw()
 {
 	glBindVertexArray(VAOs);
-	glDrawArrays(GL_LINE, 0, Vertex_Holder.size());
+	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
+	glDrawArrays(GL_LINES, 0,12);
+	glBindBuffer(GL_ARRAY_BUFFER,0);
 	glBindVertexArray(0);
 	
 }
@@ -63,8 +86,8 @@ void XYZ::init()
     glGenBuffers(1, &VBOs);
 	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
 	
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertex_Holder.size(), &Vertex_Holder, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	glEnableVertexAttribArray(0);
 

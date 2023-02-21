@@ -1,6 +1,2 @@
-﻿  Shader.cpp
-  Window.cpp
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(74,2): warning C4150: deletion of pointer to incomplete type 'GLFWwindow'; no destructor called
-C:\Users\Taisa\Desktop\3D\Extern_Libs\GLFW\include\GLFW\glfw3.h(1185): message : see declaration of 'GLFWwindow'
-  Generating Code...
+﻿  XYZ.cpp
   Oblig2_3DProg_Tayisiya_Kiarkhi.vcxproj -> C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Debug\Oblig2_3DProg_Tayisiya_Kiarkhi.exe

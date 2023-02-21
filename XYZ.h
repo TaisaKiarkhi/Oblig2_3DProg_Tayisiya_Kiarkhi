@@ -18,6 +18,8 @@ public:
 	void init();
 	void ClearMesh();
 
+	
+
 	std::vector<Vertex>Vertex_Holder;
 	GLuint VAOs, VBOs;
 
