@@ -3,7 +3,7 @@
 #include "VisualObject.h"
 #include <vector>
 #include <Vertex.h>
-#include <glm/mat4x4.hpp>
+#include <glm/glm/mat4x4.hpp>
 
 void VisualObject::draw()
 {

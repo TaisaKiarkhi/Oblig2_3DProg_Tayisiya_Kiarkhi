@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Taisa\Desktop\3D\Extern_Libs\GLM\glm;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Taisa\Desktop\3D\Extern_Libs\GLM\glm;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Taisa\Desktop\3D\Extern_Libs\GLM\glm;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Taisa\Desktop\3D\Extern_Libs\GLM\glm;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>

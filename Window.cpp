@@ -6,6 +6,10 @@
 #include <VisualObject.h>
 #include <Shader.h>
 #include <vector>
+#include <glm/glm/glm.hpp>
+#include <glm/glm/ext/matrix_transform.hpp>
+#include <glm/glm/mat4x4.hpp>
+#include <glm/glm/gtc/type_ptr.hpp>
 using namespace std;
 
 
@@ -18,7 +22,9 @@ GLFWwindow* main_window;
 
 Window::Window()
 {
-
+	for (size_t i = 0; i < 1024; i++) {
+		keys[i] = 0;
+	}
 	
 	if (!glfwInit()) {
 		std::cout << "GLFW Init failed!" << std::endl;
@@ -40,7 +46,7 @@ Window::Window()
 	
 	glfwGetFramebufferSize(main_window, &buffer_w, &buffer_h);
 	glfwMakeContextCurrent(main_window);
-
+	Call_Back(); //pressing keys
 
 	glewExperimental = GL_TRUE;
 	glewInit();
@@ -52,8 +58,10 @@ Window::Window()
 
 	
 
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, buffer_w, buffer_h);
+
+	glfwSetWindowUserPointer(main_window, this);
 	
 	Objects();
 	Adding_Shaders();
@@ -63,7 +71,7 @@ Window::Window()
 		
 		glfwPollEvents();
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 		shader_list.at(0)->Use_Shader();
 		xyz->draw();
 		
@@ -95,4 +103,42 @@ void Window::Adding_Shaders()
 	first_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(first_shader);
 	
+}
+
+void Window::Call_Back()
+{
+	glfwSetKeyCallback(main_window, Handle_Key);
+}
+
+void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int mode) //the parameters should be as the function shows. Otherwise in will nnot recognize any action
+{
+	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+
+	if (key >=0 && key < 1024) {
+		if (action == GLFW_PRESS) {
+			the_window->keys[key] = true;
+			std::cout << "The key is pressed: " << key<<std::endl;
+		}
+
+		else if (action == GLFW_RELEASE) {
+			the_window->keys[key] = false;
+			std::cout << "The kkey is released " << key << std::endl;
+		}
+	}
+}
+
+void Window::Handle_Mouse(GLFWwindow* window, float xPos, float yPos)
+{
+	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+	if (the_window->mouse_first_moved) {
+		the_window->last_coord_x = xPos;
+		the_window->last_coord_y = yPos;
+		the_window->mouse_first_moved = false;
+	}
+	the_window->x_move = xPos - the_window->last_coord_x;
+	the_window->y_move = the_window->last_coord_y-yPos;
 }

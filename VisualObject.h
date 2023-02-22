@@ -1,6 +1,6 @@
 #pragma once
 #include <Vertex.h>
-#include <glm/mat4x4.hpp>
+#include <glm/glm/mat4x4.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h> 
 class VisualObject

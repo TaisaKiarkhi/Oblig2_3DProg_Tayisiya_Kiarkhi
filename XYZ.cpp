@@ -3,7 +3,7 @@
 #include "XYZ.h"
 #include <VisualObject.h>
 #include <Vertex.h>
-#include <glm/mat4x4.hpp>
+#include <glm/glm/mat4x4.hpp>
 #include <vector>
 
 
@@ -38,19 +38,19 @@ XYZ::XYZ()
 //Vertex_Holder.push_back(Vertex{0.0, 0.0,  0.0,    0.0, 0.0, 1.0});
 //Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.5,    0.0, 0.0, 1.0});
 //
-Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 1,0,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,1,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,0,1,   0,0,0 });
-
-Vertex_Holder.push_back(Vertex{ 0,0,0 ,     0,0,0 });
-Vertex_Holder.push_back(Vertex{ -1,0,0,     0,0,0});
-Vertex_Holder.push_back(Vertex{ 0,0,0,    0,0,0 });
-Vertex_Holder.push_back(Vertex{ 0,-1,0,      0,0,0});
-Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
-Vertex_Holder.push_back(Vertex{ 0,0,-1,        0,0,0});
+//Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 1,0,0,   0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 0,1,0,   0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 0,0,0,   0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 0,0,1,   0,0,0 });
+//
+//Vertex_Holder.push_back(Vertex{ 0,0,0 ,     0,0,0 });
+//Vertex_Holder.push_back(Vertex{ -1,0,0,     0,0,0});
+//Vertex_Holder.push_back(Vertex{ 0,0,0,    0,0,0 });
+//Vertex_Holder.push_back(Vertex{ 0,-1,0,      0,0,0});
+//Vertex_Holder.push_back(Vertex{ 0,0,0,        0,0,0});
+//Vertex_Holder.push_back(Vertex{ 0,0,-1,        0,0,0});
 
 	
 
