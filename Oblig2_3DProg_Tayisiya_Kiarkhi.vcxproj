@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="XYZ.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VisualObject.h" />
