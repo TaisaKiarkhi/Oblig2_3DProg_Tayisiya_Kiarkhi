@@ -88,12 +88,19 @@ Window::Window()
 
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
-		shader_list.at(0)->Use_Shader();
-		uniformProjection = shader_list.at(0)->GetProjectionLocation();
+	//	shader_list.at(0)->Use_Shader();
+	//	uniformProjection = shader_list.at(0)->GetProjectionLocation();
+	//	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+	//	uniformView = shader_list.at(0)->GetViewLocation();
+	//	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
+	//	xyz->draw();
+
+		shader_list.at(1)->Use_Shader();
+		uniformProjection = shader_list.at(1)->GetProjectionLocation();
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
-		uniformView = shader_list.at(0)->GetViewLocation();
+		uniformView = shader_list.at(1)->GetViewLocation();
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-		xyz->draw();
+        surf->draw();
 		
 
 		glUseProgram(0);
@@ -113,6 +120,7 @@ Window::~Window()
 void Window::Objects()
 {
 	xyz->init();
+	surf->init();
 	//meshes.push_back(xyz);
 
 }
@@ -122,6 +130,10 @@ void Window::Adding_Shaders()
 	Shader* first_shader = new Shader();
 	first_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(first_shader);
+
+	Shader* second_shader = new Shader();
+	second_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(second_shader);
 	
 }
 

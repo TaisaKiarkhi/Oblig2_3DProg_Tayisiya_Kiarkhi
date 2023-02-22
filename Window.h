@@ -8,6 +8,7 @@
 #include <GLFW/glfw3.h>
 #include <XYZ.h>
 #include <Camera.h>
+#include <Surface.h>
 class Window
 {
 public:
@@ -26,6 +27,7 @@ public:
 	std::vector <VisualObject*> meshes;
 	std::vector <Shader*> shader_list;
 	XYZ* xyz = new XYZ();
+	Surface* surf = new Surface();
 
 	GLfloat last_coord_x;
 	GLfloat last_coord_y;
