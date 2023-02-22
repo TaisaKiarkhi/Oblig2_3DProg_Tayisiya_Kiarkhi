@@ -17,7 +17,7 @@ public:
 
 	void Call_Back();
 	static void Handle_Key(GLFWwindow* window, int key, int code, int action, int mode);
-	static void Handle_Mouse(GLFWwindow* window, float xPos, float yPos);
+	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
 
 	GLint heigth = 1920, width = 1080;      //window size
 	const char* window_title{ "Oblig2" };
@@ -32,6 +32,11 @@ public:
 	GLfloat y_move;
 	GLfloat x_move;
 	bool mouse_first_moved;
+
+	GLfloat get_x_change();
+	GLfloat get_y_change();
+
+	bool* get_keys() { return keys; }
 
 	bool keys[1024]; //keys as a ASCII code numbers
 };

@@ -22,6 +22,8 @@ GLFWwindow* main_window;
 
 Window::Window()
 {
+	x_move = 0.0f;
+	y_move = 0.0f;
 	for (size_t i = 0; i < 1024; i++) {
 		keys[i] = 0;
 	}
@@ -108,6 +110,7 @@ void Window::Adding_Shaders()
 void Window::Call_Back()
 {
 	glfwSetKeyCallback(main_window, Handle_Key);
+	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
 }
 
 void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int mode) //the parameters should be as the function shows. Otherwise in will nnot recognize any action
@@ -130,15 +133,34 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 	}
 }
 
-void Window::Handle_Mouse(GLFWwindow* window, float xPos, float yPos)
+void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 {
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
 	if (the_window->mouse_first_moved) {
-		the_window->last_coord_x = xPos;
-		the_window->last_coord_y = yPos;
+		the_window->last_coord_x = static_cast<float>(xPos);
+		the_window->last_coord_y = static_cast<float>(xPos);
 		the_window->mouse_first_moved = false;
 	}
 	the_window->x_move = xPos - the_window->last_coord_x;
 	the_window->y_move = the_window->last_coord_y-yPos;
+
+	the_window->last_coord_x = xPos;
+	the_window->last_coord_y = yPos;
+
+	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
+}
+
+GLfloat Window::get_x_change()
+{
+	GLfloat theChange = x_move;
+	x_move = 0.0f;
+	return theChange;
+}
+
+GLfloat Window::get_y_change()
+{
+	GLfloat theChange = y_move;
+	y_move = 0.0f;
+	return theChange;
 }
