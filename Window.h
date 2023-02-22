@@ -7,6 +7,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <XYZ.h>
+#include <Camera.h>
 class Window
 {
 public:
@@ -35,7 +36,8 @@ public:
 
 	GLfloat get_x_change();
 	GLfloat get_y_change();
-
+	GLfloat deltaTime = 0.0f;
+	GLfloat lastTime = 0.0f;
 	bool* get_keys() { return keys; }
 
 	bool keys[1024]; //keys as a ASCII code numbers

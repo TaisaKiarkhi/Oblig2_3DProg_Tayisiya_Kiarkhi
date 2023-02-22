@@ -13,6 +13,9 @@ GLfloat vertices[] = {
   0.0f,0.0f,0.0f ,
   0.0f,1000.0f,0.0f ,
   0.0f,0.0f,0.0f ,
+  0.0f,0.0f,1000.0f ,
+  0.0f,0.0f,0.0f ,
+
   0.0f,1000.0f,0.0f ,
   0.0f,0.0f,0.0f ,
   -1000.0f ,0.0f,0.0f,
@@ -20,6 +23,8 @@ GLfloat vertices[] = {
   0.0f ,-1000.0f,0.0f,
   0.0f  ,0.0f,0.0f ,
   0.0f  ,-1000.0f,0.0f ,
+  0.0f,0.0f,0.0f ,
+  0.0f,0.0f,-1000.0f ,
 };
 
 
@@ -72,7 +77,7 @@ void XYZ::draw()
 {
 	glBindVertexArray(VAOs);
 	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
-	glDrawArrays(GL_LINES, 0,12);
+	glDrawArrays(GL_LINES, 0,16);
 	glBindBuffer(GL_ARRAY_BUFFER,0);
 	glBindVertexArray(0);
 	

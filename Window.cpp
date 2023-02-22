@@ -19,6 +19,7 @@ static const char* FShader = "FragmentShader.frag";
 
 
 GLFWwindow* main_window;
+Camera* camera;
 
 Window::Window()
 {
@@ -67,14 +68,31 @@ Window::Window()
 	
 	Objects();
 	Adding_Shaders();
+	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)buffer_w/(GLfloat)buffer_h, 0.1f, 100.0f );
 
+	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 1.0f);
+
+	GLuint uniformProjection=0, uniformView=0;
 
 	while (!glfwWindowShouldClose(main_window)) {
-		
+		GLfloat current_time = glfwGetTime();
+		deltaTime = current_time - lastTime;
+		lastTime = current_time;
+
 		glfwPollEvents();
+
+
+		camera->Key_Controll(this->get_keys(), deltaTime);
+		camera->Mouse_Controll(this->get_x_change(), this->get_y_change());
+
+
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 		shader_list.at(0)->Use_Shader();
+		uniformProjection = shader_list.at(0)->GetProjectionLocation();
+		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+		uniformView = shader_list.at(0)->GetViewLocation();
+		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
 		xyz->draw();
 		
 

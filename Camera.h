@@ -22,6 +22,9 @@ public:
 	GLfloat turn_speed; //mouse thing
 
 	void update();
+	void Key_Controll(bool* keys, GLfloat delta);
+	void Mouse_Controll(GLfloat x_move, GLfloat y_move);
+	glm::mat4 view_matrix_calc();
 
 };
 

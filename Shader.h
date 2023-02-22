@@ -15,7 +15,8 @@ public:
 	void Add_Shader(GLuint Shader_Prog, const char* shader_code, GLenum Type);
 	std::string Read_Files(const char* file_name);
 	void Use_Shader();
-
-	GLuint Shader_Program;
+	GLuint GetViewLocation();
+	GLuint GetProjectionLocation();
+	GLuint Shader_Program, uniformView, uniformProjection;
 };
 

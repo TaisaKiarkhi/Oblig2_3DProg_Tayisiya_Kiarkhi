@@ -1,2 +1,11 @@
-﻿  XYZ.cpp
+﻿  Camera.cpp
+  Oblig2_3DProg_Tayisiya_Kiarkhi.cpp
+  Shader.cpp
+  Window.cpp
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(78,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(163,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(164,47): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(166,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(167,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  Generating Code...
   Oblig2_3DProg_Tayisiya_Kiarkhi.vcxproj -> C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Debug\Oblig2_3DProg_Tayisiya_Kiarkhi.exe

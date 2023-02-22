@@ -52,7 +52,8 @@ void Shader::Compile_Shaders(const char* Vertex, const char* Fragment)
 		glGetProgramInfoLog(Shader_Program, sizeof(eLog), NULL, eLog);
 		std::cout << "Failed Link program" << eLog;
 	}
-
+	uniformProjection = glGetUniformLocation(Shader_Program, "projection");
+	uniformView = glGetUniformLocation(Shader_Program, "view");
 }
 
 void Shader::Add_Shader(GLuint Shader_Prog, const char* shader_code, GLenum Type)
@@ -100,4 +101,14 @@ std::string Shader::Read_Files(const char* file_name)
 void Shader::Use_Shader()
 {
 	glUseProgram(Shader_Program);
+}
+
+GLuint Shader::GetViewLocation()
+{
+	return uniformView;
+}
+
+GLuint Shader::GetProjectionLocation()
+{
+	return uniformProjection;
 }
