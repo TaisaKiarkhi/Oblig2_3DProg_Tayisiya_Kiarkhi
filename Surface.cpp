@@ -2,10 +2,9 @@
 
 GLfloat verts[] = {
 
-		5.0f, 0.0f, 0.0f,
-		0.0f, 0.0f,  5.0f,
-		-5.0f, 0.0f, 0.0f,
-		0.0f, 0.0f ,- 5.0f,
+	  -1.0f, -1.0f, 0.0f,
+	1.0f, -1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f
 };
 
 Surface::Surface()
@@ -43,7 +42,7 @@ void Surface::init()
 {
 	glBindVertexArray(VAOs);
 	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
-	glDrawArrays(GL_TRIANGLES, 0, 4);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

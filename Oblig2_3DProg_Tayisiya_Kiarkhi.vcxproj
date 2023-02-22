@@ -155,6 +155,7 @@
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="Tetragons.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="VisualObject.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Surface.h" />
+    <ClInclude Include="Tetragons.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VisualObject.h" />
     <ClInclude Include="Window.h" />

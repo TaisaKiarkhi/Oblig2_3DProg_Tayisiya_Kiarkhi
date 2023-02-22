@@ -17,6 +17,7 @@ public:
 	void Use_Shader();
 	GLuint GetViewLocation();
 	GLuint GetProjectionLocation();
-	GLuint Shader_Program, uniformView, uniformProjection;
+	GLuint GetModelLocation();
+	GLuint Shader_Program, uniformView, uniformProjection,  uniformModel;
 };
 

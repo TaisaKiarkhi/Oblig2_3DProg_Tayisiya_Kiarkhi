@@ -9,6 +9,7 @@
 #include <XYZ.h>
 #include <Camera.h>
 #include <Surface.h>
+#include "Tetragons.h"
 class Window
 {
 public:
@@ -28,6 +29,7 @@ public:
 	std::vector <Shader*> shader_list;
 	XYZ* xyz = new XYZ();
 	Surface* surf = new Surface();
+	Tetragons* tetra = new Tetragons();
 
 	GLfloat last_coord_x;
 	GLfloat last_coord_y;

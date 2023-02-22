@@ -10,6 +10,7 @@
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/mat4x4.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
+#include <Tetragons.h>
 using namespace std;
 
 
@@ -68,11 +69,13 @@ Window::Window()
 	
 	Objects();
 	Adding_Shaders();
+
+	//glm::mat4 model (1.0f);
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)buffer_w/(GLfloat)buffer_h, 0.1f, 100.0f );
 
-	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 1.0f);
+	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 45.0f, 0.0f, 5.0f, 1.0f);
 
-	GLuint uniformProjection=0, uniformView=0;
+	GLuint uniformProjection=0, uniformView=0, uniformModel = 0;
 
 	while (!glfwWindowShouldClose(main_window)) {
 		GLfloat current_time = glfwGetTime();
@@ -88,20 +91,22 @@ Window::Window()
 
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
-	//	shader_list.at(0)->Use_Shader();
-	//	uniformProjection = shader_list.at(0)->GetProjectionLocation();
-	//	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
-	//	uniformView = shader_list.at(0)->GetViewLocation();
-	//	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-	//	xyz->draw();
+		shader_list.at(0)->Use_Shader();
+		uniformProjection = shader_list.at(0)->GetProjectionLocation();
+		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+		uniformView = shader_list.at(0)->GetViewLocation();
+		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
+		xyz->draw();
 
 		shader_list.at(1)->Use_Shader();
+	//	model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.0f));
+	//	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		uniformProjection = shader_list.at(1)->GetProjectionLocation();
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		uniformView = shader_list.at(1)->GetViewLocation();
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
         surf->draw();
-		
+		//tetra->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -121,6 +126,7 @@ void Window::Objects()
 {
 	xyz->init();
 	surf->init();
+	tetra->init();
 	//meshes.push_back(xyz);
 
 }
