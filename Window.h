@@ -27,9 +27,7 @@ public:
 	int buffer_w, buffer_h;
 	std::vector <VisualObject*> meshes;
 	std::vector <Shader*> shader_list;
-	XYZ* xyz = new XYZ();
-	Surface* surf = new Surface();
-	Tetragons* tetra = new Tetragons();
+	
 
 	GLfloat last_coord_x;
 	GLfloat last_coord_y;

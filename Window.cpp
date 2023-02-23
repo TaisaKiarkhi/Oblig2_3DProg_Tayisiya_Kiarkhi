@@ -11,6 +11,7 @@
 #include <glm/glm/mat4x4.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
 #include <Tetragons.h>
+#include <House.h>
 using namespace std;
 
 
@@ -96,7 +97,7 @@ Window::Window()
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		uniformView = shader_list.at(0)->GetViewLocation();
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-		xyz->draw();
+		meshes.at(0)->draw();
 
 		shader_list.at(1)->Use_Shader();
 	//	model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.0f));
@@ -105,15 +106,14 @@ Window::Window()
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		uniformView = shader_list.at(1)->GetViewLocation();
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-        surf->draw();
-		//tetra->draw();
+        
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
 		
 	}
 	shader_list.at(0)->~Shader();
-	xyz->~XYZ();
+
 }
 
 Window::~Window()
@@ -124,10 +124,20 @@ Window::~Window()
 
 void Window::Objects()
 {
+	XYZ* xyz = new XYZ();
+	Surface* surf = new Surface();
+	Tetragons* tetra = new Tetragons();
+	House* house = new House();
+
 	xyz->init();
 	surf->init();
 	tetra->init();
-	//meshes.push_back(xyz);
+	house->init();
+	
+	meshes.push_back(xyz);
+	meshes.push_back(surf);
+	meshes.push_back(tetra);
+	meshes.push_back(house);
 
 }
 

@@ -2,6 +2,22 @@
 
 House::House()
 {
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 1000.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,1000.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+
+
+	Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1000.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f ,-1000.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f ,-1000.0f,       0.0f  ,0.0f  ,0.0f });
 }
 
 House::~House()
