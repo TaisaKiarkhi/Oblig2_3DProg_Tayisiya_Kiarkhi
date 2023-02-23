@@ -5,10 +5,13 @@
 Surface::Surface()
 {
 	
+	Vertex_Holder.push_back(Vertex{ 0.0,0.0,0.0, 1,0,0 });
+	Vertex_Holder.push_back(Vertex{ 0.5, 0.0, 0.0, 0, 1, 0 });
+	Vertex_Holder.push_back(Vertex{ 0.5,0.5,0.0, 0,0,1 });
 
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 0.0f,     0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f ,     0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0,0.0,0.0, 0,0,0 });
+	Vertex_Holder.push_back(Vertex{ 0.5,0.5,0.0, 0,0,0 });
+	Vertex_Holder.push_back(Vertex{ 0.0,0.5,0.0, 0,0,0 });
 
 	
 }
@@ -26,8 +29,8 @@ void Surface::draw()
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), &verts, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*Vertex_Holder.size(), Vertex_Holder.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 
 	glEnableVertexAttribArray(0);
 
@@ -39,7 +42,7 @@ void Surface::init()
 {
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

@@ -1,7 +1,9 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h> 
-class Surface
+#include <VisualObject.h>
+#include <Vertex.h>
+class Surface: public VisualObject
 {
 public: 
 	Surface();
@@ -11,6 +13,6 @@ public:
 	void init();
 	void ClearMesh();
 
-	GLuint VAOs, VBOs;
+	
 };
 
