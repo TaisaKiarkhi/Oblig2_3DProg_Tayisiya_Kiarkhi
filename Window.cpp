@@ -88,6 +88,7 @@ Window::Window()
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
+		shader_list.at(1)->Use_Shader();
 
 		//MATRIX
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
@@ -96,13 +97,13 @@ Window::Window()
 	GLint model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
 	GLint projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
 
-	glUniformMatrix4fv(model_location, 1, GL_FALSE, &model_transform_matrix[0][0]);
-	glUniformMatrix4fv(projection_location, 1, GL_FALSE, &projection_matrix[0][0]);
+	glUniformMatrix4fv(model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
+	glUniformMatrix4fv(projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 
 	//little comment: smth is wrong with the SHADER values 
 
-		shader_list.at(0)->Use_Shader();
-		meshes.at(1)->draw();
+		
+		meshes.at(3)->draw();
 
 		//shader_list.at(1)->Use_Shader();
 		//meshes.at(1)->draw();
@@ -153,7 +154,7 @@ void Window::Adding_Shaders()
 
 	Shader* t_shader = new Shader();
 	t_shader->Create_from_file(VShader, FShader);
-	shader_list.push_back(first_shader);
+	shader_list.push_back(t_shader);
 
 	
 	

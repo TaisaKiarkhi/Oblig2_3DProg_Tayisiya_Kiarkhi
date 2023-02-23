@@ -42,7 +42,7 @@ void House::draw()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 
-	glDrawArrays(GL_TRIANGLES, 0, 24);
+	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
