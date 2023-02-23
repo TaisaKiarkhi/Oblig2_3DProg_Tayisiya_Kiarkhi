@@ -12,7 +12,7 @@ public:
 	void draw();
 	void init();
 	void ClearMesh();
-
+	void construct();
 	
 };
 
