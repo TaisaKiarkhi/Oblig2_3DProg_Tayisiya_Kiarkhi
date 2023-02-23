@@ -2,22 +2,33 @@
 
 House::House()
 {
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 1000.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,1000.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f,        0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,     0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,        0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f ,         0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f,        0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,       0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,          0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,          0.0f,  0.0f,  0.0f });
 
 
-	Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,   0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ -1000.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f ,-1000.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f ,-1000.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,      0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,          0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f ,                 0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,         0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f,         0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,         0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,            0.0f,  0.0f,  0.0f });
+
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,           0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,             0.0f,  0.0f,  0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f ,              0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f,          0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f,            0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,   0.0f,      0.0f,  0.0f });
 }
 
 House::~House()
@@ -29,7 +40,9 @@ void House::draw()
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glDrawArrays(GL_LINES, 0, 16);
+
+
+	glDrawArrays(GL_TRIANGLES, 0, 24);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

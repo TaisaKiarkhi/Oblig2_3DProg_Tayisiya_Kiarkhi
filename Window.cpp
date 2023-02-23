@@ -71,12 +71,7 @@ Window::Window()
 	Objects();
 	Adding_Shaders();
 
-	//glm::mat4 model (1.0f);
-	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)buffer_w/(GLfloat)buffer_h, 0.1f, 100.0f );
-
-	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 45.0f, 0.0f, 5.0f, 1.0f);
-
-	GLuint uniformProjection=0, uniformView=0, uniformModel = 0;
+	//MATRICES 
 
 	while (!glfwWindowShouldClose(main_window)) {
 		GLfloat current_time = glfwGetTime();
@@ -86,26 +81,31 @@ Window::Window()
 		glfwPollEvents();
 
 
-		camera->Key_Controll(this->get_keys(), deltaTime);
-		camera->Mouse_Controll(this->get_x_change(), this->get_y_change());
+		//camera->Key_Controll(this->get_keys(), deltaTime);
+		//camera->Mouse_Controll(this->get_x_change(), this->get_y_change());
 
 
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
-		shader_list.at(0)->Use_Shader();
-		uniformProjection = shader_list.at(0)->GetProjectionLocation();
-		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
-		uniformView = shader_list.at(0)->GetViewLocation();
-		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-		meshes.at(0)->draw();
 
-		shader_list.at(1)->Use_Shader();
-	//	model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.0f));
-	//	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		uniformProjection = shader_list.at(1)->GetProjectionLocation();
-		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
-		uniformView = shader_list.at(1)->GetViewLocation();
-		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
+
+		//MATRIX
+	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(60.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 10.0f);
+
+	GLint model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
+	GLint projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
+
+	glUniformMatrix4fv(model_location, 1, GL_FALSE, &model_transform_matrix[0][0]);
+	glUniformMatrix4fv(projection_location, 1, GL_FALSE, &projection_matrix[0][0]);
+
+	//little comment: smth is wrong with the SHADER values 
+
+		shader_list.at(0)->Use_Shader();
+		meshes.at(1)->draw();
+
+		//shader_list.at(1)->Use_Shader();
+		//meshes.at(1)->draw();
         
 
 		glUseProgram(0);
@@ -150,6 +150,12 @@ void Window::Adding_Shaders()
 	Shader* second_shader = new Shader();
 	second_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(second_shader);
+
+	Shader* t_shader = new Shader();
+	t_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(first_shader);
+
+	
 	
 }
 
