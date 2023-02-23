@@ -105,8 +105,8 @@ Window::Window()
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		uniformView = shader_list.at(1)->GetViewLocation();
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera->view_matrix_calc()));
-        surf->draw();
-		//tetra->draw();
+       // surf->draw();
+		tetra->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);

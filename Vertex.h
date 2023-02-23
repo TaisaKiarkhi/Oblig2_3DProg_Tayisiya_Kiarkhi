@@ -2,12 +2,13 @@
 #ifndef VERTEX
 #define VERTEX
 #include <vector>
+#include <glm/glm/glm.hpp>
 class Vertex
 {
 public:
 	Vertex(float x, float y,  float z,  float r , float g,  float b );
-	std::vector <GLfloat> xyz_values;
-	std::vector <GLfloat> rgb_values;
+	glm::vec3  xyz_values;
+	glm::vec3 rgb_values;
 
 };
 

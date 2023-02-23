@@ -7,6 +7,8 @@ class VisualObject
 
 {
 public:
+	VisualObject();
+	~VisualObject();
 	virtual void draw();
 	virtual void init(); 
 

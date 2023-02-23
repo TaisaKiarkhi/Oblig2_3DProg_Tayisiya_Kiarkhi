@@ -5,10 +5,19 @@
 #include <Vertex.h>
 #include <glm/glm/mat4x4.hpp>
 
+VisualObject::VisualObject()
+{
+}
+
+VisualObject::~VisualObject()
+{
+}
+
 void VisualObject::draw()
 {
 }
 
 void VisualObject::init()
 {
+
 }

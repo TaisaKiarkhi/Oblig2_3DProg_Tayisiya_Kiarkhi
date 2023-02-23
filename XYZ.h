@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class XYZ //: public VisualObject
+class XYZ : public VisualObject
 {
 public:
 	XYZ();
@@ -20,8 +20,8 @@ public:
 
 	
 
-	std::vector<Vertex>Vertex_Holder;
-	GLuint VAOs, VBOs;
+	
+	
 
 };
 

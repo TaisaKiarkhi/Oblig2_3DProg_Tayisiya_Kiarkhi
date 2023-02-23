@@ -1,19 +1,16 @@
 #include "Surface.h"
 
-GLfloat verts[] = {
 
-	  -1.0f, -1.0f, 0.0f,
-	1.0f, -1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f
-};
 
 Surface::Surface()
 {
 	
 
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 0.0f,     0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f ,     0.0f, 0.0f, 0.0f });
 
-	VAOs = 0;
-	VBOs = 0;
+	
 }
 
 Surface::~Surface()
@@ -24,10 +21,10 @@ Surface::~Surface()
 void Surface::draw()
 {
 
-	glGenVertexArrays(1, &VAOs);
-	glBindVertexArray(VAOs);
-	glGenBuffers(1, &VBOs);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), &verts, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -40,8 +37,8 @@ void Surface::draw()
 
 void Surface::init()
 {
-	glBindVertexArray(VAOs);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs);
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -51,14 +48,14 @@ void Surface::ClearMesh()
 {
 
 
-	if (VBOs != 0) {
-		glDeleteBuffers(1, &VBOs);
-		VBOs = 0;
+	if (VBO != 0) {
+		glDeleteBuffers(1, &VBO);
+		VBO = 0;
 	}
 
 
-	if (VAOs != 0) {
-		glDeleteVertexArrays(1, &VAOs);
-		VAOs = 0;
+	if (VAO != 0) {
+		glDeleteVertexArrays(1, &VAO);
+		VAO = 0;
 	}
 }
