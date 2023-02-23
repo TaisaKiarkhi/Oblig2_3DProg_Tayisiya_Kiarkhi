@@ -92,18 +92,21 @@ Window::Window()
 
 		//MATRIX
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+	glm::mat4 rotation_matrix = glm::rotate(glm::mat4 (1.0f), 54.0f, glm::vec3(1.0f, 0.0f,0.0f));
 	glm::mat4 projection_matrix = glm::perspective(glm::radians(60.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 10.0f);
 
 	GLint model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
 	GLint projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
+	GLint rotation_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
 
 	glUniformMatrix4fv(model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 	glUniformMatrix4fv(projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+	glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 
 	//little comment: smth is wrong with the SHADER values 
 
 		
-		meshes.at(3)->draw();
+		meshes.at(2)->draw();
 
 		//shader_list.at(1)->Use_Shader();
 		//meshes.at(1)->draw();

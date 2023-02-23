@@ -12,8 +12,10 @@ GLfloat vert[] = {
 Tetragons::Tetragons()
 {
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 0.0f,     0.0f, 0.0f, 0.0f  });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, 1.0f,     0.0f, 0.0f, 0.0f  });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 0.0f ,     0.0f, 0.0f, 0.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f ,     0.0f, 0.0f, 0.0f });
+	
 }
 
 Tetragons::~Tetragons()
@@ -24,7 +26,7 @@ void Tetragons::draw()
 {
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
