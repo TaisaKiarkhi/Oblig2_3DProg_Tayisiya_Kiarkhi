@@ -70,7 +70,7 @@ void Surface::ClearMesh()
 void Surface::construct()
 {
 
-	float xmin = 0.0f, xmax = 10.0f, ymin = 0.0f, ymax = 10.0f, h = 0.25f;
+	float xmin = 0.0f, xmax = 10.0f, ymin = 0.0f, ymax = 10.0f, h =0.01f;
 	for (auto x = xmin; x < xmax; x += h)
 		for (auto y = ymin; y < ymax; y += h)
 		{
