@@ -88,12 +88,26 @@ Window::Window()
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
+
+		//try to initialize every mesh inside the loop, not separate
+
+
+		shader_list.at(0)->Use_Shader();
+		create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+		meshes.at(0)->draw();
+
+		shader_list.at(1)->Use_Shader();
+		create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f , 5.0f);
+		meshes.at(1)->draw();
+
 		float c = 0.2;
-		for (int i = 0; i < 3; i++) {
+		for (int i = 2; i < 5; i++) {
 			shader_list.at(i)->Use_Shader();
-			create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f+c, 40.0f+c, 0.0f, -4.0f+c, 1.0f+c, 90.0f+c, 0.1f+c, 5.0f+c);
+			create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 5.0f+c);
 			meshes.at(i)->draw();
-			c += 2.0;
+			c +=i+4.0;
+			c *= -1.0;
+
 		}
 
 	//	shader_list.at(1)->Use_Shader();
@@ -138,12 +152,12 @@ void Window::Objects()
 	Tetragons* tetra = new Tetragons();
 	House* house = new House();
 
-	//xyz->init();
-	//surf->init();
+	xyz->init();
+	surf->init();
 	//house->init();
 	
-	//meshes.push_back(xyz);
-	//meshes.push_back(surf);
+	meshes.push_back(xyz);
+	meshes.push_back(surf);
 	//meshes.push_back(house);
 
 	for (int i = 0; i < 3; i++) {
@@ -169,8 +183,9 @@ void Window::Adding_Shaders()
 	shader_list.push_back(t_shader);
 
 	for (int i = 0; i < 3; i++) {
-		Shader* s = new Shader();
-		shader_list.push_back(s);
+		Shader* t = new Shader();
+		t->Create_from_file(VShader, FShader);
+		shader_list.push_back(t);
 	}
 	
 }
