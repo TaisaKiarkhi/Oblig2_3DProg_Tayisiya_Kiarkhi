@@ -120,7 +120,8 @@ Window::Window()
 
 		meshes.at(1)->draw();
         
-		shader_list.at(0)->Use_Shader();
+		
+		shader_list.at(2)->Use_Shader();
 		GLint _model_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
 		GLint _projection_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
 		GLint _rotation_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
@@ -129,7 +130,7 @@ Window::Window()
 		glUniformMatrix4fv(_projection_location_, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 		glUniformMatrix4fv(_rotation_location_, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 
-		meshes.at(0)->draw();
+		meshes.at(3)->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
