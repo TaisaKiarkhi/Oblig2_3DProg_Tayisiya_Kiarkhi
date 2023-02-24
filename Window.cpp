@@ -88,12 +88,12 @@ Window::Window()
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
-		shader_list.at(1)->Use_Shader();
+		shader_list.at(2)->Use_Shader();
 
 		//MATRIX
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4 (1.0f), 54.0f, glm::vec3(1.0f, 0.0f,0.0f));
-	glm::mat4 projection_matrix = glm::perspective(glm::radians(60.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 10.0f);
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 10.0f);
 
 	GLint model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
 	GLint projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
@@ -108,8 +108,17 @@ Window::Window()
 		
 		meshes.at(2)->draw();
 
-		//shader_list.at(1)->Use_Shader();
-		//meshes.at(1)->draw();
+		shader_list.at(1)->Use_Shader();
+
+		GLint _model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
+		GLint _projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
+		GLint _rotation_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
+
+		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
+		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+
+		meshes.at(1)->draw();
         
 
 		glUseProgram(0);
