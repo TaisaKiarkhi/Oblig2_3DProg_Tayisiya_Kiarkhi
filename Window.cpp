@@ -91,17 +91,7 @@ Window::Window()
 		shader_list.at(2)->Use_Shader();
 
 		//MATRIX
-	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
-	glm::mat4 rotation_matrix = glm::rotate(glm::mat4 (1.0f), 54.0f, glm::vec3(1.0f, 0.0f,0.0f));
-	glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 10.0f);
-
-	GLint model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
-	GLint projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
-	GLint rotation_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
-
-	glUniformMatrix4fv(model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
-	glUniformMatrix4fv(projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-	glUniformMatrix4fv(rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+		create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 60.0f, 1.0f, 0.0f, 1.0f, 90.0f, 0.1f, 10.0f);
 
 	//little comment: smth is wrong with the SHADER values 
 
@@ -110,25 +100,13 @@ Window::Window()
 
 		shader_list.at(1)->Use_Shader();
 
-		GLint _model_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
-		GLint _projection_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
-		GLint _rotation_location = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
-
-		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
-		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+		create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
 
 		meshes.at(1)->draw();
         
 		
 		shader_list.at(2)->Use_Shader();
-		GLint _model_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "model");
-		GLint _projection_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "projection");
-		GLint _rotation_location_ = glGetUniformLocation(shader_list.at(0)->Shader_Program, "rotation");
-
-		glUniformMatrix4fv(_model_location_, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
-		glUniformMatrix4fv(_projection_location_, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-		glUniformMatrix4fv(_rotation_location_, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+		create_uniform(shader_list.at(2)->Shader_Program, 0.3f, 0.45f, -1.0f, 30.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 4.0f);
 
 		meshes.at(3)->draw();
 
@@ -225,6 +203,25 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	the_window->last_coord_y = yPos;
 
 	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
+}
+
+void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
+	float r_x, float r_y, float r_z, float perspective, float near, float far)
+{
+
+	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
+	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
+
+	_model_location = 	   glGetUniformLocation(shader, "model");
+	_projection_location = glGetUniformLocation(shader, "projection");
+	_rotation_location =   glGetUniformLocation(shader, "rotation");
+
+
+	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
+	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+
 }
 
 GLfloat Window::get_x_change()

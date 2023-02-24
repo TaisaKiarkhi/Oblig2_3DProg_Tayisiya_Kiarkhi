@@ -21,6 +21,12 @@ public:
 	void Call_Back();
 	static void Handle_Key(GLFWwindow* window, int key, int code, int action, int mode);
 	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
+	void create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle, 
+		          float r_x, float r_y, float r_z, float perspective, float near, float far);
+
+	GLint _model_location;
+	GLint _projection_location;
+	GLint _rotation_location;
 
 	GLint heigth = 1920, width = 1080;      //window size
 	const char* window_title{ "Oblig2" };
