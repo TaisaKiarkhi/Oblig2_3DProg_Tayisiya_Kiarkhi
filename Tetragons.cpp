@@ -35,7 +35,8 @@ void Tetragons::draw()
 {
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glDrawElementsInstanced(GL_TRIANGLES, Vertex_Holder.size(), GL_FLOAT, 0, 5);
+	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
+	//glDrawElementsInstanced(GL_TRIANGLES, Vertex_Holder.size(), GL_FLOAT, 0, 5);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
