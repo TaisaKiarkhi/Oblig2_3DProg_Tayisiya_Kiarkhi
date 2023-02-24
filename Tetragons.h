@@ -12,5 +12,7 @@ public:
 	void draw();
 	void init();
 	void ClearMesh();
+
+	GLuint Offset_Buffer;
 };
 

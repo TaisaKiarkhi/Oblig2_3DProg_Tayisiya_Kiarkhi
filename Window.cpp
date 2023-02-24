@@ -91,24 +91,30 @@ Window::Window()
 		shader_list.at(2)->Use_Shader();
 
 		//MATRIX
-		create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 60.0f, 1.0f, 0.0f, 1.0f, 90.0f, 0.1f, 10.0f);
-
-	//little comment: smth is wrong with the SHADER values 
-
+		create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 45.0f, 0.0f, 1.0f, 0.0f, 90.0f, 0.1f, 10.0f);
 		
 		meshes.at(2)->draw();
 
-		shader_list.at(1)->Use_Shader();
+	//	shader_list.at(1)->Use_Shader();
+	//
+	//	create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+	//
+	//	meshes.at(1)->draw();
+    //    
+	//	
+	//	shader_list.at(2)->Use_Shader();
+	//	create_uniform(shader_list.at(2)->Shader_Program, 0.3f, 0.45f, -1.0f, 30.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 4.0f);
+	//
+	//	meshes.at(3)->draw();
+	//
+	//	shader_list.at(2)->Use_Shader();
+	//	create_uniform(shader_list.at(2)->Shader_Program, 0.5f, 0.5f, -2.0f, 45.0f, 0.0f, 0.0f, 1.0f, 80.0f, 2.0f, 5.0f);
+	//	meshes.at(3)->draw();
 
-		create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
 
-		meshes.at(1)->draw();
-        
-		
-		shader_list.at(2)->Use_Shader();
-		create_uniform(shader_list.at(2)->Shader_Program, 0.3f, 0.45f, -1.0f, 30.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 4.0f);
-
-		meshes.at(3)->draw();
+	//	shader_list.at(0)->Use_Shader();
+	//	create_uniform(shader_list.at(2)->Shader_Program, 0.5f, 0.5f, -2.0f, 90.0f, 0.0f, 0.0f, 1.0f, 60.0f, 0.1f, 5.0f);
+	//	meshes.at(0)->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
