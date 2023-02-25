@@ -16,35 +16,27 @@ using namespace std;
 
 
 static const char* VShader = "VertexShader.vert";
-
 static const char* FShader = "FragmentShader.frag";
-
 
 GLFWwindow* main_window;
 Camera* camera;
 
+
 Window::Window()
 {
-	x_move = 0.0f;
-	y_move = 0.0f;
-	for (size_t i = 0; i < 1024; i++) {
-		keys[i] = 0;
-	}
-	
 	if (!glfwInit()) {
 		std::cout << "GLFW Init failed!" << std::endl;
-		glfwTerminate();
-		
+		glfwTerminate();	
 	}
 
-	
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	// Core Profile = No Backwards Compatibility
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// Allow Forward Compatbility
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
- main_window = glfwCreateWindow(width, heigth, window_title, NULL, NULL);
+    main_window = glfwCreateWindow(width, heigth, window_title, NULL, NULL);
+
 	if (!main_window) {
 		std::cout << "failed window";
 	}
@@ -61,12 +53,9 @@ Window::Window()
 		glfwTerminate();
 	}
 
-	
-
 	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, buffer_w, buffer_h);
-
-	glfwSetWindowUserPointer(main_window, this);
+    glfwSetWindowUserPointer(main_window, this);
 	
 	Objects();
 	Adding_Shaders();
@@ -79,68 +68,45 @@ Window::Window()
 		lastTime = current_time;
 
 		glfwPollEvents();
-
-
-		//camera->Key_Controll(this->get_keys(), deltaTime);
-		//camera->Mouse_Controll(this->get_x_change(), this->get_y_change());
-
-
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
-
 		//try to initialize every mesh inside the loop, not separate
 
-
-	//shader_list.at(0)->Use_Shader();
-	//create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-	//meshes.at(0)->draw();
-	//
-	//shader_list.at(1)->Use_Shader();
-	//create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f , 5.0f);
-	//meshes.at(1)->draw();
-	//
-	//shader_list.at(2)->Use_Shader();
-	//create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-	//meshes.at(2)->draw();
-
-	//float c = 0.2;
-	//for (int i = 3; i < 6; i++) {
-	//	shader_list.at(i)->Use_Shader();
-	//	create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 5.0f+c);
-	//	meshes.at(i)->draw();
-	//	c +=i+4.0;
-	//	c *= -1.0;
-	//
-	//}
-
-	//	shader_list.at(1)->Use_Shader();
-	//
-	//	create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-	//
-	//	meshes.at(1)->draw();
-    //    
-	//	
-		shader_list.at(0)->Use_Shader();
-		create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-	
-		meshes.at(0)->draw();
-	//
-	//	shader_list.at(2)->Use_Shader();
-	//	create_uniform(shader_list.at(2)->Shader_Program, 0.5f, 0.5f, -2.0f, 45.0f, 0.0f, 0.0f, 1.0f, 80.0f, 2.0f, 5.0f);
-	//	meshes.at(3)->draw();
-
-
-	//	shader_list.at(0)->Use_Shader();
-	//	create_uniform(shader_list.at(2)->Shader_Program, 0.5f, 0.5f, -2.0f, 90.0f, 0.0f, 0.0f, 1.0f, 60.0f, 0.1f, 5.0f);
-	//	meshes.at(0)->draw();
+		//XYZ
+        shader_list.at(0)->Use_Shader();
+        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        meshes.at(0)->draw();
+        
+		//SURFACE
+        shader_list.at(1)->Use_Shader();
+        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        
+		//HOUSE
+        shader_list.at(2)->Use_Shader();
+        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        meshes.at(2)->draw();
+        
+		//Random TETRAGONS
+        float c = 0.2;
+        for (int i = 3; i < 6; i++) {
+        shader_list.at(i)->Use_Shader();
+        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 25.0f+c);
+        meshes.at(i)->draw();
+        	c +=i+4.0;
+        	c *= -1.0;
+         }
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
 		
 	}
-	shader_list.at(0)->~Shader();
 
+	//destroy objects
+	for (int i = 0; i < 6; i++) {
+		shader_list.at(i)->~Shader();
+		meshes.at(i)->~VisualObject();
+	}
 }
 
 Window::~Window()
@@ -151,26 +117,25 @@ Window::~Window()
 
 void Window::Objects()
 {
-	//XYZ* xyz = new XYZ();
-	//Surface* surf = new Surface();
-	//Tetragons* tetra = new Tetragons();
+	XYZ* xyz = new XYZ();
+	Surface* surf = new Surface();
+	Tetragons* tetra = new Tetragons();
 	House* house = new House();
 
-//xyz->init();
-//surf->init();
-	house->init();
-	
-//meshes.push_back(xyz);
-//meshes.push_back(surf);
-	meshes.push_back(house);
-
-//for (int i = 0; i < 3; i++) {
-//	Tetragons* tet = new Tetragons();
-//	tet->init();
-//	meshes.push_back(tet);
-//}
-
-}
+    xyz->init();
+    surf->init();
+    house->init();
+    
+    meshes.push_back(xyz);
+    meshes.push_back(surf);
+    meshes.push_back(house);
+    
+    for (int i = 0; i < 3; i++) {
+    Tetragons* tet = new Tetragons();
+    tet->init();
+    meshes.push_back(tet);
+    }
+    }
 
 void Window::Adding_Shaders()
 {
@@ -194,31 +159,47 @@ void Window::Adding_Shaders()
 	
 }
 
-void Window::Call_Back()
+//Matrices, model, view, projection
+void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
+	float r_x, float r_y, float r_z, float perspective, float near, float far)
 {
-	glfwSetKeyCallback(main_window, Handle_Key);
-	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
+	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
+	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
+	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
+	glm::mat4 view = cam->getWorldToViewMatrix();
+
+	_model_location = 	   glGetUniformLocation(shader, "model");
+	_projection_location = glGetUniformLocation(shader, "projection");
+	_rotation_location =   glGetUniformLocation(shader, "rotation");
+	_view_location = glGetUniformLocation(shader, "view");
+
+	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
+	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+	glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
 }
 
-void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int mode) //the parameters should be as the function shows. Otherwise in will nnot recognize any action
-{
-	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-		glfwSetWindowShouldClose(window, GL_TRUE);
-	}
 
-	if (key >=0 && key < 1024) {
-		if (action == GLFW_PRESS) {
-			the_window->keys[key] = true;
-			std::cout << "The key is pressed: " << key<<std::endl;
-		}
 
-		else if (action == GLFW_RELEASE) {
-			the_window->keys[key] = false;
-			std::cout << "The kkey is released " << key << std::endl;
-		}
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 {
@@ -230,7 +211,7 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 		the_window->mouse_first_moved = false;
 	}
 	the_window->x_move = xPos - the_window->last_coord_x;
-	the_window->y_move = the_window->last_coord_y-yPos;
+	the_window->y_move = the_window->last_coord_y - yPos;
 
 	the_window->last_coord_x = xPos;
 	the_window->last_coord_y = yPos;
@@ -238,24 +219,10 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
 }
 
-void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
-	float r_x, float r_y, float r_z, float perspective, float near, float far)
-{
-
-	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
-	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
-	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
-
-	_model_location = 	   glGetUniformLocation(shader, "model");
-	_projection_location = glGetUniformLocation(shader, "projection");
-	_rotation_location =   glGetUniformLocation(shader, "rotation");
 
 
-	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
-	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 
-}
+
 
 GLfloat Window::get_x_change()
 {
@@ -269,4 +236,32 @@ GLfloat Window::get_y_change()
 	GLfloat theChange = y_move;
 	y_move = 0.0f;
 	return theChange;
+}
+
+
+
+void Window::Call_Back()
+{
+	glfwSetKeyCallback(main_window, Handle_Key);
+	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
+}
+
+void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int mode) //the parameters should be as the function shows. Otherwise in will nnot recognize any action
+{
+	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+
+	if (key >= 0 && key < 1024) {
+		if (action == GLFW_PRESS) {
+			the_window->keys[key] = true;
+			std::cout << "The key is pressed: " << key << std::endl;
+		}
+
+		else if (action == GLFW_RELEASE) {
+			the_window->keys[key] = false;
+			std::cout << "The kkey is released " << key << std::endl;
+		}
+	}
 }

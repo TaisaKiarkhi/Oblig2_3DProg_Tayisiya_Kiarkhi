@@ -27,6 +27,7 @@ public:
 	GLint _model_location;
 	GLint _projection_location;
 	GLint _rotation_location;
+	GLint _view_location;
 
 	GLint heigth = 1920, width = 1080;      //window size
 	const char* window_title{ "Oblig2" };
@@ -34,6 +35,7 @@ public:
 	std::vector <VisualObject*> meshes;
 	std::vector <Shader*> shader_list;
 	
+	Camera* cam = new Camera();
 
 	GLfloat last_coord_x;
 	GLfloat last_coord_y;
