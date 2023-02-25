@@ -2,33 +2,89 @@
 
 House::House()
 {
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f,        0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,     0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,        0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f ,         0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f,        0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,       0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,          0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,          0.0f,  0.0f,  0.0f });
+    //Vertex coordinates source: https://github.com/Lolinonusos/OpenGLTest_Men-for-skole-lol/blob/main/OpenGLTest/cube.cpp
+
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,    0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f });
+
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f, 0.0f, 1.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f, 0.0f, 1.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f, 0.0f, 1.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f });
+													 
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f });
+													 
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f });
+
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,1.0f, 0.0f, 0.0f });
+
+//top - bottom of the roof
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,1.0f, 0.0f, 0.0f});
+Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,1.0f, 0.0f, 0.0f});
 
 
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,      0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,          0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f ,                 0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,         0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f,         0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,         0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, +1.0f,            0.0f,  0.0f,  0.0f });
+////roof front
+//Vertex_Holder.push_back(Vertex{ 0.5f,  -0.5f,-1.5f,  1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -1.5f,   1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{0.0f,  0.0f,  -1.5f,     1.0f, 0.0f, 0.0f });
+//											
+////roof back									
+//Vertex_Holder.push_back(Vertex{-0.5f, -0.5f, -1.5f,  1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,-1.5f,  1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 0.0f,  0.0f, -1.5f,    1.0f, 0.0f, 0.0f });
+//											
+//// roof left									
+//Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -1.5f,  1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ -0.5f,-0.5f, -1.5f, 1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 0.0f, 0.0f,  -1.5f,    1.0f, 0.0f, 0.0f });
+//											
+////roof right									
+//Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -1.5f,   1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ -0.5f, 0.5f, -1.5f,  1.0f, 0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 0.0f,  0.0f, -1.5f,    1.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, -1.0f,           0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, +1.0f, +1.0f,             0.0f,  0.0f,  0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f ,              0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, +1.0f,          0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ +1.0f, -1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, +1.0f,            0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, +1.0f, -1.0f,       0.0f  ,0.0f  ,0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, -1.0f,   0.0f,      0.0f,  0.0f });
+
+
+//Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,  0.0f ,1.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,  0.0f ,1.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,  0.0f ,1.0f, 0.0f });
+//
+//
+//Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,  0.0f ,0.0f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,  0.0f ,0.0f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,  0.0f ,0.0f, 1.0f });
+//
+//
+//Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,    1.0f ,0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,  1.0f ,0.0f, 0.0f });
+//Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,  1.0f ,0.0f, 0.0f });
+
+
 }
 
 House::~House()

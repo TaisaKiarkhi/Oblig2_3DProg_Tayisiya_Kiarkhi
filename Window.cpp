@@ -92,27 +92,27 @@ Window::Window()
 		//try to initialize every mesh inside the loop, not separate
 
 
-		shader_list.at(0)->Use_Shader();
-		create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-		meshes.at(0)->draw();
+	//shader_list.at(0)->Use_Shader();
+	//create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+	//meshes.at(0)->draw();
+	//
+	//shader_list.at(1)->Use_Shader();
+	//create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f , 5.0f);
+	//meshes.at(1)->draw();
+	//
+	//shader_list.at(2)->Use_Shader();
+	//create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+	//meshes.at(2)->draw();
 
-		shader_list.at(1)->Use_Shader();
-		create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f , 5.0f);
-		meshes.at(1)->draw();
-
-		shader_list.at(2)->Use_Shader();
-		create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 5.0f);
-		meshes.at(2)->draw();
-
-		float c = 0.2;
-		for (int i = 3; i < 6; i++) {
-			shader_list.at(i)->Use_Shader();
-			create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 5.0f+c);
-			meshes.at(i)->draw();
-			c +=i+4.0;
-			c *= -1.0;
-
-		}
+	//float c = 0.2;
+	//for (int i = 3; i < 6; i++) {
+	//	shader_list.at(i)->Use_Shader();
+	//	create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 5.0f+c);
+	//	meshes.at(i)->draw();
+	//	c +=i+4.0;
+	//	c *= -1.0;
+	//
+	//}
 
 	//	shader_list.at(1)->Use_Shader();
 	//
@@ -121,10 +121,10 @@ Window::Window()
 	//	meshes.at(1)->draw();
     //    
 	//	
-	//	shader_list.at(2)->Use_Shader();
-	//	create_uniform(shader_list.at(2)->Shader_Program, 0.3f, 0.45f, -1.0f, 30.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 4.0f);
-	//
-	//	meshes.at(3)->draw();
+		shader_list.at(0)->Use_Shader();
+		create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+	
+		meshes.at(0)->draw();
 	//
 	//	shader_list.at(2)->Use_Shader();
 	//	create_uniform(shader_list.at(2)->Shader_Program, 0.5f, 0.5f, -2.0f, 45.0f, 0.0f, 0.0f, 1.0f, 80.0f, 2.0f, 5.0f);
@@ -151,24 +151,24 @@ Window::~Window()
 
 void Window::Objects()
 {
-	XYZ* xyz = new XYZ();
-	Surface* surf = new Surface();
-	Tetragons* tetra = new Tetragons();
+	//XYZ* xyz = new XYZ();
+	//Surface* surf = new Surface();
+	//Tetragons* tetra = new Tetragons();
 	House* house = new House();
 
-	xyz->init();
-	surf->init();
+//xyz->init();
+//surf->init();
 	house->init();
 	
-	meshes.push_back(xyz);
-	meshes.push_back(surf);
+//meshes.push_back(xyz);
+//meshes.push_back(surf);
 	meshes.push_back(house);
 
-	for (int i = 0; i < 3; i++) {
-		Tetragons* tet = new Tetragons();
-		tet->init();
-		meshes.push_back(tet);
-	}
+//for (int i = 0; i < 3; i++) {
+//	Tetragons* tet = new Tetragons();
+//	tet->init();
+//	meshes.push_back(tet);
+//}
 
 }
 
