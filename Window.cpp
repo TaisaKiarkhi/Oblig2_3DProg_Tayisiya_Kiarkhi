@@ -94,23 +94,23 @@ Window::Window()
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
-        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f);
         meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
-        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f);
         
 		//HOUSE
         shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 5.0f);
+        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
         float c = 0.2;
         for (int i = 3; i < 6; i++) {
         shader_list.at(i)->Use_Shader();
-        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 25.0f+c);
+        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 100.0f+c);
         meshes.at(i)->draw();
         	c +=i+4.0;
         	c *= -1.0;
