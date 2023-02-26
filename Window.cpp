@@ -12,6 +12,7 @@
 #include <glm/glm/gtc/type_ptr.hpp>
 #include <Tetragons.h>
 #include <House.h>
+#include <Camera.h>
 using namespace std;
 
 
@@ -24,6 +25,15 @@ Camera* camera;
 
 Window::Window()
 {
+	x_move = 0.0f,
+	y_move = 0.0f;
+
+	for (size_t i = 0; i < 1024; i++)
+	{
+		keys[i] = 0;
+	}
+
+
 	if (!glfwInit()) {
 		std::cout << "GLFW Init failed!" << std::endl;
 		glfwTerminate();	
@@ -44,6 +54,9 @@ Window::Window()
 	glfwGetFramebufferSize(main_window, &buffer_w, &buffer_h);
 	glfwMakeContextCurrent(main_window);
 	Call_Back(); //pressing keys
+	glfwSetInputMode(main_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+
 
 	glewExperimental = GL_TRUE;
 	glewInit();
@@ -60,6 +73,8 @@ Window::Window()
 	Objects();
 	Adding_Shaders();
 
+	cam= Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
+
 	//MATRICES 
 
 	while (!glfwWindowShouldClose(main_window)) {
@@ -68,6 +83,10 @@ Window::Window()
 		lastTime = current_time;
 
 		glfwPollEvents();
+
+		cam.keyControl(this->get_keys(), deltaTime);
+		cam.mouseControl(this->get_x_change(), this->get_y_change());
+
 		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
@@ -166,7 +185,7 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
 	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
-	glm::mat4 view = cam->getWorldToViewMatrix();
+	glm::mat4 view = cam.calculateViewMatrix();
 
 	_model_location = 	   glGetUniformLocation(shader, "model");
 	_projection_location = glGetUniformLocation(shader, "projection");
@@ -201,15 +220,18 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 
 
 
+
+
 void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 {
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
 	if (the_window->mouse_first_moved) {
-		the_window->last_coord_x = static_cast<float>(xPos);
-		the_window->last_coord_y = static_cast<float>(xPos);
+		the_window->last_coord_x = xPos;
+		the_window->last_coord_y = yPos;
 		the_window->mouse_first_moved = false;
 	}
+
 	the_window->x_move = xPos - the_window->last_coord_x;
 	the_window->y_move = the_window->last_coord_y - yPos;
 
@@ -246,9 +268,12 @@ void Window::Call_Back()
 	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
 }
 
+
+
 void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int mode) //the parameters should be as the function shows. Otherwise in will nnot recognize any action
 {
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
+
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
