@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Interactive_Object.h"
 
 Camera::Camera() {}
 
@@ -12,6 +13,7 @@ Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLf
 
 	moveSpeed = startMoveSpeed;
 	turnSpeed = startTurnSpeed;
+
 
 	update();
 }
@@ -41,22 +43,22 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime)
 	}
 }
 
-void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
+void Camera::mouseControl(GLfloat xChange)
 {
 	xChange *= turnSpeed;
-	yChange *= turnSpeed;
+	
 
 	yaw += xChange;
-	pitch += yChange;
+	
 
-	if (pitch > 89.0f)
+	if (pitch > 180.0f)
 	{
-		pitch = 89.0f;
+		pitch = 180.0f;
 	}
 
-	if (pitch < -89.0f)
+	if (pitch < -180.0f)
 	{
-		pitch = -89.0f;
+		pitch = -180.0f;
 	}
 
 	update();

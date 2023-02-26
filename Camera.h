@@ -4,6 +4,7 @@
 #include <glm/glm/glm.hpp>
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/gtx/transform.hpp>
+#include "Interactive_Object.h"
 class Camera
 {
 public:
@@ -11,11 +12,13 @@ public:
 	Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed);
 
 	void keyControl(bool* keys, GLfloat deltaTime);
-	void mouseControl(GLfloat xChange, GLfloat yChange);
+	void mouseControl(GLfloat xChange);
 
 	glm::mat4 calculateViewMatrix();
 
 	~Camera();
+
+	
 
 private:
 	glm::vec3 position;

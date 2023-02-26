@@ -22,7 +22,7 @@ static const char* FShader = "FragmentShader.frag";
 
 GLFWwindow* main_window;
 Camera* camera;
-
+Interactive_Object* inter = new Interactive_Object(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
 
 Window::Window()
 {
@@ -74,7 +74,8 @@ Window::Window()
 	Objects();
 	Adding_Shaders();
 
-	cam= Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
+	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
+	
 
 	//MATRICES 
 
@@ -86,12 +87,24 @@ Window::Window()
 		glfwPollEvents();
 
 		cam.keyControl(this->get_keys(), deltaTime);
-		cam.mouseControl(this->get_x_change(), this->get_y_change());
+		cam.mouseControl(this->get_x_change());
+
+		inter->keyControl(this->get_keys(), deltaTime);
+		inter->mouseControl(this->get_x_change());
+		
+		
+		
 
 		glClearColor(0.5137f, 0.8117f, 0.9411f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
 		//try to initialize every mesh inside the loop, not separate
+
+
+		shader_list.at(10)->Use_Shader();
+		create_uniform(shader_list.at(10)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
+		meshes.at(10)->draw();
+
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
@@ -120,8 +133,10 @@ Window::Window()
 
 		//object inside the house
 		shader_list.at(9)->Use_Shader();
-		create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 0.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
+		create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
 		meshes.at(9)->draw();
+
+		
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -149,10 +164,12 @@ void Window::Objects()
 	Surface* surf = new Surface();
 	Tetragons* tetra = new Tetragons();
 	House* house = new House();
+	
 
     xyz->init();
     surf->init();
     house->init();
+	inter->init();
     
     meshes.push_back(xyz);
     meshes.push_back(surf);
@@ -167,6 +184,9 @@ void Window::Objects()
 	House_Object* object_inside = new House_Object();
 	object_inside->init();
 	meshes.push_back(object_inside);
+	meshes.push_back(inter);
+
+	
 
     }
 
@@ -194,6 +214,10 @@ void Window::Adding_Shaders()
 	Shader* ob_s = new Shader();
 	ob_s->Create_from_file(VShader, FShader);
 	shader_list.push_back(ob_s);
+
+	Shader* i = new Shader();
+	i->Create_from_file(VShader, FShader);
+	shader_list.push_back(i);
 
 }
 
@@ -288,6 +312,10 @@ void Window::Call_Back()
 {
 	glfwSetKeyCallback(main_window, Handle_Key);
 	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
+
+
+
+
 }
 
 
