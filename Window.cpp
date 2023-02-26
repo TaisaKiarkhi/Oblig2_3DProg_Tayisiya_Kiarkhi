@@ -94,24 +94,24 @@ Window::Window()
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
-        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f);
+        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f);
         meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
-        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f);
+        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
 		meshes.at(1)->draw();
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f);
+        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
         float c = 0.2;
         for (int i = 3; i < 6; i++) {
         shader_list.at(i)->Use_Shader();
-        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 100.0f+c);
+        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 100.0f+c, 1.0f, 1.0f, 1.0f);
         meshes.at(i)->draw();
         	c +=i+4.0;
         	c *= -1.0;
@@ -181,22 +181,25 @@ void Window::Adding_Shaders()
 
 //Matrices, model, view, projection
 void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
-	float r_x, float r_y, float r_z, float perspective, float near, float far)
+	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z)
 {
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
 	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
 	glm::mat4 view = cam.calculateViewMatrix();
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scale_x, scale_y, scale_z));
 
 	_model_location = 	   glGetUniformLocation(shader, "model");
 	_projection_location = glGetUniformLocation(shader, "projection");
 	_rotation_location =   glGetUniformLocation(shader, "rotation");
 	_view_location = glGetUniformLocation(shader, "view");
+	_scale_location = glGetUniformLocation(shader, "scale");
 
 	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 	glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
 }
 
 
