@@ -87,7 +87,7 @@ Window::Window()
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change(), this->get_y_change());
 
-		glClearColor(0.05f, 0.02f, 0.2067f, 1.0f);
+		glClearColor(0.5137f, 0.8117f, 0.9411f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
 		//try to initialize every mesh inside the loop, not separate
@@ -100,7 +100,8 @@ Window::Window()
 		//SURFACE
         shader_list.at(1)->Use_Shader();
         create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f);
-        
+		meshes.at(1)->draw();
+
 		//HOUSE
         shader_list.at(2)->Use_Shader();
         create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f);

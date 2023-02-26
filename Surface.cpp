@@ -5,22 +5,17 @@
 Surface::Surface()
 {
 	
-//	Vertex_Holder.push_back(Vertex{ 0.0,0.0,0.0, 1,0,0 });
-//	Vertex_Holder.push_back(Vertex{ 0.5, 0.0, 0.0, 0, 1, 0 });
-//	Vertex_Holder.push_back(Vertex{ 0.5,0.5,0.0, 0,0,1 });
-//
-//	Vertex_Holder.push_back(Vertex{ 0.0,0.0,0.0, 0,0,0 });
-//	Vertex_Holder.push_back(Vertex{ 0.5,0.5,0.0, 0,0,0 });
-//	Vertex_Holder.push_back(Vertex{ 0.0,0.5,0.0, 0,0,0 });
+			
+	//bottom
+Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,        0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,         0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,         0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,         0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,        0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,        0.422f, 0.764f, 0.141f });
 
-	//Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f });
-	//Vertex_Holder.push_back(Vertex{  0.5f, -0.5f, -0.5,    1.0f, 0.0f, 0.0f });
-	//Vertex_Holder.push_back(Vertex{  0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f });
-	//Vertex_Holder.push_back(Vertex{  0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f });
-	//Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f });
-	//Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f });
+	//create_plane();
 
-	construct();
 }
 
 Surface::~Surface()
@@ -50,6 +45,9 @@ void Surface::init()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 
 	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -93,4 +91,26 @@ void Surface::construct()
 			z = sin(3.14159 * (x + h)) * sin(3.14159 * (y + h));
 			Vertex_Holder.push_back(Vertex{ x + h,y + h,z,x,y,z });
 		}
+}
+
+void Surface::create_plane()
+{
+	int dimension = 10;
+
+	int half = dimension / 2;
+
+	for (int i = 0; i < dimension; i++) {
+		for (int j = 0; j < dimension; j++) {
+			float x = j - half;
+			float y = 0.0f;
+			float z = i - half;
+
+			float r = 1.0f;
+			float g = 0.0f;
+			float b = 1.0f;
+
+			Vertex_Holder.push_back(Vertex{ x,y ,z, r,g,b });
+
+	}
+	}
 }

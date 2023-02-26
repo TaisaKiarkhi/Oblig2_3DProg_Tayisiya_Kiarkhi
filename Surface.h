@@ -13,6 +13,7 @@ public:
 	void init();
 	void ClearMesh();
 	void construct();
+	void create_plane();
 	
 };
 

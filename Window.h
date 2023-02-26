@@ -26,7 +26,7 @@ public:
 	GLint _rotation_location;
 	GLint _view_location;
 
-	GLint heigth = 1920, width = 1080;      //window size
+	GLint heigth = 1080, width = 1920;      //window size
 	const char* window_title{ "Oblig2" };
 	int buffer_w, buffer_h;
 	std::vector <VisualObject*> meshes;
