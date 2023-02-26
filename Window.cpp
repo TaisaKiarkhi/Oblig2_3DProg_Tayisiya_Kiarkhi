@@ -108,14 +108,16 @@ Window::Window()
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
-        float c = 0.2;
-        for (int i = 3; i < 6; i++) {
+        float c = 2.0;
+        for (int i = 3; i < 9; i++) {
         shader_list.at(i)->Use_Shader();
-        create_uniform(shader_list.at(i)->Shader_Program, 0.0f+c, 0.0f, -5.0f+c, 40.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f+c, 100.0f+c, 1.0f, 1.0f, 1.0f);
+        create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f);
         meshes.at(i)->draw();
-        	c +=i+4.0;
-        	c *= -1.0;
+        	c +=10.0f+i;
+        	c *= -1.2f;
          }
+
+
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -127,6 +129,8 @@ Window::Window()
 		shader_list.at(i)->~Shader();
 		meshes.at(i)->~VisualObject();
 	}
+
+	cout << meshes.size();
 }
 
 Window::~Window()
@@ -150,11 +154,12 @@ void Window::Objects()
     meshes.push_back(surf);
     meshes.push_back(house);
     
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 6; i++) {
     Tetragons* tet = new Tetragons();
     tet->init();
     meshes.push_back(tet);
     }
+
     }
 
 void Window::Adding_Shaders()
@@ -171,7 +176,7 @@ void Window::Adding_Shaders()
 	t_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(t_shader);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 6; i++) {
 		Shader* t = new Shader();
 		t->Create_from_file(VShader, FShader);
 		shader_list.push_back(t);
