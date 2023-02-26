@@ -13,6 +13,7 @@
 #include <Tetragons.h>
 #include <House.h>
 #include <Camera.h>
+#include <House_Object.h>
 using namespace std;
 
 
@@ -117,7 +118,10 @@ Window::Window()
         	c *= -1.2f;
          }
 
-
+		//object inside the house
+		shader_list.at(9)->Use_Shader();
+		create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 0.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
+		meshes.at(9)->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -160,6 +164,10 @@ void Window::Objects()
     meshes.push_back(tet);
     }
 
+	House_Object* object_inside = new House_Object();
+	object_inside->init();
+	meshes.push_back(object_inside);
+
     }
 
 void Window::Adding_Shaders()
@@ -182,6 +190,11 @@ void Window::Adding_Shaders()
 		shader_list.push_back(t);
 	}
 	
+
+	Shader* ob_s = new Shader();
+	ob_s->Create_from_file(VShader, FShader);
+	shader_list.push_back(ob_s);
+
 }
 
 //Matrices, model, view, projection

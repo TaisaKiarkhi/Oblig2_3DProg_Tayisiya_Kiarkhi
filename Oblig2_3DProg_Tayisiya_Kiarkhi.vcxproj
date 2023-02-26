@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="House.cpp" />
+    <ClCompile Include="House_Object.cpp" />
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="House.h" />
+    <ClInclude Include="House_Object.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tetragons.h" />
