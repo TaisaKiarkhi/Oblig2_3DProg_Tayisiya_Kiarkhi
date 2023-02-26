@@ -104,7 +104,7 @@ Window::Window()
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, 0.0f, 0.0f, -3.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
+        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
