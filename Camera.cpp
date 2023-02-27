@@ -3,7 +3,7 @@
 
 Camera::Camera() {}
 
-Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed)
+Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed, Interactive_Object i)
 {
 	position = startPosition;
 	worldUp = startUp;
@@ -14,21 +14,7 @@ Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLf
 	moveSpeed = startMoveSpeed;
 	turnSpeed = startTurnSpeed;
 
-
-	
-	
-	
-
-
-	
-	
-	
-
-
-	
-	
-	
-
+	inter = &i;
 
 	update();
 }
@@ -37,24 +23,32 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime)
 {
 	GLfloat velocity = moveSpeed * deltaTime;
 
-	if (keys[GLFW_KEY_W])
-	{
-		position += front * velocity;
-	}
 
-	if (keys[GLFW_KEY_S])
-	{
-		position -= front * velocity;
-	}
+	//ADD +1 TO POSITION.X AND ETC TO SEE THE INTEROBJECT
+
+
+if (keys[GLFW_KEY_W])
+{
+	position += front * velocity;
+	inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position); //position.x +1 etc
+}
+
+if (keys[GLFW_KEY_S])
+{
+	position -= front * velocity;
+	inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
+}
 
 	if (keys[GLFW_KEY_A])
 	{
 		position -= right * velocity;
+		inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
 	}
 
 	if (keys[GLFW_KEY_D])
 	{
 		position += right * velocity;
+		inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
 	}
 }
 

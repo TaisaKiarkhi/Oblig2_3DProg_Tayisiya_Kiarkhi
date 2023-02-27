@@ -15,7 +15,7 @@ public:
 	void draw() override;
 	void init() override;
 
-
+	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(x_change, 0.0, y_change));
 
 	void keyControl(bool* keys, GLfloat deltaTime);
 	void mouseControl(GLfloat xChange);

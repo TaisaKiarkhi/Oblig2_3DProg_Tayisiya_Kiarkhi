@@ -18,7 +18,7 @@ public:
 	std::vector<Vertex>Vertex_Holder; 
 	float x_change;
 	float y_change;
-	
+	float z_change;
 	
 };
 

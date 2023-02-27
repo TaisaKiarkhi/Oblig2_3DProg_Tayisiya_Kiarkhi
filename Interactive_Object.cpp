@@ -3,31 +3,23 @@
 
 Interactive_Object::Interactive_Object(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed)
 {
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.6274f, 0.1254f, 0.9417f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f, 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.56078f, 0.0f, 1.0f });
 
 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f, 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 0.75294f, 0.79607f });
 
 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 1.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.01568f, 0.46274f, 0.81568f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.9686f, 0.90588f, 0.8078f });
 
 
-	position = startPosition;
-	worldUp = startUp;
-	yaw = startYaw;
-	pitch = startPitch;
-	front = glm::vec3(0.0f, 0.0f, -1.0f);
-
-	moveSpeed = startMoveSpeed;
-	turnSpeed = startTurnSpeed;
 	
-	update();
+
 }
 
 Interactive_Object::~Interactive_Object()
@@ -63,61 +55,4 @@ glGenVertexArrays(1, &VAO);
 	glBindVertexArray(0);
 }
 
-void Interactive_Object::keyControl(bool* keys, GLfloat deltaTime)
-{
-	GLfloat velocity = moveSpeed * deltaTime;
 
-	if (keys[GLFW_KEY_W])
-	{
-		position += front * velocity;
-	}
-
-	if (keys[GLFW_KEY_S])
-	{
-		position -= front * velocity;
-	}
-
-	if (keys[GLFW_KEY_A])
-	{
-		position -= right * velocity;
-	}
-
-	if (keys[GLFW_KEY_D])
-	{
-		position += right * velocity;
-	}
-}
-
-
-void Interactive_Object::update()
-{
-	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-	front.y = sin(glm::radians(pitch));
-	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-	front = glm::normalize(front);
-
-	right = glm::normalize(glm::cross(front, worldUp));
-	up = glm::normalize(glm::cross(right, front));
-}
-
-
-void Interactive_Object ::mouseControl(GLfloat xChange)
-{
-	xChange *= turnSpeed;
-	//yChange *= turnSpeed;
-
-	yaw += xChange;
-	//pitch += yChange;
-
-	if (yaw > 180.0f)
-	{
-		yaw = 180.0f;
-	}
-
-	if (yaw < -180.0f)
-	{
-		yaw = -180.0f;
-	}
-
-	update();
-}

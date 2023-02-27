@@ -75,11 +75,15 @@ Window::Window()
 	Objects();
 	Adding_Shaders();
 
-	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
+	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	NPC* npc = new NPC();
 	npc->init();
 	meshes.push_back(npc);
 	npc->Function_y();
+
+	inter->init();
+	
+
 
 	//MATRICES 
 
@@ -89,26 +93,25 @@ Window::Window()
 		lastTime = current_time;
 
 		glfwPollEvents();
-		cam.keyControl(this->get_keys(), deltaTime);
-		cam.mouseControl(this->get_x_change());
-		inter->keyControl(this->get_keys(), deltaTime);
-		inter->mouseControl(this->get_x_change());
-		
 
 		
+
+		cam.keyControl(this->get_keys(), deltaTime);
+		cam.mouseControl(this->get_x_change());
 		
-		
-		
+		//inter->keyControl(this->get_keys(), deltaTime);
+		//inter->mouseControl(this->get_x_change());
+
 
 		glClearColor(0.5137f, 0.8117f, 0.9411f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
 		//try to initialize every mesh inside the loop, not separate
 
-
+		//poor playable character
 		shader_list.at(10)->Use_Shader();
-		create_uniform(shader_list.at(10)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f , 0.0f, 0.0f, 0.0f);
-		meshes.at(10)->draw();
+		create_uniform(shader_list.at(10)->Shader_Program, 0.0f + cam.inter->x_change, 0.0f, -5.0f + cam.inter->z_change, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f , cam.inter->x_change, 0.0f, cam.inter->z_change);
+		inter->draw();
 
 
 		//XYZ
@@ -123,7 +126,7 @@ Window::Window()
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
@@ -178,7 +181,7 @@ void Window::Objects()
     xyz->init();
     surf->init();
     house->init();
-	inter->init();
+	
     
     meshes.push_back(xyz);
     meshes.push_back(surf);
