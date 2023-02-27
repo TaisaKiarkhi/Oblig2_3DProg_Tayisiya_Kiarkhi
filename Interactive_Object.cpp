@@ -1,7 +1,7 @@
 #include "Interactive_Object.h"
 #include <Camera.h>
 
-Interactive_Object::Interactive_Object(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed)
+Interactive_Object::Interactive_Object()
 {
 	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.6274f, 0.1254f, 0.9417f });
 	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f, 1.0f, 1.0f });

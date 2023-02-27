@@ -10,6 +10,10 @@
 #include <Camera.h>
 #include <Surface.h>
 #include "Tetragons.h"
+#include <glm/glm/glm.hpp>
+#include <glm/glm/ext/matrix_transform.hpp>
+#include <glm/glm/mat4x4.hpp>
+#include <glm/glm/gtc/type_ptr.hpp>
 class Window
 {
 public:
@@ -20,6 +24,9 @@ public:
 	void create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle, 
 		          float r_x, float r_y, float r_z, float perspective, float near, float far,
 		float scale_x, float scale_y, float scale_z, float x_off, float y_off, float z_off);
+
+
+	
 
 
 	GLint _model_location;

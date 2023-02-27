@@ -23,7 +23,7 @@ static const char* FShader = "FragmentShader.frag";
 
 GLFWwindow* main_window;
 Camera* camera;
-Interactive_Object* inter = new Interactive_Object(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
+Interactive_Object* inter = new Interactive_Object();
 
 Window::Window()
 {
@@ -108,10 +108,63 @@ Window::Window()
 
 		//try to initialize every mesh inside the loop, not separate
 
+
+
 		//poor playable character
 		shader_list.at(10)->Use_Shader();
-		create_uniform(shader_list.at(10)->Shader_Program, 0.0f + cam.inter->x_change, 0.0f, -5.0f + cam.inter->z_change, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f , cam.inter->x_change, 0.0f, cam.inter->z_change);
+
+
+	
+		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
+		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
+		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.x, cam.front.x));
+		glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
+		glm::mat4 view = cam.calculateViewMatrix();
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+
+
+		float x_o = 0.0f;
+		float y_o = 0.0f;
+		float z_o = 0.0f;
+
+		_model_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "model");
+		_projection_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "projection");
+		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
+		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
+		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
+
+		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
+		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
+		z_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "z_offset");
+
+		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
+		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
+		glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
+
+		glUniform1f(x_off_loc, x_o);
+		glUniform1f(y_off_loc, y_o);
+		glUniform1f(z_off_loc, z_o);
+
 		inter->draw();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		//XYZ
@@ -279,25 +332,6 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 {
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
@@ -309,7 +343,7 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	}
 
 	the_window->x_move = xPos - the_window->last_coord_x;
-	the_window->y_move = the_window->last_coord_y - yPos;
+	the_window->y_move =  yPos-the_window->last_coord_y;
 
 	the_window->last_coord_x = xPos;
 	the_window->last_coord_y = yPos;

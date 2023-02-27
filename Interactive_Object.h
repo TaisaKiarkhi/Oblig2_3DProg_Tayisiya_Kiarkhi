@@ -9,7 +9,6 @@ class Interactive_Object : public VisualObject
 {
 public:
 	Interactive_Object();
-	Interactive_Object(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed);
 	~Interactive_Object();
 
 	void draw() override;

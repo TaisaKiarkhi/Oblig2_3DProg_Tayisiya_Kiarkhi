@@ -30,25 +30,29 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime)
 if (keys[GLFW_KEY_W])
 {
 	position += front * velocity;
-	inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position); //position.x +1 etc
+	//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x+1, position.y + 1, position.z + 1) ); //position.x +1 etc
+	
 }
 
 if (keys[GLFW_KEY_S])
 {
 	position -= front * velocity;
-	inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
+	//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
+	
 }
 
 	if (keys[GLFW_KEY_A])
 	{
 		position -= right * velocity;
-		inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
+		//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
+	
 	}
 
 	if (keys[GLFW_KEY_D])
 	{
 		position += right * velocity;
-		inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), position);
+		//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
+		
 	}
 }
 
@@ -75,7 +79,7 @@ void Camera::mouseControl(GLfloat xChange)
 
 glm::mat4 Camera::calculateViewMatrix()
 {
-	return glm::lookAt(position, position + front, up);
+	return glm::lookAt(position, (position + front), up);
 }
 
 void Camera::update()
