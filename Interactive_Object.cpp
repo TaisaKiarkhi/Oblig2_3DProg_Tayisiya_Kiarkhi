@@ -27,7 +27,7 @@ Interactive_Object::Interactive_Object(glm::vec3 startPosition, glm::vec3 startU
 	moveSpeed = startMoveSpeed;
 	turnSpeed = startTurnSpeed;
 	
-	
+	update();
 }
 
 Interactive_Object::~Interactive_Object()

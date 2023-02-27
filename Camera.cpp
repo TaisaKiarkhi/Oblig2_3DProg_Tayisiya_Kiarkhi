@@ -15,6 +15,21 @@ Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLf
 	turnSpeed = startTurnSpeed;
 
 
+	
+	
+	
+
+
+	
+	
+	
+
+
+	
+	
+	
+
+
 	update();
 }
 

@@ -19,7 +19,7 @@ public:
 	void Adding_Shaders();
 	void create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle, 
 		          float r_x, float r_y, float r_z, float perspective, float near, float far,
-		float scale_x, float scale_y, float scale_z);
+		float scale_x, float scale_y, float scale_z, float x_off, float y_off, float z_off);
 
 
 	GLint _model_location;
@@ -27,6 +27,9 @@ public:
 	GLint _rotation_location;
 	GLint _view_location;
 	GLint _scale_location;
+	GLint x_off_loc;
+		GLint y_off_loc;
+		GLint  z_off_loc;
 
 	GLint heigth = 1080, width = 1920;      //window size
 	const char* window_title{ "Oblig2" };

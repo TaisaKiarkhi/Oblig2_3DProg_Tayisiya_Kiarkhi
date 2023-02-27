@@ -12,10 +12,13 @@ uniform mat4 projection;
 uniform mat4 model;
 uniform mat4 scale;
 uniform mat4 view;
+uniform float x_offset;
+uniform float y_offset;
+uniform float z_offset;
 
 void main()
 {
-	gl_Position = projection*view*model*rotation*scale*vec4(pos, 1.0);
+	gl_Position = projection*view*model*rotation*scale*vec4(pos.x + x_offset, pos.y + y_offset, pos.z + z_offset, 1.0);
 	
 	vCol = color;
 }

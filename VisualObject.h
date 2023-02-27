@@ -16,7 +16,8 @@ public:
 	GLuint VBO{0};
 	
 	std::vector<Vertex>Vertex_Holder; 
-	
+	float x_change;
+	float y_change;
 	
 	
 };

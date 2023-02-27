@@ -14,6 +14,7 @@
 #include <House.h>
 #include <Camera.h>
 #include <House_Object.h>
+#include "NPC.h"
 using namespace std;
 
 
@@ -75,7 +76,10 @@ Window::Window()
 	Adding_Shaders();
 
 	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f);
-	
+	NPC* npc = new NPC();
+	npc->init();
+	meshes.push_back(npc);
+	npc->Function_y();
 
 	//MATRICES 
 
@@ -85,12 +89,13 @@ Window::Window()
 		lastTime = current_time;
 
 		glfwPollEvents();
-
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change());
-
 		inter->keyControl(this->get_keys(), deltaTime);
 		inter->mouseControl(this->get_x_change());
+		
+
+		
 		
 		
 		
@@ -102,30 +107,30 @@ Window::Window()
 
 
 		shader_list.at(10)->Use_Shader();
-		create_uniform(shader_list.at(10)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
+		create_uniform(shader_list.at(10)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f , 0.0f, 0.0f, 0.0f);
 		meshes.at(10)->draw();
 
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
-        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f);
+        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
         meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
-        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
+        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
 		meshes.at(1)->draw();
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
+        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
         float c = 2.0;
         for (int i = 3; i < 9; i++) {
         shader_list.at(i)->Use_Shader();
-        create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f);
+        create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
         meshes.at(i)->draw();
         	c +=10.0f+i;
         	c *= -1.2f;
@@ -133,10 +138,14 @@ Window::Window()
 
 		//object inside the house
 		shader_list.at(9)->Use_Shader();
-		create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
+		create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f);
 		meshes.at(9)->draw();
 
-		
+		//npc
+		shader_list.at(11)->Use_Shader();
+		npc->Function_y();
+		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
+		npc->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -219,11 +228,16 @@ void Window::Adding_Shaders()
 	i->Create_from_file(VShader, FShader);
 	shader_list.push_back(i);
 
+	Shader* npc_s = new Shader();
+	npc_s->Create_from_file(VShader, FShader);
+	shader_list.push_back(npc_s);
+
 }
 
 //Matrices, model, view, projection
 void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
-	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z)
+	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z,
+	float x_off, float y_off, float z_off)
 {
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
@@ -231,17 +245,30 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	glm::mat4 view = cam.calculateViewMatrix();
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scale_x, scale_y, scale_z));
 
+
+	float x_o = x_off;
+	float y_o = y_off;
+	float z_o = z_off;
+
 	_model_location = 	   glGetUniformLocation(shader, "model");
 	_projection_location = glGetUniformLocation(shader, "projection");
 	_rotation_location =   glGetUniformLocation(shader, "rotation");
 	_view_location = glGetUniformLocation(shader, "view");
 	_scale_location = glGetUniformLocation(shader, "scale");
 
+	 x_off_loc = glGetUniformLocation(shader, "x_offset");
+	 y_off_loc = glGetUniformLocation(shader, "y_offset");
+	 z_off_loc = glGetUniformLocation(shader, "z_offset");
+
 	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 	glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
+
+	glUniform1f(x_off_loc, x_o);
+	glUniform1f(y_off_loc, y_o);
+	glUniform1f(z_off_loc, z_o);
 }
 
 

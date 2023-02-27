@@ -155,6 +155,7 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="House_Object.cpp" />
     <ClCompile Include="Interactive_Object.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="House.h" />
     <ClInclude Include="House_Object.h" />
     <ClInclude Include="Interactive_Object.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tetragons.h" />
