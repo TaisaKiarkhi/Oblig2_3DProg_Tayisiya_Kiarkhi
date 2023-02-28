@@ -22,37 +22,52 @@ Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLf
 void Camera::keyControl(bool* keys, GLfloat deltaTime)
 {
 	GLfloat velocity = moveSpeed * deltaTime;
-
+	
 
 	//ADD +1 TO POSITION.X AND ETC TO SEE THE INTEROBJECT
-
+	
 
 if (keys[GLFW_KEY_W])
 {
 	position += front * velocity;
 	//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x+1, position.y + 1, position.z + 1) ); //position.x +1 etc
-	
+	previous_pos -= position;
 }
 
 if (keys[GLFW_KEY_S])
 {
 	position -= front * velocity;
 	//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
-	
+	previous_pos -= position;
 }
 
 	if (keys[GLFW_KEY_A])
 	{
 		position -= right * velocity;
 		//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
-	
+		previous_pos -= position;
 	}
 
 	if (keys[GLFW_KEY_D])
 	{
 		position += right * velocity;
 		//inter->model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x + 1, position.y + 1, position.z + 1));
+		previous_pos -= position;
+	}
+
+	if (keys[GLFW_KEY_H]) {
 		
+		if (inside == false) {
+			position.x = -14.0f;
+			position.y = 1.0f;
+			position.z = -14.0f;
+			inside = true;
+		}
+
+		else if (inside == true) {
+			position = previous_pos;
+			inside = false;
+		}
 	}
 }
 
@@ -73,6 +88,7 @@ void Camera::mouseControl(GLfloat xChange)
 	{
 		pitch = -180.0f;
 	}
+
 
 	update();
 }

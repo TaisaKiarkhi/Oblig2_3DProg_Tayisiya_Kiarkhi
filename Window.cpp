@@ -402,5 +402,7 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 			the_window->keys[key] = false;
 			std::cout << "The kkey is released " << key << std::endl;
 		}
+
+
 	}
 }

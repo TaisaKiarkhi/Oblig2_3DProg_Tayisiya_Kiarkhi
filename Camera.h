@@ -35,8 +35,9 @@ public:
 
 	void update();
 
+	bool inside = false;
 
-
+	glm::vec3 previous_pos;
 
 
 };
