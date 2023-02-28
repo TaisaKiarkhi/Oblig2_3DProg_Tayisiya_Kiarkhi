@@ -119,12 +119,16 @@ Window::Window()
 
 	
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
-		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
+		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, 0.4F, cam.position.z-5.0f));
 		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.x, cam.front.x));
 		glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
 		glm::mat4 view = cam.calculateViewMatrix();
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.4f, 0.4f, 0.4f));
 
+
+		inter->position_holder.push_back(cam.position.x + 1.0f);
+		inter->position_holder.push_back(cam.position.y);
+		inter->position_holder.push_back(cam.position.z - 5.0f);
 
 		float x_o = 0.0f;
 		float y_o = 0.0f;
@@ -173,26 +177,54 @@ Window::Window()
 		//XYZ
         shader_list.at(0)->Use_Shader();
         create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+		meshes.at(0)->position_holder.push_back(0.0f);
+		meshes.at(0)->position_holder.push_back(0.0f);
+		meshes.at(0)->position_holder.push_back(-5.0f);
         meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
         create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+		meshes.at(1)->position_holder.push_back(0.0f);
+		meshes.at(1)->position_holder.push_back(0.0f);
+		meshes.at(1)->position_holder.push_back(-5.0f);
 		meshes.at(1)->draw();
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
         create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+		meshes.at(2)->position_holder.push_back(-15.0f);
+		meshes.at(2)->position_holder.push_back(1.7f);
+		meshes.at(2)->position_holder.push_back(-15.0f);
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
         float c = 2.0;
+		int t=9;
         for (int i = 3; i < 9; i++) {
+		
+		if (meshes.at(i)->collided != true) {
         shader_list.at(i)->Use_Shader();
         create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-        meshes.at(i)->draw();
-        	c +=10.0f+i;
-        	c *= -1.2f;
+		meshes.at(i)->position_holder.push_back(5.0f + c);
+		meshes.at(i)->position_holder.push_back(0.4f);
+		meshes.at(i)->position_holder.push_back(5.0f + c);
+
+		
+			meshes.at(i)->draw();
+			c += 10.0f + i;
+			c *= -1.2f;
+			
+			
+
+			if (inter->position_holder.at(0) == meshes.at(i)->position_holder.at(0)
+				&& inter->position_holder.at(2) == meshes.at(i)->position_holder.at(2)) {
+				
+				meshes.at(i)->collided = true;
+				meshes.at(i)->VAO = 0;
+				meshes.at(i)->VBO = 0;
+			}
+		}
          }
 
 		//object inside the house
@@ -205,6 +237,8 @@ Window::Window()
 		npc->Function_y();
 		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
 		npc->draw();
+
+		
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);

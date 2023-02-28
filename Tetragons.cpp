@@ -24,6 +24,13 @@ Tetragons::Tetragons()
 	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f , 0.0f, 1.0f  });
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f , 0.0f, 1.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f , 0.0f, 1.0f });
+
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,        1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,        1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,        1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,       1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });
 	
 }
 

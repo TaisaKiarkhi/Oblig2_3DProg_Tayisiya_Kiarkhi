@@ -19,6 +19,10 @@ public:
 	float x_change;
 	float y_change;
 	float z_change;
+
+	bool collided = false;
+
+	std::vector<float> position_holder;
 	
 };
 

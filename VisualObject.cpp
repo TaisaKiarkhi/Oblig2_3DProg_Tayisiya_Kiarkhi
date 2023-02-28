@@ -11,6 +11,16 @@ VisualObject::VisualObject()
 
 VisualObject::~VisualObject()
 {
+	if (VBO != 0) {
+		glDeleteBuffers(1, &VBO);
+		VBO = 0;
+	}
+
+
+	if (VAO != 0) {
+		glDeleteVertexArrays(1, &VAO);
+		VAO = 0;
+	}
 }
 
 void VisualObject::draw()

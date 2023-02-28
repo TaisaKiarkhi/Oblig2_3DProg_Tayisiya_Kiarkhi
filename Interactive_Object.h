@@ -33,6 +33,9 @@ public:
 
 	void update();
 
+
+
+
 	void move(float m_x, float m_z);
 
 	//float x_move, z_move;
