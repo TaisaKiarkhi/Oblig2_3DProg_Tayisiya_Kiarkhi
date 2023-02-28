@@ -24,6 +24,7 @@ static const char* FShader = "FragmentShader.frag";
 GLFWwindow* main_window;
 Camera* camera;
 Interactive_Object* inter = new Interactive_Object();
+bool inside = false;
 
 Window::Window()
 {
@@ -76,6 +77,7 @@ Window::Window()
 	Adding_Shaders();
 
 	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
+	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	NPC* npc = new NPC();
 	npc->init();
 	meshes.push_back(npc);
@@ -98,6 +100,7 @@ Window::Window()
 
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change());
+		cam.key_h_contro(this->get_keys());
 		
 		//inter->keyControl(this->get_keys(), deltaTime);
 		//inter->mouseControl(this->get_x_change());
@@ -153,10 +156,10 @@ Window::Window()
 
 
 
+		
 
 
-
-
+		
 
 
 

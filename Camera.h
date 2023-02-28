@@ -12,9 +12,13 @@ public:
 	Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLfloat startPitch, GLfloat startMoveSpeed, GLfloat startTurnSpeed, Interactive_Object i);
 
 	void keyControl(bool* keys, GLfloat deltaTime);
+	
+	void key_h_contro(bool* key);
+
 	void mouseControl(GLfloat xChange);
 
 	glm::mat4 calculateViewMatrix();
+	glm::mat4 calculateViewMatrix(glm::vec3 a);
 
 	~Camera();
 
@@ -37,8 +41,8 @@ public:
 
 	bool inside = false;
 
-	glm::vec3 previous_pos;
-
+	glm::vec3 current_pos;
+	glm::vec3 temp;
 
 };
 
