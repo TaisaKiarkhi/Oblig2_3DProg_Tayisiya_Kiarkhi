@@ -119,11 +119,11 @@ Window::Window()
 
 	
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
-		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, 0.4F, cam.position.z-5.0f));
+		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
 		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.x, cam.front.x));
 		glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
 		glm::mat4 view = cam.calculateViewMatrix();
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.4f, 0.4f, 0.4f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
 
 		inter->position_holder.push_back(cam.position.x + 1.0f);
@@ -214,16 +214,6 @@ Window::Window()
 			meshes.at(i)->draw();
 			c += 10.0f + i;
 			c *= -1.2f;
-			
-			
-
-			if (inter->position_holder.at(0) == meshes.at(i)->position_holder.at(0)
-				&& inter->position_holder.at(2) == meshes.at(i)->position_holder.at(2)) {
-				
-				meshes.at(i)->collided = true;
-				meshes.at(i)->VAO = 0;
-				meshes.at(i)->VBO = 0;
-			}
 		}
          }
 
