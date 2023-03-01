@@ -1,5 +1,5 @@
 #include "NPC.h"
-
+#include <iostream>
 NPC::NPC()
 {
 	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.99f });
@@ -78,6 +78,20 @@ void NPC::init()
 	glBindVertexArray(0);
 }
 
+void NPC::press_key_to_change_function(bool* key)
+{
+	
+	if (key[GLFW_KEY_P]) {
+		Function_y();
+		std::cout << "this fucntion works P";
+	}
+
+	else  {
+		Function_y_v_2();
+		std::cout << "this fucntion works else";
+	}
+}
+
 void NPC::Function_y()
 {
 
@@ -91,4 +105,17 @@ if (x_change < -10) {
 	x_change = 10;
 }
 
+}
+
+void NPC::Function_y_v_2()
+{
+	x_change += 0.01;
+	y_change = -0.515 * pow(x_change, 3) + 1.92 * pow(x_change, 2) - 0.655 * x_change - 3.38;
+
+	if (x_change > 5) {
+	x_change = -5;
+}
+if (x_change < -5) {
+	x_change = 5;
+}
 }

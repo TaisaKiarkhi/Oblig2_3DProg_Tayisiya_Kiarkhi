@@ -24,6 +24,7 @@ static const char* FShader = "FragmentShader.frag";
 GLFWwindow* main_window;
 Camera* camera;
 Interactive_Object* inter = new Interactive_Object();
+NPC* npc = new NPC();
 bool inside = false;
 
 Window::Window()
@@ -78,10 +79,10 @@ Window::Window()
 
 	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
-	NPC* npc = new NPC();
+	
 	npc->init();
 	meshes.push_back(npc);
-	npc->Function_y();
+	
 
 	inter->init();
 	
@@ -97,10 +98,11 @@ Window::Window()
 		glfwPollEvents();
 
 		
-
+		//npc->press_key_to_change_function();
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change());
 		cam.key_h_contro(this->get_keys());
+		npc->press_key_to_change_function(this->get_keys());
 		
 		//inter->keyControl(this->get_keys(), deltaTime);
 		//inter->mouseControl(this->get_x_change());
@@ -209,56 +211,6 @@ Window::Window()
 	   c *= -1.2f;
     }
 
-//shader_list.at(3)->Use_Shader();
-//create_uniform(shader_list.at(3)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-//meshes.at(3)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
-//
-//if (meshes.at(3)->collided != true)
-//	meshes.at(3)->draw();
-//
-//if (Collision_Detection(inter, meshes.at(3)) == true) {
-//	meshes.at(3)->collided = true;
-//	meshes.at(3)->VAO = 0;
-//	meshes.at(3)->VBO = 0;
-//}
-//
-//
-//c += 10.0f + 3;
-//c *= -1.2f;
-//
-//shader_list.at(4)->Use_Shader();
-//create_uniform(shader_list.at(3)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-//meshes.at(4)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
-//
-//if (meshes.at(4)->collided != true)
-//	meshes.at(4)->draw();
-//
-//if (Collision_Detection(inter, meshes.at(4)) == true) {
-//	meshes.at(4)->collided = true;
-//	meshes.at(4)->VAO = 0;
-//	meshes.at(4)->VBO = 0;
-//}
-//
-//
-//c += 10.0f + 4;
-//c *= -1.2f;
-//
-//shader_list.at(5)->Use_Shader();
-//create_uniform(shader_list.at(5)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-//meshes.at(5)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
-//
-//if (meshes.at(5)->collided != true)
-//	meshes.at(5)->draw();
-//
-//if (Collision_Detection(inter, meshes.at(5)) == true) {
-//	meshes.at(5)->collided = true;
-//	meshes.at(5)->VAO = 0;
-//	meshes.at(5)->VBO = 0;
-//}
-
-
-
-
 
 		//object inside the house
 		shader_list.at(9)->Use_Shader();
@@ -267,7 +219,7 @@ Window::Window()
 
 		//npc
 		shader_list.at(11)->Use_Shader();
-		npc->Function_y();
+		
 		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
 		npc->draw();
 
@@ -440,6 +392,7 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 
 
 
+
 GLfloat Window::get_x_change()
 {
 	GLfloat theChange = x_move;
@@ -476,6 +429,14 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
 
+	//if (key == GLFW_KEY_P && action == GLFW_PRESS) {
+	//	npc->Function_y();
+	//}
+
+	//if (key == GLFW_KEY_O && action == GLFW_PRESS) {
+	//	npc->Function_y_v_2();
+	//}
+
 	if (key >= 0 && key < 1024) {
 		if (action == GLFW_PRESS) {
 			the_window->keys[key] = true;
@@ -490,3 +451,14 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 
 	}
 }
+
+//void Window::handle_key_for_npc(GLFWwindow* window, int key, int action)
+//{
+//	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
+//
+//	if (key == 80) {
+//
+//
+//
+//	}
+//}

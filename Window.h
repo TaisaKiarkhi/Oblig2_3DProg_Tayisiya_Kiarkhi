@@ -59,6 +59,7 @@ public:
 
 	void Call_Back();
 	static void Handle_Key(GLFWwindow* window, int key, int code, int action, int mode);
+	static void handle_key_for_npc(GLFWwindow* window, int key, int action);
 	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
 	
 	bool* get_keys() { return keys; }
