@@ -20,9 +20,17 @@ public:
 	float y_change;
 	float z_change;
 
+
+
 	bool collided = false;
 
-	std::vector<float> position_holder;
+	float position_holder_x[4];
+	float position_holder_y[4];
+
+	glm::vec3 pos;
+
+	float size_x;
+	float size_y;
 	
 };
 

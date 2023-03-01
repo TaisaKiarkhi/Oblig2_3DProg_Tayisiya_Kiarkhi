@@ -1,9 +1,9 @@
 ﻿  Window.cpp
 C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(93,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(367,30): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(368,30): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(372,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(373,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(375,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(376,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(383,30): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(384,30): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(388,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(389,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(391,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(392,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
   Oblig2_3DProg_Tayisiya_Kiarkhi.vcxproj -> C:\Users\Taisa\Desktop\3D\My_Own_Studies\Oblig2_3DProg_Tayisiya_Kiarkhi\Debug\Oblig2_3DProg_Tayisiya_Kiarkhi.exe

@@ -25,7 +25,7 @@ public:
 		          float r_x, float r_y, float r_z, float perspective, float near, float far,
 		float scale_x, float scale_y, float scale_z, float x_off, float y_off, float z_off);
 
-
+	bool Collision_Detection(VisualObject* object_1, VisualObject* object_2);
 	
 
 

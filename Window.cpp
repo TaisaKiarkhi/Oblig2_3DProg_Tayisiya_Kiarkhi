@@ -125,10 +125,9 @@ Window::Window()
 		glm::mat4 view = cam.calculateViewMatrix();
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
-
-		inter->position_holder.push_back(cam.position.x + 1.0f);
-		inter->position_holder.push_back(cam.position.y);
-		inter->position_holder.push_back(cam.position.z - 5.0f);
+		
+		
+		
 
 		float x_o = 0.0f;
 		float y_o = 0.0f;
@@ -139,6 +138,10 @@ Window::Window()
 		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
 		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
+
+
+
+
 
 		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
 		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
@@ -154,6 +157,7 @@ Window::Window()
 		glUniform1f(y_off_loc, y_o);
 		glUniform1f(z_off_loc, z_o);
 
+		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
 		inter->draw();
 
 
@@ -177,25 +181,19 @@ Window::Window()
 		//XYZ
         shader_list.at(0)->Use_Shader();
         create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
-		meshes.at(0)->position_holder.push_back(0.0f);
-		meshes.at(0)->position_holder.push_back(0.0f);
-		meshes.at(0)->position_holder.push_back(-5.0f);
+		
         meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
         create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
-		meshes.at(1)->position_holder.push_back(0.0f);
-		meshes.at(1)->position_holder.push_back(0.0f);
-		meshes.at(1)->position_holder.push_back(-5.0f);
+		
 		meshes.at(1)->draw();
 
 		//HOUSE
         shader_list.at(2)->Use_Shader();
         create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
-		meshes.at(2)->position_holder.push_back(-15.0f);
-		meshes.at(2)->position_holder.push_back(1.7f);
-		meshes.at(2)->position_holder.push_back(-15.0f);
+		
         meshes.at(2)->draw();
         
 		//Random TETRAGONS
@@ -206,14 +204,18 @@ Window::Window()
 		if (meshes.at(i)->collided != true) {
         shader_list.at(i)->Use_Shader();
         create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-		meshes.at(i)->position_holder.push_back(5.0f + c);
-		meshes.at(i)->position_holder.push_back(0.4f);
-		meshes.at(i)->position_holder.push_back(5.0f + c);
+	
 
-		
+		    meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
 			meshes.at(i)->draw();
+			
 			c += 10.0f + i;
 			c *= -1.2f;
+		}
+		if (Collision_Detection(inter, meshes.at(i))) {
+			meshes.at(i)->collided = true;
+			meshes.at(i)->VAO = 0;
+			meshes.at(i)->VBO = 0;
 		}
          }
 
@@ -352,6 +354,20 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	glUniform1f(x_off_loc, x_o);
 	glUniform1f(y_off_loc, y_o);
 	glUniform1f(z_off_loc, z_o);
+}
+
+
+
+
+
+
+
+bool Window::Collision_Detection(VisualObject* object_1, VisualObject* object_2)
+{
+	bool collision_in_x = object_1->pos.x + object_1->size_x >= object_2->pos.x && object_2->pos.x + object_2->size_x >= object_1->pos.x;
+	bool collision_in_y = object_1->pos.y + object_1->size_y >= object_2->pos.y && object_2->pos.y + object_2->size_y >= object_1->pos.y;
+
+	return collision_in_x && collision_in_y;
 }
 
 

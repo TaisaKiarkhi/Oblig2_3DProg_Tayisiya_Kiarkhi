@@ -24,7 +24,15 @@ Interactive_Object::Interactive_Object()
 	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,       1.0f, 0.764f, 0.141f });
 	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });
 	
+	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
+	position_holder_x[1] = Vertex_Holder.at(9).xyz_values.x;
+	position_holder_x[2] = Vertex_Holder.at(10).xyz_values.x;
+	position_holder_x[3] = Vertex_Holder.at(12).xyz_values.x;
 
+	position_holder_y[0] = Vertex_Holder.at(8).xyz_values.y;
+	position_holder_y[1] = Vertex_Holder.at(9).xyz_values.y;
+	position_holder_y[2] = Vertex_Holder.at(10).xyz_values.y;
+	position_holder_y[3] = Vertex_Holder.at(12).xyz_values.y;
 }
 
 Interactive_Object::~Interactive_Object()
