@@ -11,26 +11,24 @@ GLfloat vert[] = {
 
 Tetragons::Tetragons()
 {
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.8977f , 0.152f, 0.965f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.8977f , 0.152f, 0.965f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.8977f , 0.152f, 0.965f });
-														   				 
-														   				 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f , 0.34f, 0.8966f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f , 0.34f, 0.8966f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f , 0.34f, 0.8966f });
-														   				 
-														   				 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f , 0.0f, 1.0f  });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f , 0.0f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f , 0.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f });
+														   				
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f });
+														   			
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f  });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f });
 
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.604f, 0.804f, 0.196f });    //8
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.604f, 0.804f, 0.196f});	   //9
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.604f, 0.804f, 0.196f});	   //10
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.604f, 0.804f, 0.196f});	   //11
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.604f, 0.804f, 0.196f });	   //12
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.604f, 0.804f, 0.196f });	   //13
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f });    //8
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f});	   //9
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f});	   //10
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f});	   //11
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f });	   //12
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f });	   //13
 
 
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;

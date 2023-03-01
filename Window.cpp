@@ -108,7 +108,7 @@ Window::Window()
 		//inter->mouseControl(this->get_x_change());
 
 
-		glClearColor(0.5137f, 0.8117f, 0.9411f, 1.0f);
+		glClearColor(0.537f, 0.812f, 0.941f, 0.50f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
 		//try to initialize every mesh inside the loop, not separate
