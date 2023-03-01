@@ -164,19 +164,6 @@ Window::Window()
 
 
 
-		
-
-
-		
-
-
-
-
-
-
-
-
-
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
@@ -198,26 +185,80 @@ Window::Window()
         
 		//Random TETRAGONS
         float c = 2.0;
-		int t=9;
-        for (int i = 3; i < 9; i++) {
 		
-		if (meshes.at(i)->collided != true) {
-        shader_list.at(i)->Use_Shader();
-        create_uniform(shader_list.at(i)->Shader_Program, 5.0f+c, 0.4f, 5.0f+c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
-	
+		
 
-		    meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
-			meshes.at(i)->draw();
-			
-			c += 10.0f + i;
-			c *= -1.2f;
-		}
-		if (Collision_Detection(inter, meshes.at(i))) {
-			meshes.at(i)->collided = true;
-			meshes.at(i)->VAO = 0;
-			meshes.at(i)->VBO = 0;
-		}
-         }
+   for (int i = 3; i < 9; i++) {
+
+	   shader_list.at(i)->Use_Shader();
+	   create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+	   meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
+
+	   if (meshes.at(i)->collided != true) {
+		   meshes.at(i)->draw();
+	   }
+
+	   if (Collision_Detection(inter, meshes.at(i)) == true) {
+		   meshes.at(i)->collided = true;
+		   meshes.at(i)->VAO = 0;
+		   meshes.at(i)->VBO = 0;
+	   }
+
+
+	   c += 10.0f + i;
+	   c *= -1.2f;
+    }
+
+//shader_list.at(3)->Use_Shader();
+//create_uniform(shader_list.at(3)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+//meshes.at(3)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
+//
+//if (meshes.at(3)->collided != true)
+//	meshes.at(3)->draw();
+//
+//if (Collision_Detection(inter, meshes.at(3)) == true) {
+//	meshes.at(3)->collided = true;
+//	meshes.at(3)->VAO = 0;
+//	meshes.at(3)->VBO = 0;
+//}
+//
+//
+//c += 10.0f + 3;
+//c *= -1.2f;
+//
+//shader_list.at(4)->Use_Shader();
+//create_uniform(shader_list.at(3)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+//meshes.at(4)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
+//
+//if (meshes.at(4)->collided != true)
+//	meshes.at(4)->draw();
+//
+//if (Collision_Detection(inter, meshes.at(4)) == true) {
+//	meshes.at(4)->collided = true;
+//	meshes.at(4)->VAO = 0;
+//	meshes.at(4)->VBO = 0;
+//}
+//
+//
+//c += 10.0f + 4;
+//c *= -1.2f;
+//
+//shader_list.at(5)->Use_Shader();
+//create_uniform(shader_list.at(5)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+//meshes.at(5)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
+//
+//if (meshes.at(5)->collided != true)
+//	meshes.at(5)->draw();
+//
+//if (Collision_Detection(inter, meshes.at(5)) == true) {
+//	meshes.at(5)->collided = true;
+//	meshes.at(5)->VAO = 0;
+//	meshes.at(5)->VBO = 0;
+//}
+
+
+
+
 
 		//object inside the house
 		shader_list.at(9)->Use_Shader();
