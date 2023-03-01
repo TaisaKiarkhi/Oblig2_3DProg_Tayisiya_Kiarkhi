@@ -17,12 +17,12 @@ Interactive_Object::Interactive_Object()
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.0f, 1.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.9686f, 0.90588f, 0.8078f });
 
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f, -1.5f,        1.0f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,        1.0f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,        1.0f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,       1.0f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.604f, 0.804f, 0.196f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f, -1.5f,      0.604f, 0.804f, 0.196f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.604f, 0.804f, 0.196f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.604f, 0.804f, 0.196f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,      0.604f, 0.804f, 0.196f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.604f, 0.804f, 0.196f });
 	
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
 	position_holder_x[1] = Vertex_Holder.at(9).xyz_values.x;

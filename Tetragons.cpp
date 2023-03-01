@@ -25,12 +25,12 @@ Tetragons::Tetragons()
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f , 0.0f, 1.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f , 0.0f, 1.0f });
 
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });    //8
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,        1.0f, 0.764f, 0.141f });	   //9
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,        1.0f, 0.764f, 0.141f });	   //10
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,        1.0f, 0.764f, 0.141f });	   //11
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,       1.0f, 0.764f, 0.141f });	   //12
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,       1.0f, 0.764f, 0.141f });	   //13
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.604f, 0.804f, 0.196f });    //8
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.604f, 0.804f, 0.196f});	   //9
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.604f, 0.804f, 0.196f});	   //10
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.604f, 0.804f, 0.196f});	   //11
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.604f, 0.804f, 0.196f });	   //12
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.604f, 0.804f, 0.196f });	   //13
 
 
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;

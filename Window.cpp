@@ -122,7 +122,7 @@ Window::Window()
 	
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
 		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
-		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.x, cam.front.x));
+		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.y, cam.front.z));
 		glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
 		glm::mat4 view = cam.calculateViewMatrix();
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));

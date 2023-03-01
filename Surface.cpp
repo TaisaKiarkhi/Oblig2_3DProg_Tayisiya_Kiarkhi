@@ -7,12 +7,12 @@ Surface::Surface()
 	
 			
 	//bottom
-Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,        0.422f, 0.764f, 0.141f });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,         0.422f, 0.764f, 0.141f });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,         0.422f, 0.764f, 0.141f });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,         0.422f, 0.764f, 0.141f });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,        0.422f, 0.764f, 0.141f });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,        0.422f, 0.764f, 0.141f });
+Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,        0.016f, 0.67f,    0.816f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,        0.016f, 0.67f,    0.816f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,        0.016f, 0.67f,    0.816f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,        0.016f, 0.67f,    0.816f });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,        0.016f, 0.67f,    0.816f });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,        0.016f, 0.67f,    0.816f });
 
 	//create_plane();
 
