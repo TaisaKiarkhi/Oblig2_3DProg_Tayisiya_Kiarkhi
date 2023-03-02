@@ -14,6 +14,9 @@
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/mat4x4.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
+
+typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
+
 class Window
 {
 public:
@@ -61,6 +64,8 @@ public:
 	static void Handle_Key(GLFWwindow* window, int key, int code, int action, int mode);
 	static void handle_key_for_npc(GLFWwindow* window, int key, int action);
 	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
+
+	
 	
 	bool* get_keys() { return keys; }
     bool keys[1024]; //keys as a ASCII code numbers

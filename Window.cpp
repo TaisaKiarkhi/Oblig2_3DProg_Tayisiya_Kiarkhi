@@ -18,6 +18,9 @@
 #include <Door.h>
 using namespace std;
 
+typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
+void matrix4x4SetIdentity(Matrix4x4 matIdent4x4);
+void translate3D(GLfloat tx, GLfloat ty, GLfloat tz);
 
 static const char* VShader = "VertexShader.vert";
 static const char* FShader = "FragmentShader.frag";
@@ -87,7 +90,9 @@ Window::Window()
 
 	inter->init();
 	
-
+	Matrix4x4 some_matrix;
+	//just testing
+	translate3D(3.4f, 1.5f, 2.9f);
 
 	//MATRICES 
 
@@ -537,3 +542,25 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 //
 //	}
 //}
+
+
+
+void matrix4x4SetIdentity(Matrix4x4 matIdent4x4) {
+	GLint row, column;
+
+	for (row = 0; row < 4; row++) {
+		for (column = 0; column < 4; column++) {
+			matIdent4x4[row][column] = (row == column); // row == column sets values between 1 and 0 (true and false)
+		}
+	}
+}
+
+void translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
+{
+	Matrix4x4 matTransl3D;
+	matrix4x4SetIdentity(matTransl3D);
+
+	matTransl3D[0][3] = tx;
+	matTransl3D[1][3] = ty;
+	matTransl3D[2][3] = tz;
+}
