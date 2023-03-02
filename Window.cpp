@@ -563,4 +563,5 @@ void translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
 	matTransl3D[0][3] = tx;
 	matTransl3D[1][3] = ty;
 	matTransl3D[2][3] = tz;
+	matTransl3D[3][3] = 1; //maybe wrong, delete later
 }
