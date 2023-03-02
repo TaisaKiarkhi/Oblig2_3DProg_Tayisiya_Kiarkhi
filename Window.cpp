@@ -15,6 +15,7 @@
 #include <Camera.h>
 #include <House_Object.h>
 #include "NPC.h"
+#include <Door.h>
 using namespace std;
 
 
@@ -185,6 +186,13 @@ Window::Window()
 		
         meshes.at(2)->draw();
         
+
+		shader_list.at(2)->Use_Shader();
+		create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+
+		meshes.at(2)->draw();
+
+
 		//Random TETRAGONS
         float c = 2.0;
 		
@@ -218,12 +226,72 @@ Window::Window()
 		meshes.at(9)->draw();
 
 		//npc
-		shader_list.at(11)->Use_Shader();
+		shader_list.at(12)->Use_Shader();
 		
-		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
+		create_uniform(shader_list.at(12)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
 		npc->draw();
 
-		
+
+		//door
+	shader_list.at(11)->Use_Shader();
+	//create_uniform(shader_list.at(11)->Shader_Program, -15.0f, 1.7f, -15.0f, 90.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+	
+
+
+
+
+		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
+		glm::mat4 model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		glm::mat4 rotation_matrix_d = glm::rotate(glm::mat4(1.0f), -90.0f, glm::vec3(0.0f, 1.7f, 0.0f));
+		model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 1.7f, -15.0f));
+		glm::mat4 projection_matrix_d= glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
+		glm::mat4 view_d = cam.calculateViewMatrix();
+		glm::mat4 scale_d = glm::scale(glm::mat4(1.0f), glm::vec3(3.0f, 3.0f, 3.0f));
+
+
+
+
+
+		float x__d_o = 0.0f;
+		float y__d_o = 0.0f;
+		float z__d_o = 0.0f;
+
+		_model_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "model");
+		_projection_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "projection");
+		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
+		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
+		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
+
+
+
+
+
+		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
+		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
+		z_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "z_offset");
+
+		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix_d));
+		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix_d));
+		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr    (rotation_matrix_d));
+		glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr                 (view_d));
+		glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr                (scale_d));
+
+		glUniform1f(x_off_loc, x__d_o);
+		glUniform1f(y_off_loc, y__d_o);
+		glUniform1f(z_off_loc, z__d_o);
+
+		meshes.at(11)->draw();
+
+
+
+
+
+
+
+
+
+
+
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -273,6 +341,9 @@ void Window::Objects()
 	meshes.push_back(object_inside);
 	meshes.push_back(inter);
 
+	Door* door = new Door();
+	door->init();
+	meshes.push_back(door);
 	
 
     }
@@ -309,6 +380,10 @@ void Window::Adding_Shaders()
 	Shader* npc_s = new Shader();
 	npc_s->Create_from_file(VShader, FShader);
 	shader_list.push_back(npc_s);
+
+	Shader* door_s = new Shader();
+	door_s->Create_from_file(VShader, FShader);
+	shader_list.push_back(door_s);
 
 }
 

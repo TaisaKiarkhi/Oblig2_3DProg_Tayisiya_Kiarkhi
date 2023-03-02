@@ -36,12 +36,12 @@ Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.878f, 0.69f, 1.0f}
 
 
 //door i guess??
-Vertex_Holder.push_back(Vertex{ 0.51f,  0.3f,  0.3f,       0.588f, 0.69f, 1.0f });
-Vertex_Holder.push_back(Vertex{ 0.51f,  0.3f, -0.3f,       0.588f, 0.69f, 1.0f });
-Vertex_Holder.push_back(Vertex{ 0.51f, -0.5f, -0.3f,       0.588f, 0.69f, 1.0f });
-Vertex_Holder.push_back(Vertex{ 0.51f, -0.5f, -0.3f,       0.588f, 0.69f, 1.0f });
-Vertex_Holder.push_back(Vertex{ 0.51f, -0.5f,  0.3f,       0.588f, 0.69f, 1.0f });
-Vertex_Holder.push_back(Vertex{ 0.51f,  0.3f,  0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f,  0.3f,  0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f,  0.3f, -0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.3f,       0.588f, 0.69f, 1.0f });
+//Vertex_Holder.push_back(Vertex{ 0.5f,  0.3f,  0.3f,       0.588f, 0.69f, 1.0f });
 																		  
 														      			  
 Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,       1.0f, 0.412f, 0.0f  });

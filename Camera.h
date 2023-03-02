@@ -23,6 +23,7 @@ public:
 	~Camera();
 
 	Interactive_Object *inter;
+	
 
 public:
 	glm::vec3 position;
@@ -30,6 +31,7 @@ public:
 	glm::vec3 up;
 	glm::vec3 right;
 	glm::vec3 worldUp;
+	glm::mat4 rotate_the_door;
 
 	GLfloat yaw;
 	GLfloat pitch;
