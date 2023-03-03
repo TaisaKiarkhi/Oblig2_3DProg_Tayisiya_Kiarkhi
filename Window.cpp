@@ -92,7 +92,7 @@ Window::Window()
 	
 	Matrix4x4 some_matrix;
 	//just testing
-	translate3D(3.4f, 1.5f, 2.9f);
+  	translate3D(3.4f, 1.5f, 2.9f);
 
 	//MATRICES 
 
@@ -532,16 +532,6 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 	}
 }
 
-//void Window::handle_key_for_npc(GLFWwindow* window, int key, int action)
-//{
-//	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
-//
-//	if (key == 80) {
-//
-//
-//
-//	}
-//}
 
 
 
@@ -563,5 +553,5 @@ void translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
 	matTransl3D[0][3] = tx;
 	matTransl3D[1][3] = ty;
 	matTransl3D[2][3] = tz;
-	matTransl3D[3][3] = 1; //maybe wrong, delete later
+	//matTransl3D[3][3] = 1; //maybe wrong, delete later
 }
