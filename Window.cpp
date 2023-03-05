@@ -16,6 +16,7 @@
 #include <House_Object.h>
 #include "NPC.h"
 #include <Door.h>
+#include <Quaternion.h>
 using namespace std;
 
 typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
@@ -292,9 +293,11 @@ Window::Window()
 
 
 
-
-
-
+		//TESTING QUATERNION
+		shader_list.at(12)->Use_Shader();
+		quaternion_test = new Quaternion(-15.0f, 5.0f, -15.0f);
+		quaternion_test->matrix4x4SetIdentity(quaternion_test->Matrix_Rotation);
+		glm::mat4 rotation_results = quaternion_test->rotate3D_Quaternion();
 
 
 
@@ -351,6 +354,13 @@ void Window::Objects()
 	meshes.push_back(door);
 	
 
+	//TESTING QUATERNION
+	House_Object* quat = new House_Object();
+	quat->init();
+	meshes.push_back(quat);
+
+
+
     }
 
 void Window::Adding_Shaders()
@@ -389,6 +399,11 @@ void Window::Adding_Shaders()
 	Shader* door_s = new Shader();
 	door_s->Create_from_file(VShader, FShader);
 	shader_list.push_back(door_s);
+
+	//TESTING QUTERNION
+	Shader* quat = new Shader();
+	quat->Create_from_file(VShader, FShader);
+	shader_list.push_back(quat);
 
 }
 
