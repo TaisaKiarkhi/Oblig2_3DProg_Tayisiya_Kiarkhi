@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -158,6 +158,7 @@
     <ClCompile Include="Interactive_Object.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
+    <ClCompile Include="Quadtree.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="Tetragons.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="House_Object.h" />
     <ClInclude Include="Interactive_Object.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="Quadtree.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tetragons.h" />
