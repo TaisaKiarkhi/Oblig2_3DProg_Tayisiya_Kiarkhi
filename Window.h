@@ -14,6 +14,7 @@
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/mat4x4.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
+#include <Quaternion.h>
 
 typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
 
@@ -69,6 +70,8 @@ public:
 	
 	bool* get_keys() { return keys; }
     bool keys[1024]; //keys as a ASCII code numbers
+
+	Quaternion* quaternion_test;
 };
 
 #endif WINDOW

@@ -294,10 +294,12 @@ Window::Window()
 
 
 		//TESTING QUATERNION
-		shader_list.at(12)->Use_Shader();
-		quaternion_test = new Quaternion(-15.0f, 5.0f, -15.0f);
-		quaternion_test->matrix4x4SetIdentity(quaternion_test->Matrix_Rotation);
-		glm::mat4 rotation_results = quaternion_test->rotate3D_Quaternion();
+		//shader_list.at(12)->Use_Shader();
+		//quaternion_test = new Quaternion();
+		//glm::vec3 first_vector(0.5f, 0.5f, - 0.5f);
+		//glm::vec3 second_vector((0.5f, -0.5f - 0.5f));
+		//quaternion_test->matrix4x4SetIdentity(quaternion_test->Matrix_Rotation);
+		//quaternion_test->rotate3D_Quaternion(first_vector, second_vector, 35);
 
 
 

@@ -1,10 +1,8 @@
 #include "Quaternion.h"
 
-Quaternion::Quaternion(GLfloat x, GLfloat y, GLfloat z)
+Quaternion::Quaternion()
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+
 
 }
 
@@ -24,7 +22,7 @@ void Quaternion::matrix4x4SetIdentity(Matrix4x4 matIdent4x4)
 
 }
 
-void Quaternion::translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
+void  Quaternion::translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
 {
 	Matrix4x4 Transalted_Matrix;
 	matrix4x4SetIdentity(Transalted_Matrix);
@@ -34,7 +32,9 @@ void Quaternion::translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
 	Transalted_Matrix[2][3] = tz;
 
 	matrix4X4PreMultiply(Transalted_Matrix, Matrix_Rotation);
+	
 }
+
 
 void Quaternion::matrix4X4PreMultiply(Matrix4x4 mat1_, Matrix4x4 mat2_)
 {
@@ -42,6 +42,7 @@ void Quaternion::matrix4X4PreMultiply(Matrix4x4 mat1_, Matrix4x4 mat2_)
 	Matrix4x4 temp;
 	GLfloat multiply;
 	GLfloat sum = 0;
+	Matrix4x4 new_matrix;
 
 	for (row = 0; row < 4; row++) {
 	for (int column_temp = 0; column_temp < 4; column_temp++) {
@@ -59,6 +60,8 @@ void Quaternion::matrix4X4PreMultiply(Matrix4x4 mat1_, Matrix4x4 mat2_)
 		mat2_[row][column] = temp[row][column];
 		}
 	}
+
+	
 }
 
 void Quaternion::rotate3D_Quaternion(glm::vec3 vert1, glm::vec3 vert2, GLfloat radians_angle)
@@ -90,4 +93,5 @@ void Quaternion::rotate3D_Quaternion(glm::vec3 vert1, glm::vec3 vert2, GLfloat r
 	matrix4X4PreMultiply(rotation_matrix_quaternion, Matrix_Rotation); //multiply quaternion rotation with translated matrix
 
 	translate3D(vert1.x, vert1.y,vert1.z); //inverse translation to bring the everything back
+
 }
