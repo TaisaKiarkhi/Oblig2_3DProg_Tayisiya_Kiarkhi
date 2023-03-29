@@ -2,47 +2,47 @@
 #include <iostream>
 NPC::NPC()
 {
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.99f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.99f,    0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.1f, 0.764f, 0.99f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.80f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.80f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.80f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.80f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,        0.1f, 0.80f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.80f, 0.99f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.80f, 0.99f,   0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.764f, 0.99f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.764f, 0.99f,   0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,        0.1f, 0.764f, 0.141f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.141f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,         0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,         0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,        0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,        0.1f, 0.764f, 0.141f,   0.0f, 0.0f });
 																	  
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.674f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.674f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.674f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.674f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.674f, 0.99f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.674f, 0.99f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,         0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,         0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,        0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,        0.1f, 0.674f, 0.99f,    0.0f, 0.0f });
 }
 
 NPC::~NPC()
@@ -73,6 +73,9 @@ void NPC::init()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

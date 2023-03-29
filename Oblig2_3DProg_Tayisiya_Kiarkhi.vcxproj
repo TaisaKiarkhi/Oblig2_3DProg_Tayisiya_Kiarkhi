@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../Extern_Libs/GLM;$(ProjectDir);C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLFW/include;C:/Users/Taisa/Desktop/MAIN_MAP_EVERYTHING_IS_HERE/School_tasks_and_lessons/3D/Extern_Libs/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -163,6 +163,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="Tetragons.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="VisualObject.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tetragons.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VisualObject.h" />
     <ClInclude Include="Window.h" />

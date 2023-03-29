@@ -3,26 +3,26 @@
 
 Interactive_Object::Interactive_Object()
 {
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.843f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f,     0.5f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 0.843f, 0.0f,     1.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.843f, 0.0f,     0.0f, 0.0f });
+																			 
+																			 
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f,    0.5f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 0.843f, 0.0f,    0.5f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 0.843f, 0.0f,    1.0f, 0.0f });
 
 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     1.0f, 0.843f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f,    0.5f, 1.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.843f, 0.0f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 0.843f, 0.0f,    0.5f, 0.0f });
 
-
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    1.0f, 0.843f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    1.0f, 0.843f, 0.0f });
-
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f });
-	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f });
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f });
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{  1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f });
 	
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
 	position_holder_x[1] = Vertex_Holder.at(9).xyz_values.x;
@@ -52,7 +52,7 @@ void Interactive_Object::draw()
 
 void Interactive_Object::init()
 {
-glGenVertexArrays(1, &VAO);
+	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -63,6 +63,9 @@ glGenVertexArrays(1, &VAO);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

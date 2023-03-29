@@ -1,3 +1,5 @@
+
+#define STB_IMAGE_IMPLEMENTATION
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Window.h"
@@ -17,6 +19,8 @@
 #include "NPC.h"
 #include <Door.h>
 #include <Quaternion.h>
+#include <Texture.h>
+
 using namespace std;
 
 typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
@@ -25,6 +29,11 @@ void translate3D(GLfloat tx, GLfloat ty, GLfloat tz);
 
 static const char* VShader = "VertexShader.vert";
 static const char* FShader = "FragmentShader.frag";
+static const char* TextShader = "TextureShader.text";
+static const char* TexFragShader = "TexFragShader.txt";
+
+const char* path = "cursed_textures/a28705b19ef54e2c199717c05fa12e9e.jpg";
+Texture *cursed_texture= new Texture(path);
 
 GLFWwindow* main_window;
 Camera* camera;
@@ -85,6 +94,8 @@ Window::Window()
 	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
+	cursed_texture->load_texture();
+
 	npc->init();
 	meshes.push_back(npc);
 	
@@ -171,9 +182,6 @@ Window::Window()
 
 
 
-
-
-
 		//XYZ
         shader_list.at(0)->Use_Shader();
         create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
@@ -183,7 +191,6 @@ Window::Window()
 		//SURFACE
         shader_list.at(1)->Use_Shader();
         create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
-		
 		meshes.at(1)->draw();
 
 		//HOUSE
@@ -208,6 +215,7 @@ Window::Window()
 
 	   shader_list.at(i)->Use_Shader();
 	   create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+	   cursed_texture->use_texture();
 	   meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
 
 	   if (meshes.at(i)->collided != true) {
@@ -247,9 +255,8 @@ Window::Window()
 
 
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
-		glm::mat4 model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		glm::mat4 rotation_matrix_d = glm::rotate(glm::mat4(1.0f), -90.0f, glm::vec3(0.0f, 1.7f, 0.0f));
-		model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 1.7f, -15.0f));
+		glm::mat4 model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 1.7f, -15.0f));
+		glm::mat4 rotation_matrix_d = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 		glm::mat4 projection_matrix_d= glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
 		glm::mat4 view_d = cam.calculateViewMatrix();
 		glm::mat4 scale_d = glm::scale(glm::mat4(1.0f), glm::vec3(3.0f, 3.0f, 3.0f));
@@ -269,9 +276,6 @@ Window::Window()
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
 
 
-
-
-
 		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
 		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
 		z_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "z_offset");
@@ -287,9 +291,6 @@ Window::Window()
 		glUniform1f(z_off_loc, z__d_o);
 
 		meshes.at(11)->draw();
-
-
-
 
 
 
@@ -381,12 +382,14 @@ void Window::Adding_Shaders()
 
 	for (int i = 0; i < 6; i++) {
 		Shader* t = new Shader();
-		t->Create_from_file(VShader, FShader);
+		t->Create_from_file(TextShader, TexFragShader);
 		shader_list.push_back(t);
 	}
 	
 
 	Shader* ob_s = new Shader();
+
+
 	ob_s->Create_from_file(VShader, FShader);
 	shader_list.push_back(ob_s);
 
@@ -448,9 +451,7 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 
 
 
-
-
-
+ 
 
 bool Window::Collision_Detection(VisualObject* object_1, VisualObject* object_2)
 {
@@ -459,8 +460,6 @@ bool Window::Collision_Detection(VisualObject* object_1, VisualObject* object_2)
 
 	return collision_in_x && collision_in_y;
 }
-
-
 
 
 
@@ -487,9 +486,6 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 
 
 
-
-
-
 GLfloat Window::get_x_change()
 {
 	GLfloat theChange = x_move;
@@ -510,9 +506,6 @@ void Window::Call_Back()
 {
 	glfwSetKeyCallback(main_window, Handle_Key);
 	glfwSetCursorPosCallback(main_window, Handle_Mouse); //func for handle mouse should have double parameters for x and y
-
-
-
 
 }
 
