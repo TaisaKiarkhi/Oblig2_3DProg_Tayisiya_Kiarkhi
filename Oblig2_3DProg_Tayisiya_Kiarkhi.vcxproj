@@ -156,6 +156,7 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="House_Object.cpp" />
     <ClCompile Include="Interactive_Object.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Oblig2_3DProg_Tayisiya_Kiarkhi.cpp" />
     <ClCompile Include="Quadtree.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="House.h" />
     <ClInclude Include="House_Object.h" />
     <ClInclude Include="Interactive_Object.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Quadtree.h" />
     <ClInclude Include="Quaternion.h" />

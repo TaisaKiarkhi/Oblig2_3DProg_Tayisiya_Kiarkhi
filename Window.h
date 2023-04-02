@@ -41,6 +41,8 @@ public:
 	GLint x_off_loc;
 		GLint y_off_loc;
 		GLint  z_off_loc;
+		GLint  uniformAmbientColor;
+		GLint uniformAmbientIntensity;
 
 	GLint heigth = 1080, width = 1920;      //window size
 	const char* window_title{ "Oblig2" };

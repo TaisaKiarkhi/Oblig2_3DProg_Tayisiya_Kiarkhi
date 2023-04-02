@@ -6,7 +6,16 @@ in vec2 tex_coord;
 out vec4 colour;
 uniform sampler2D the_tex;
 
+
+struct Direct_Light{
+vec3 color;
+float ambient_intens;
+};
+
+uniform Direct_Light dir_light;
+
 void main()
 {
-	colour = texture(the_tex, tex_coord);
+    vec4 ambient_color = vec4(dir_light.color, 1.0f)*dir_light.ambient_intens;
+	colour = texture(the_tex, tex_coord)*ambient_color;
 }

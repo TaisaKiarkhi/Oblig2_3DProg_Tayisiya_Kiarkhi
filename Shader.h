@@ -18,6 +18,8 @@ public:
 	GLuint GetViewLocation();
 	GLuint GetProjectionLocation();
 	GLuint GetModelLocation();
-	GLuint Shader_Program, uniformView, uniformProjection,  uniformModel;
+	GLuint GetAmbientIntensityLocation();
+	GLuint GetAmbientColorLocation();
+	GLuint Shader_Program, uniformView, uniformProjection,  uniformModel, uniformAmbientIntensity, uniformAmbientColor;
 };
 

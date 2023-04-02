@@ -20,6 +20,7 @@
 #include <Door.h>
 #include <Quaternion.h>
 #include <Texture.h>
+#include<Light.h>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ static const char* FShader = "FragmentShader.frag";
 static const char* TextShader = "TextureShader.text";
 static const char* TexFragShader = "TexFragShader.txt";
 
-const char* path = "cursed_textures/a28705b19ef54e2c199717c05fa12e9e.jpg";
+const char* path = "cursed_textures/photo-1495578942200-c5f5d2137def.jpg";
 Texture *cursed_texture= new Texture(path);
 
 GLFWwindow* main_window;
@@ -40,6 +41,7 @@ Camera* camera;
 Interactive_Object* inter = new Interactive_Object();
 NPC* npc = new NPC();
 bool inside = false;
+Light *main_light;
 
 Window::Window()
 {
@@ -95,6 +97,7 @@ Window::Window()
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
 	cursed_texture->load_texture();
+	main_light = new Light(1.0f, 1.0f, 0.7f, 1.0f);
 
 	npc->init();
 	meshes.push_back(npc);
@@ -158,8 +161,9 @@ Window::Window()
 		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
 		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
-
-
+		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
+		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
+		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
 
 
 
@@ -274,7 +278,9 @@ Window::Window()
 		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
 		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
-
+		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
+		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
+		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
 
 		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
 		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
@@ -433,6 +439,10 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	_rotation_location =   glGetUniformLocation(shader, "rotation");
 	_view_location = glGetUniformLocation(shader, "view");
 	_scale_location = glGetUniformLocation(shader, "scale");
+	uniformAmbientColor = glGetUniformLocation(shader, "dir_light.color");
+	uniformAmbientIntensity = glGetUniformLocation(shader, "dir_light.ambient_intens");
+
+	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
 
 	 x_off_loc = glGetUniformLocation(shader, "x_offset");
 	 y_off_loc = glGetUniformLocation(shader, "y_offset");
