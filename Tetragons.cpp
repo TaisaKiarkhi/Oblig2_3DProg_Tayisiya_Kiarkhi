@@ -11,24 +11,24 @@ GLfloat vert[] = {
 
 Tetragons::Tetragons()
 {
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,    0.5f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,    1.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,    0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,    0.5f, 1.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,    1.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 														   				
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f, 0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,   0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 														   			
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f  });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f,   0.0f, 0.0f, 0.0f  });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f });    //8
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f});	   //9
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f});	   //10
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f});	   //11
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f });	   //12
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f });	   //13
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });    //8
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //9
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //10
+	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //11
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //12
+	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //13
 
 
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
@@ -75,6 +75,9 @@ void Tetragons::init()
 
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(6 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(8 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(3);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

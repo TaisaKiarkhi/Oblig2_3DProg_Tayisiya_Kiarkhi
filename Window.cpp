@@ -97,7 +97,7 @@ Window::Window()
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
 	cursed_texture->load_texture();
-	main_light = new Light(1.0f, 1.0f, 0.7f, 1.0f);
+	main_light = new Light(1.0f, 1.0f, 1.0f, 0.5f);
 
 	npc->init();
 	meshes.push_back(npc);
@@ -441,6 +441,8 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	_scale_location = glGetUniformLocation(shader, "scale");
 	uniformAmbientColor = glGetUniformLocation(shader, "dir_light.color");
 	uniformAmbientIntensity = glGetUniformLocation(shader, "dir_light.ambient_intens");
+	uniform_dif_int = glGetUniformLocation(shader, "dir_light.diffuse_intens");
+	uniform_dir = glGetUniformLocation(shader, "dir_light.direction");
 
 	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
 

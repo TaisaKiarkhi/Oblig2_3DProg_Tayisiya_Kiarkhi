@@ -20,6 +20,7 @@ public:
 	GLuint GetModelLocation();
 	GLuint GetAmbientIntensityLocation();
 	GLuint GetAmbientColorLocation();
-	GLuint Shader_Program, uniformView, uniformProjection,  uniformModel, uniformAmbientIntensity, uniformAmbientColor;
+	GLuint Shader_Program, uniformView, uniformProjection,  uniformModel, uniformAmbientIntensity, uniformAmbientColor,
+	uniform_dif_int, uniform_dir;
 };
 

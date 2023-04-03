@@ -2,48 +2,48 @@
 
 House_Object::House_Object()
 {
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,  0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,  0.0f, 0.0f,0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
 
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
-	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f, -0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ 0.5f, -0.5f,  0.5f,      0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f,  0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
+	Vertex_Holder.push_back(Vertex{ -0.5f, -0.5f, -0.5f,     0.35294f, 0.3098f, 0.81176f ,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
 
 	//top - bottom of the roof
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f, -0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.5f,  0.5f,  0.5f,      0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f,  0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -0.5f,  0.5f, -0.5f,     0.8745f, 1.0f, 0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 }
 
 House_Object::~House_Object()
@@ -78,6 +78,9 @@ void House_Object::init()
 
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(8 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(3);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

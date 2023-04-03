@@ -43,6 +43,7 @@ public:
 		GLint  z_off_loc;
 		GLint  uniformAmbientColor;
 		GLint uniformAmbientIntensity;
+		GLint uniform_dif_int, uniform_dir;
 
 	GLint heigth = 1080, width = 1920;      //window size
 	const char* window_title{ "Oblig2" };
@@ -67,7 +68,7 @@ public:
 	static void Handle_Key(GLFWwindow* window, int key, int code, int action, int mode);
 	static void handle_key_for_npc(GLFWwindow* window, int key, int action);
 	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
-
+	void calculate_average_normals(unsigned int vertex_holder_size);
 	
 	
 	bool* get_keys() { return keys; }

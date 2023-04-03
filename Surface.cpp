@@ -7,12 +7,12 @@ Surface::Surface()
 	
 			
 	//bottom //put some gradient, it will look pretty
-Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
 
 	//create_plane();
 
@@ -51,6 +51,9 @@ void Surface::init()
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(8 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(3);
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
@@ -82,16 +85,16 @@ void Surface::construct()
 		for (auto y = ymin; y < ymax; y += h)
 		{
 			float z = sin(3.14159 * x) * sin(3.14159 * y);
-			Vertex_Holder.push_back(Vertex{ x,y,z,x,y,z, 0.0f, 0.0f});
+			Vertex_Holder.push_back(Vertex{ x,y,z,x,y,z, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f});
 			z = sin(3.14159 * (x + h)) * sin(3.14159 * y);
-			Vertex_Holder.push_back(Vertex{ x + h,y,z,x,y,z,  0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x + h,y,z,x,y,z,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 			z = sin(3.14159 * x) * sin(3.14159 * (y + h));
-			Vertex_Holder.push_back(Vertex{ x,y + h,z,x,y,z,  0.0f, 0.0f });
-			Vertex_Holder.push_back(Vertex{ x,y + h,z,x,y,z,  0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x,y + h,z,x,y,z,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x,y + h,z,x,y,z,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 			z = sin(3.14159 * (x + h)) * sin(3.14159 * y);
-			Vertex_Holder.push_back(Vertex{ x + h,y,z,x,y,z,    0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x + h,y,z,x,y,z,    0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 			z = sin(3.14159 * (x + h)) * sin(3.14159 * (y + h));
-			Vertex_Holder.push_back(Vertex{ x + h,y + h,z,x,y,z,   0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x + h,y + h,z,x,y,z,   0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 		}
 }
 
@@ -111,7 +114,7 @@ void Surface::create_plane()
 			float g = 0.0f;
 			float b = 1.0f;
 
-			Vertex_Holder.push_back(Vertex{ x,y ,z, r,g,b,  0.0f, 0.0f });
+			Vertex_Holder.push_back(Vertex{ x,y ,z, r,g,b,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f });
 
 	}
 	}

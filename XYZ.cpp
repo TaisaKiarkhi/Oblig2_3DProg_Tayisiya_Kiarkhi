@@ -43,22 +43,22 @@ XYZ::XYZ()
 //Vertex_Holder.push_back(Vertex{0.0, 0.0,  0.0,    0.0, 0.0, 1.0});
 //Vertex_Holder.push_back(Vertex{ 0.0, 0.0, 0.5,    0.0, 0.0, 1.0});
 
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 1000.0f ,0.0f ,0.0f,      1.0f,  0.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         0.0f,  1.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,      0.0f,  1.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         0.0f,  0.0f,  1.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,1000.0f,      0.0f,  0.0f,  1.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 1000.0f ,0.0f ,0.0f,      1.0f,  0.0f,  0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         0.0f,  1.0f,  0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,      0.0f,  1.0f,  0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         0.0f,  0.0f,  1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,1000.0f,      0.0f,  0.0f,  1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 														      				
 												 		      				
-Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,      0.0f,  1.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{-1000.0f ,0.0f,0.0f,       1.0f  ,0.0f  ,0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,1.0f  ,0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 0.0f ,-1000.0f ,0.0f,     0.0f  ,1.0f  ,0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,1.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f ,-1000.0f,    0.0f  ,0.0f  ,1.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 0.0f ,1000.0f ,0.0f,      0.0f,  1.0f,  0.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 0.0f ,0.0f ,0.0f,         1.0f,  0.0f,  0.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{-1000.0f ,0.0f,0.0f,       1.0f  ,0.0f  ,0.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,1.0f  ,0.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 0.0f ,-1000.0f ,0.0f,     0.0f  ,1.0f  ,0.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f  ,0.0f,       0.0f  ,0.0f  ,1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 0.0f  ,0.0f ,-1000.0f,    0.0f  ,0.0f  ,1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
 
 
 }
@@ -95,6 +95,9 @@ void XYZ::init()
 
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(3);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
