@@ -6,7 +6,7 @@ class Light
 public:
 	Light(GLfloat red, GLfloat green, GLfloat blue, GLfloat intensity, GLfloat x_dir, GLfloat y_dir
 	, GLfloat z_dir, GLfloat d_intensity);
-	void use_light (GLfloat ambient_intens_loc, GLfloat color_loc);
+	void use_light (GLfloat ambient_intens_loc, GLfloat color_loc, GLfloat d_intensity_loc, GLfloat direction_loc);
 	~Light();
 
 private:

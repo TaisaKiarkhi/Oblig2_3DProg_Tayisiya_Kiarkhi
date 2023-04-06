@@ -4,7 +4,7 @@
 
 layout (location = 0) in vec3 pos;
 layout(location = 1) in vec4 color;
-layout(location = 2) in vec3 normal; // location 3 for the texture shader
+layout(location = 3) in vec3 normal; // location 3 for the texture shader
 
 out vec4 Col;
 out vec3 Normals;

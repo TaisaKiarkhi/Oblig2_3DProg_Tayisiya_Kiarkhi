@@ -21,6 +21,7 @@
 #include <Quaternion.h>
 #include <Texture.h>
 #include<Light.h>
+#include <Heightmap.h>
 
 using namespace std;
 
@@ -39,6 +40,7 @@ Texture *cursed_texture= new Texture(path);
 GLFWwindow* main_window;
 Camera* camera;
 Interactive_Object* inter = new Interactive_Object();
+
 NPC* npc = new NPC();
 bool inside = false;
 Light *main_light;
@@ -97,12 +99,13 @@ Window::Window()
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
 	cursed_texture->load_texture();
-	main_light = new Light(1.0f, 1.0f, 1.0f, 0.5f);
+	main_light = new Light(1.0f, 1.0f, 1.0f, 0.5f, 2.0f, -1.0f, -2.0f, 0.3f);
+
 
 	npc->init();
 	meshes.push_back(npc);
 	
-
+	
 	inter->init();
 	
 	Matrix4x4 some_matrix;
@@ -118,7 +121,7 @@ Window::Window()
 
 		glfwPollEvents();
 
-		
+	
 		//npc->press_key_to_change_function();
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change());
@@ -163,7 +166,10 @@ Window::Window()
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
 		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
 		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
-		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
+		uniform_dif_int = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.diffuse_intens");
+		uniform_dir = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.direction");
+
+		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
 
 
 
@@ -181,6 +187,8 @@ Window::Window()
 		glUniform1f(y_off_loc, y_o);
 		glUniform1f(z_off_loc, z_o);
 
+
+		
 		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
 		inter->draw();
 
@@ -280,7 +288,10 @@ Window::Window()
 		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
 		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
 		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
-		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
+		uniform_dif_int = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.diffuse_intens");
+		uniform_dir = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.direction");
+
+		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
 
 		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
 		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
@@ -308,7 +319,9 @@ Window::Window()
 		//quaternion_test->matrix4x4SetIdentity(quaternion_test->Matrix_Rotation);
 		//quaternion_test->rotate3D_Quaternion(first_vector, second_vector, 35);
 
-
+		shader_list.at(13)->Use_Shader();
+        create_uniform(shader_list.at(13)->Shader_Program, 0.0f, -18.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
+		meshes.at(13)->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -337,7 +350,6 @@ void Window::Objects()
 	Tetragons* tetra = new Tetragons();
 	House* house = new House();
 	
-
     xyz->init();
     surf->init();
     house->init();
@@ -368,7 +380,9 @@ void Window::Objects()
 	quat->init();
 	meshes.push_back(quat);
 
-
+	Heightmap* map = new Heightmap();
+	map->init();
+	meshes.push_back(map);
 
     }
 
@@ -416,6 +430,10 @@ void Window::Adding_Shaders()
 	quat->Create_from_file(VShader, FShader);
 	shader_list.push_back(quat);
 
+	Shader*map = new Shader();
+	map->Create_from_file(VShader, FShader);
+	shader_list.push_back(map);
+
 }
 
 //Matrices, model, view, projection
@@ -444,7 +462,7 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	uniform_dif_int = glGetUniformLocation(shader, "dir_light.diffuse_intens");
 	uniform_dir = glGetUniformLocation(shader, "dir_light.direction");
 
-	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor);
+	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
 
 	 x_off_loc = glGetUniformLocation(shader, "x_offset");
 	 y_off_loc = glGetUniformLocation(shader, "y_offset");
@@ -493,6 +511,30 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	the_window->last_coord_y = yPos;
 
 	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
+}
+
+void Window::calculate_average_normals(std::vector<Vertex> verts, unsigned int vector_size)
+{
+	for (int i = 0; i < vector_size; i+3) {
+
+		if (i+2 >= vector_size)
+			return; 
+
+		
+		glm::vec3 v1(verts.at(i + 1).xyz_values.x - verts.at(i).xyz_values.x,
+			verts.at(i + 1).xyz_values.y - verts.at(i).xyz_values.y,
+			verts.at(i + 1).xyz_values.z - verts.at(i).xyz_values.z);
+
+		glm::vec3 v2(verts.at(i + 2).xyz_values.x - verts.at(i).xyz_values.x,
+			verts.at(i + 2).xyz_values.y - verts.at(i).xyz_values.y,
+			verts.at(i + 2).xyz_values.z - verts.at(i).xyz_values.z);
+
+		glm::vec3 normal = glm::cross(v1, v2);
+		normal = glm::normalize(normal);
+		verts.at(i).normal_values = normal;
+		verts.at(i+1).normal_values = normal;
+		verts.at(i+2).normal_values = normal;
+	}
 }
 
 
