@@ -1,4 +1,5 @@
-﻿  Window.cpp
+﻿  Heightmap.cpp
+  Window.cpp
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(118,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(172,88): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(172,71): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
@@ -22,4 +23,5 @@ C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\M
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(518,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(518,36): warning C4552: '+': result of expression not used
 C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Oblig2_3DProg_Tayisiya_Kiarkhi\Window.cpp(520,11): warning C4018: '>=': signed/unsigned mismatch
+  Generating Code...
   Oblig2_3DProg_Tayisiya_Kiarkhi.vcxproj -> C:\Users\Taisa\Desktop\MAIN_MAP_EVERYTHING_IS_HERE\School_tasks_and_lessons\3D\My_Own_Studies\Oblig3_3DProg_Tayisiya_Kiarkhi\Debug\Oblig2_3DProg_Tayisiya_Kiarkhi.exe

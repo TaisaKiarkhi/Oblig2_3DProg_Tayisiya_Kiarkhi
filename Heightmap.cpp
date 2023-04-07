@@ -1,5 +1,6 @@
 #include "Heightmap.h"
 #include <stb_image.h>
+//source: https://learnopengl.com/Guest-Articles/2021/Tessellation/Height-map
 Heightmap::Heightmap()
 {
 	load_from_file();
