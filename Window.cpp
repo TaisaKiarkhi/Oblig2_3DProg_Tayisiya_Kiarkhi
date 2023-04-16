@@ -41,7 +41,9 @@ GLFWwindow* main_window;
 Camera* camera;
 Interactive_Object* inter = new Interactive_Object();
 
+
 NPC* npc = new NPC();
+
 bool inside = false;
 Light *main_light;
 
@@ -99,13 +101,13 @@ Window::Window()
 	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
 	cursed_texture->load_texture();
-	main_light = new Light(1.0f, 1.0f, 1.0f, 0.5f, 2.0f, -1.0f, -2.0f, 0.3f);
+	main_light = new Light(0.9f, 1.0f, 1.0f, 0.5f, 10.0f, 10.0f, 0.0f, 0.9f);
 
-
+	calculate_average_normals(npc,npc->Vertex_Holder, npc->Vertex_Holder.size());
 	npc->init();
 	meshes.push_back(npc);
 	
-	
+	calculate_average_normals(inter,inter->Vertex_Holder, inter->Vertex_Holder.size());
 	inter->init();
 	
 	Matrix4x4 some_matrix;
@@ -346,9 +348,13 @@ Window::~Window()
 void Window::Objects()
 {
 	XYZ* xyz = new XYZ();
+
 	Surface* surf = new Surface();
+	calculate_average_normals(surf, surf->Vertex_Holder, surf->Vertex_Holder.size());
 	Tetragons* tetra = new Tetragons();
+	calculate_average_normals(tetra, tetra->Vertex_Holder, tetra->Vertex_Holder.size());
 	House* house = new House();
+	calculate_average_normals(house, house->Vertex_Holder, house->Vertex_Holder.size());
 	
     xyz->init();
     surf->init();
@@ -361,16 +367,19 @@ void Window::Objects()
     
     for (int i = 0; i < 6; i++) {
     Tetragons* tet = new Tetragons();
+	calculate_average_normals(tet, tet->Vertex_Holder, tet->Vertex_Holder.size());
     tet->init();
     meshes.push_back(tet);
     }
 
 	House_Object* object_inside = new House_Object();
+	calculate_average_normals(object_inside, object_inside->Vertex_Holder, object_inside->Vertex_Holder.size());
 	object_inside->init();
 	meshes.push_back(object_inside);
 	meshes.push_back(inter);
 
 	Door* door = new Door();
+	calculate_average_normals(door, door->Vertex_Holder, door->Vertex_Holder.size());
 	door->init();
 	meshes.push_back(door);
 	
@@ -513,14 +522,17 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
 }
 
-void Window::calculate_average_normals(std::vector<Vertex> verts, unsigned int vector_size)
+void Window::calculate_average_normals(VisualObject* obj, std::vector<Vertex> verts, unsigned int vector_size)
 {
-	for (int i = 0; i < vector_size; i+3) {
+	for (int i = 0; i < vector_size; i++) {
 
 		if (i+2 >= vector_size)
-			return; 
+		{
+			return;
+		}
 
-		
+
+	
 		glm::vec3 v1(verts.at(i + 1).xyz_values.x - verts.at(i).xyz_values.x,
 			verts.at(i + 1).xyz_values.y - verts.at(i).xyz_values.y,
 			verts.at(i + 1).xyz_values.z - verts.at(i).xyz_values.z);
@@ -528,13 +540,18 @@ void Window::calculate_average_normals(std::vector<Vertex> verts, unsigned int v
 		glm::vec3 v2(verts.at(i + 2).xyz_values.x - verts.at(i).xyz_values.x,
 			verts.at(i + 2).xyz_values.y - verts.at(i).xyz_values.y,
 			verts.at(i + 2).xyz_values.z - verts.at(i).xyz_values.z);
-
-		glm::vec3 normal = glm::cross(v1, v2);
+        
+		float n_x = (v1.y * v2.z) - (v1.z * v2.y);
+		float n_y = (v1.z * v2.x) - (v1.x * v2.z);
+		float n_z = (v1.x * v2.y) - (v1.y * v2.x);
+		glm::vec3 normal (n_x, n_y, n_z);
 		normal = glm::normalize(normal);
-		verts.at(i).normal_values = normal;
-		verts.at(i+1).normal_values = normal;
-		verts.at(i+2).normal_values = normal;
+		//verts.at(i).normal_values = glm::vec3(n_x, n_y, n_z);
+		 obj->Vertex_Holder.at(i).normal_values +=normal;
+		 obj->Vertex_Holder.at(i+1).normal_values += normal;
+		
 	}
+	std::cout << "calculated" << std::endl;
 }
 
 

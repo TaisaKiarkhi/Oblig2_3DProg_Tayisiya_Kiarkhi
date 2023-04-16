@@ -69,8 +69,9 @@ public:
 	static void handle_key_for_npc(GLFWwindow* window, int key, int action);
 	static void Handle_Mouse(GLFWwindow* window, double xPos, double yPos);
 
-	void calculate_average_normals(std::vector <Vertex> verts, unsigned int vector_size);
-	
+	void calculate_average_normals( VisualObject* obj  ,std::vector <Vertex> verts, unsigned int vector_size);
+	void calculate_average_normals_rect(VisualObject* obj, std::vector <Vertex> verts, unsigned int vector_size);
+
 	
 	bool* get_keys() { return keys; }
     bool keys[1024]; //keys as a ASCII code numbers

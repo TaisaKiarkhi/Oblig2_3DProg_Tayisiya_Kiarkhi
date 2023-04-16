@@ -7,12 +7,13 @@ Surface::Surface()
 	
 			
 	//bottom //put some gradient, it will look pretty
-Vertex_Holder.push_back(Vertex{-30.5f, 0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0,-30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{ 30.5,   0.0, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0,  30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
-Vertex_Holder.push_back(Vertex{-30.5,  0.0, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{-30.5f, -0.1, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ 30.5,  -0.1,-30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 30.5,  -0.1, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{ -30.5, -0.1, -30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+Vertex_Holder.push_back(Vertex{ 30.5,  -0.1, 30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f  });
+Vertex_Holder.push_back(Vertex{-30.5,  -0.1,  30.5,       1.0f, 0.412f, 0.706f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+
 
 	//create_plane();
 

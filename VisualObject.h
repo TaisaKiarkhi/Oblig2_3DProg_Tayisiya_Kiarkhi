@@ -14,8 +14,10 @@ public:
 
 	GLuint VAO{0};
 	GLuint VBO{0};
+	GLuint IBO{ 0 };
 	
 	std::vector<Vertex>Vertex_Holder; 
+	std::vector<GLuint>indices;
 	float x_change = 0.0f;
 	float y_change = 0.0f;
 	float z_change;
