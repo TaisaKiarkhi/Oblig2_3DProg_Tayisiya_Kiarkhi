@@ -130,6 +130,8 @@ Window::Window()
 		//try to initialize every mesh inside the loop, not separ
 
 	
+
+		shader_list.at(13)->Use_Shader();
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
 		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
 		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.y, cam.front.z));
@@ -137,31 +139,16 @@ Window::Window()
 		glm::mat4 view = cam.calculateViewMatrix();
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
-		
-		
-		
 
-		float x_o = 0.0f;
-		float y_o = 0.0f;
-		float z_o = 0.0f;
-
-		_model_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "model");
-		_projection_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "projection");
-		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
-		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
-		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
-		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
-		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
-		uniform_dif_int = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.diffuse_intens");
-		uniform_dir = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.direction");
-
-		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
-
-
-
-		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
-		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
-		z_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "z_offset");
+		_model_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "model");
+		_projection_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "projection");
+		_rotation_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "rotation");
+		_view_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "view");
+		_scale_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "scale");
+		uniformAmbientColor = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.color");
+		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.ambient_intens");
+		uniform_dif_int = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.diffuse_intens");
+		uniform_dir = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.direction");
 
 		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
@@ -169,24 +156,23 @@ Window::Window()
 		glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
 
-		glUniform1f(x_off_loc, x_o);
-		glUniform1f(y_off_loc, y_o);
-		glUniform1f(z_off_loc, z_o);
 
+		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
+		inter->draw();
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
-        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+        create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f);
 		meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
-        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+        create_uniform(shader_list.at(1)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
 		meshes.at(1)->draw();
 
 		//HOUSE
        shader_list.at(2)->Use_Shader();
-       create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+       create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
 		meshes.at(2)->draw();
         
 
@@ -195,7 +181,7 @@ Window::Window()
    for (int i = 3; i < 9; i++) {
 
 	   shader_list.at(i)->Use_Shader();
-	   create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f);
+	   create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f);
 	   cursed_texture->use_texture();
 	   meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
 
@@ -216,72 +202,26 @@ Window::Window()
 
 		//object inside the house fixed
 	shader_list.at(9)->Use_Shader();
-	create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f);
+	create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
 	meshes.at(9)->draw();
 
 
 		//door
         shader_list.at(10)->Use_Shader();
-		create_uniform(shader_list.at(10)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+		create_uniform(shader_list.at(10)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f );
 		meshes.at(10)->draw();
 
 		//npc
 		shader_list.at(11)->Use_Shader();
-		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
+		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
 		meshes.at(12)->draw();
 
 		//heightmap
 		shader_list.at(12)->Use_Shader();
-		create_uniform(shader_list.at(12)->Shader_Program, -15.0f, -10.0F, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
+		create_uniform(shader_list.at(12)->Shader_Program, -15.0f, -10.0F, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.5f, 0.5f, 0.5f);
 		meshes.at(11)->draw();
 
-
-		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
-		inter->draw();
-
-		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
-		glm::mat4 model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 1.7f, -15.0f));
-		glm::mat4 rotation_matrix_d = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-		glm::mat4 projection_matrix_d= glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
-		glm::mat4 view_d = cam.calculateViewMatrix();
-		glm::mat4 scale_d = glm::scale(glm::mat4(1.0f), glm::vec3(3.0f, 3.0f, 3.0f));
-
-
-
-
-
-		float x__d_o = 0.0f;
-		float y__d_o = 0.0f;
-		float z__d_o = 0.0f;
-
-		_model_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "model");
-		_projection_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "projection");
-		_rotation_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "rotation");
-		_view_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "view");
-		_scale_location = glGetUniformLocation(shader_list.at(10)->Shader_Program, "scale");
-		uniformAmbientColor = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.color");
-		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.ambient_intens");
-		uniform_dif_int = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.diffuse_intens");
-		uniform_dir = glGetUniformLocation(shader_list.at(10)->Shader_Program, "dir_light.direction");
-
 		main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
-
-		x_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "x_offset");
-		y_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "y_offset");
-		z_off_loc = glGetUniformLocation(shader_list.at(10)->Shader_Program, "z_offset");
-
-		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix_d));
-		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix_d));
-		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr    (rotation_matrix_d));
-		glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr                 (view_d));
-		glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr                (scale_d));
-
-		glUniform1f(x_off_loc, x__d_o);
-		glUniform1f(y_off_loc, y__d_o);
-		glUniform1f(z_off_loc, z__d_o);
-
-		
-
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -403,8 +343,7 @@ void Window::Adding_Shaders()
 
 //Matrices, model, view, projection
 void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
-	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z,
-	float x_off, float y_off, float z_off)
+	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z)
 {
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
@@ -412,10 +351,6 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	glm::mat4 view = cam.calculateViewMatrix();
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scale_x, scale_y, scale_z));
 
-
-	float x_o = x_off;
-	float y_o = y_off;
-	float z_o = z_off;
 
 	_model_location = 	   glGetUniformLocation(shader, "model");
 	_projection_location = glGetUniformLocation(shader, "projection");
@@ -429,19 +364,13 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 
 	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
 
-	 x_off_loc = glGetUniformLocation(shader, "x_offset");
-	 y_off_loc = glGetUniformLocation(shader, "y_offset");
-	 z_off_loc = glGetUniformLocation(shader, "z_offset");
-
 	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 	glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
 
-	glUniform1f(x_off_loc, x_o);
-	glUniform1f(y_off_loc, y_o);
-	glUniform1f(z_off_loc, z_o);
+	
 }
 
 
