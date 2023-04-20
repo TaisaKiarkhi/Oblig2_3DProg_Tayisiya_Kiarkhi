@@ -25,27 +25,14 @@
 
 using namespace std;
 
-typedef GLfloat Matrix4x4[4][4]; //for testing reasons only
-void matrix4x4SetIdentity(Matrix4x4 matIdent4x4);
-void translate3D(GLfloat tx, GLfloat ty, GLfloat tz);
+
 
 static const char* VShader = "VertexShader.vert";
 static const char* FShader = "FragmentShader.frag";
 static const char* TextShader = "TextureShader.text";
 static const char* TexFragShader = "TexFragShader.txt";
+Light* main_light;
 
-const char* path = "cursed_textures/photo-1495578942200-c5f5d2137def.jpg";
-Texture *cursed_texture= new Texture(path);
-
-GLFWwindow* main_window;
-Camera* camera;
-Interactive_Object* inter = new Interactive_Object();
-
-
-NPC* npc = new NPC();
-
-bool inside = false;
-Light *main_light;
 
 Window::Window()
 {
@@ -94,28 +81,31 @@ Window::Window()
 	glViewport(0, 0, buffer_w, buffer_h);
     glfwSetWindowUserPointer(main_window, this);
 	
+	path = "cursed_textures/photo-1495578942200-c5f5d2137def.jpg";
+	Texture* cursed_texture = new Texture(path);
+
 	Objects();
 	Adding_Shaders();
 
-	cam= Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
-	Camera * camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 	
+	//TEXTURES AND LIGHTTTTTTTTTTTTT
 	cursed_texture->load_texture();
 	main_light = new Light(0.9f, 1.0f, 1.0f, 0.5f, 10.0f, 10.0f, 0.0f, 0.9f);
 
+	NPC* npc = new NPC(); //12
 	calculate_average_normals(npc,npc->Vertex_Holder, npc->Vertex_Holder.size());
 	npc->init();
 	meshes.push_back(npc);
 	
+	Interactive_Object* inter = new Interactive_Object(); //13
 	calculate_average_normals(inter,inter->Vertex_Holder, inter->Vertex_Holder.size());
 	inter->init();
+	meshes.push_back(inter);
 	
-	Matrix4x4 some_matrix;
-	//just testing
-  	translate3D(3.4f, 1.5f, 2.9f);
+	cam = Camera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
+	Camera* camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 
-	//MATRICES 
-
+	inside = false;
 	while (!glfwWindowShouldClose(main_window)) {
 		GLfloat current_time = glfwGetTime();
 		deltaTime = current_time - lastTime;
@@ -137,13 +127,7 @@ Window::Window()
 		glClearColor(0.537f, 0.812f, 0.941f, 0.50f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
-		//try to initialize every mesh inside the loop, not separate
-
-
-
-		//poor playable character
-		shader_list.at(10)->Use_Shader();
-
+		//try to initialize every mesh inside the loop, not separ
 
 	
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
@@ -190,17 +174,10 @@ Window::Window()
 		glUniform1f(z_off_loc, z_o);
 
 
-		
-		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
-		inter->draw();
-
-
-
 		//XYZ
         shader_list.at(0)->Use_Shader();
         create_uniform(shader_list.at(0)->Shader_Program, 0.0f, 0.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f , 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
-		
-        meshes.at(0)->draw();
+		meshes.at(0)->draw();
         
 		//SURFACE
         shader_list.at(1)->Use_Shader();
@@ -208,23 +185,13 @@ Window::Window()
 		meshes.at(1)->draw();
 
 		//HOUSE
-        shader_list.at(2)->Use_Shader();
-        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
-		
-        meshes.at(2)->draw();
+       shader_list.at(2)->Use_Shader();
+       create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+		meshes.at(2)->draw();
         
 
-		shader_list.at(2)->Use_Shader();
-		create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
-
-		meshes.at(2)->draw();
-
-
-		//Random TETRAGONS
-        float c = 2.0;
-		
-		
-
+    //Random TETRAGONS
+	c = 2;
    for (int i = 3; i < 9; i++) {
 
 	   shader_list.at(i)->Use_Shader();
@@ -242,31 +209,35 @@ Window::Window()
 		   meshes.at(i)->VBO = 0;
 	   }
 
-
 	   c += 10.0f + i;
 	   c *= -1.2f;
     }
 
 
-		//object inside the house
-		shader_list.at(9)->Use_Shader();
-		create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f);
-		meshes.at(9)->draw();
-
-		//npc
-		shader_list.at(12)->Use_Shader();
-		
-		create_uniform(shader_list.at(12)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
-		npc->draw();
+		//object inside the house fixed
+	shader_list.at(9)->Use_Shader();
+	create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, 0.0f, 0.0f, 0.0f);
+	meshes.at(9)->draw();
 
 
 		//door
-	shader_list.at(11)->Use_Shader();
-	//create_uniform(shader_list.at(11)->Shader_Program, -15.0f, 1.7f, -15.0f, 90.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
-	
+        shader_list.at(10)->Use_Shader();
+		create_uniform(shader_list.at(10)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f, 0.0f, 0.0f, 0.0f);
+		meshes.at(10)->draw();
+
+		//npc
+		shader_list.at(11)->Use_Shader();
+		create_uniform(shader_list.at(11)->Shader_Program, 12.0f, .5f, 9.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f, npc->x_change,npc->y_change, 0.0f);
+		meshes.at(12)->draw();
+
+		//heightmap
+		shader_list.at(12)->Use_Shader();
+		create_uniform(shader_list.at(12)->Shader_Program, -15.0f, -10.0F, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
+		meshes.at(11)->draw();
 
 
-
+		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
+		inter->draw();
 
 		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
 		glm::mat4 model_transform_matrix_d = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 1.7f, -15.0f));
@@ -309,21 +280,8 @@ Window::Window()
 		glUniform1f(y_off_loc, y__d_o);
 		glUniform1f(z_off_loc, z__d_o);
 
-		meshes.at(11)->draw();
+		
 
-
-
-		//TESTING QUATERNION
-		//shader_list.at(12)->Use_Shader();
-		//quaternion_test = new Quaternion();
-		//glm::vec3 first_vector(0.5f, 0.5f, - 0.5f);
-		//glm::vec3 second_vector((0.5f, -0.5f - 0.5f));
-		//quaternion_test->matrix4x4SetIdentity(quaternion_test->Matrix_Rotation);
-		//quaternion_test->rotate3D_Quaternion(first_vector, second_vector, 35);
-
-		shader_list.at(13)->Use_Shader();
-        create_uniform(shader_list.at(13)->Shader_Program, 0.0f, -18.0f, -5.0f, 0.0f, 0.0f, -4.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f);
-		meshes.at(13)->draw();
 
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
@@ -339,109 +297,107 @@ Window::Window()
 	cout << meshes.size();
 }
 
-Window::~Window()
-{
-	glfwDestroyWindow(main_window);
-	glfwTerminate();
-}
 
+
+
+
+
+
+//This functuons  creates objects and initialize them
 void Window::Objects()
 {
-	XYZ* xyz = new XYZ();
+	XYZ* xyz = new XYZ(); //0 
+	xyz->init();
+	meshes.push_back(xyz);
+	
 
-	Surface* surf = new Surface();
+	Surface* surf = new Surface(); //1
 	calculate_average_normals(surf, surf->Vertex_Holder, surf->Vertex_Holder.size());
-	Tetragons* tetra = new Tetragons();
-	calculate_average_normals(tetra, tetra->Vertex_Holder, tetra->Vertex_Holder.size());
-	House* house = new House();
+	surf->init();
+	meshes.push_back(surf);
+
+
+	House* house = new House();  //2
 	calculate_average_normals(house, house->Vertex_Holder, house->Vertex_Holder.size());
-	
-    xyz->init();
-    surf->init();
-    house->init();
-	
+	house->init();
+	meshes.push_back(house);
     
-    meshes.push_back(xyz);
-    meshes.push_back(surf);
-    meshes.push_back(house);
-    
-    for (int i = 0; i < 6; i++) {
+	//pickups
+    for (int i = 0; i < 6; i++) { //3, 4,5,6,7,8
     Tetragons* tet = new Tetragons();
 	calculate_average_normals(tet, tet->Vertex_Holder, tet->Vertex_Holder.size());
     tet->init();
     meshes.push_back(tet);
     }
 
-	House_Object* object_inside = new House_Object();
+	House_Object* object_inside = new House_Object(); //9
 	calculate_average_normals(object_inside, object_inside->Vertex_Holder, object_inside->Vertex_Holder.size());
 	object_inside->init();
 	meshes.push_back(object_inside);
-	meshes.push_back(inter);
+	
 
-	Door* door = new Door();
+	Door* door = new Door(); //10
 	calculate_average_normals(door, door->Vertex_Holder, door->Vertex_Holder.size());
 	door->init();
 	meshes.push_back(door);
 	
 
-	//TESTING QUATERNION
-	House_Object* quat = new House_Object();
-	quat->init();
-	meshes.push_back(quat);
-
+	//Map 11
 	Heightmap* map = new Heightmap();
 	map->init();
 	meshes.push_back(map);
 
     }
 
+
+
+//Adds shaders to the objects
 void Window::Adding_Shaders()
 {
-	Shader* first_shader = new Shader();
-	first_shader->Create_from_file(VShader, FShader);
-	shader_list.push_back(first_shader);
+	Shader* xyz_shader = new Shader();    //0
+	xyz_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(xyz_shader);
 
-	Shader* second_shader = new Shader();
-	second_shader->Create_from_file(VShader, FShader);
-	shader_list.push_back(second_shader);
+	Shader* surface_shader = new Shader();  //1
+	surface_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(surface_shader);
 
-	Shader* t_shader = new Shader();
-	t_shader->Create_from_file(VShader, FShader);
-	shader_list.push_back(t_shader);
+	Shader* house_shader = new Shader();   //2
+	house_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(house_shader);
 
-	for (int i = 0; i < 6; i++) {
-		Shader* t = new Shader();
-		t->Create_from_file(TextShader, TexFragShader);
-		shader_list.push_back(t);
+	for (int i = 0; i < 6; i++) { //3 ,4,5, 6,7,8
+		Shader* pickups_shader = new Shader();
+		pickups_shader->Create_from_file(TextShader, TexFragShader);
+		shader_list.push_back(pickups_shader);
 	}
 	
 
-	Shader* ob_s = new Shader();
+	Shader* object_inside_house_shader = new Shader(); //9
+	object_inside_house_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(object_inside_house_shader);
+
+	Shader* door_shader = new Shader(); //10
+	door_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(door_shader);
 
 
-	ob_s->Create_from_file(VShader, FShader);
-	shader_list.push_back(ob_s);
+	Shader* npc_shader = new Shader(); //11
+	npc_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(npc_shader);
 
-	Shader* i = new Shader();
-	i->Create_from_file(VShader, FShader);
-	shader_list.push_back(i);
-
-	Shader* npc_s = new Shader();
-	npc_s->Create_from_file(VShader, FShader);
-	shader_list.push_back(npc_s);
-
-	Shader* door_s = new Shader();
-	door_s->Create_from_file(VShader, FShader);
-	shader_list.push_back(door_s);
+	
 
 	//TESTING QUTERNION
-	Shader* quat = new Shader();
-	quat->Create_from_file(VShader, FShader);
-	shader_list.push_back(quat);
+	
 
-	Shader*map = new Shader();
+	Shader*map = new Shader(); //12
 	map->Create_from_file(VShader, FShader);
 	shader_list.push_back(map);
+
+	Shader* interactive_object_shader = new Shader(); //13
+	interactive_object_shader->Create_from_file(VShader, FShader);
+	shader_list.push_back(interactive_object_shader);
 
 }
 
@@ -522,6 +478,10 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 	std::cout << "X change " << the_window->x_move << " Y change " << the_window->y_move << std::endl;
 }
 
+
+
+
+//CALCULATE NORMALSSSSSSSSSSSSSSSSSSSSSSSS
 void Window::calculate_average_normals(VisualObject* obj, std::vector<Vertex> verts, unsigned int vector_size)
 {
 	for (int i = 0; i < vector_size; i++) {
@@ -615,24 +575,9 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 
 
 
-
-void matrix4x4SetIdentity(Matrix4x4 matIdent4x4) {
-	GLint row, column;
-
-	for (row = 0; row < 4; row++) {
-		for (column = 0; column < 4; column++) {
-			matIdent4x4[row][column] = (row == column); // row == column sets values between 1 and 0 (true and false)
-		}
-	}
-}
-
-void translate3D(GLfloat tx, GLfloat ty, GLfloat tz)
+Window::~Window()
 {
-	Matrix4x4 matTransl3D;
-	matrix4x4SetIdentity(matTransl3D);
-
-	matTransl3D[0][3] = tx;
-	matTransl3D[1][3] = ty;
-	matTransl3D[2][3] = tz;
-	//matTransl3D[3][3] = 1; //maybe wrong, delete later
+	glfwDestroyWindow(main_window);
+	glfwTerminate();
 }
+
