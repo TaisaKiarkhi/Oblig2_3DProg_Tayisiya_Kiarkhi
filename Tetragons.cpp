@@ -1,12 +1,5 @@
 #include "Tetragons.h"
 
-GLfloat vert[] = {
-	-1.0f, -1.0f, 0.0f,
-	1.0f, -1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f
-
-
-};
 
 
 Tetragons::Tetragons()

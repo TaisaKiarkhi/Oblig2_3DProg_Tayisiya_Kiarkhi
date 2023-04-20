@@ -22,9 +22,7 @@
 #include <Texture.h>
 #include<Light.h>
 #include <Heightmap.h>
-
 using namespace std;
-
 
 
 static const char* VShader = "VertexShader.vert";
@@ -39,40 +37,34 @@ Window::Window()
 	x_move = 0.0f,
 	y_move = 0.0f;
 
-	for (size_t i = 0; i < 1024; i++)
-	{
-		keys[i] = 0;
+	for (size_t i = 0; i < 1024; i++){
+	keys[i] = 0;
 	}
 
-
-	if (!glfwInit()) {
-		std::cout << "GLFW Init failed!" << std::endl;
-		glfwTerminate();	
+	if (!glfwInit()){
+    std::cout << "GLFW Init failed!" << std::endl;
+	glfwTerminate();	
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	// Core Profile = No Backwards Compatibility
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// Allow Forward Compatbility
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
     main_window = glfwCreateWindow(width, heigth, window_title, NULL, NULL);
 
-	if (!main_window) {
-		std::cout << "failed window";
+	if (!main_window){
+	std::cout << "failed window";
 	}
-	
+
 	glfwGetFramebufferSize(main_window, &buffer_w, &buffer_h);
 	glfwMakeContextCurrent(main_window);
 	Call_Back(); //pressing keys
 	glfwSetInputMode(main_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-
-
-
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	if (glewInit() != GLEW_OK) {
+	if (glewInit() != GLEW_OK){
 		std::cout << "GLEW Init failed!" << std::endl;
 		glfwTerminate();
 	}
@@ -87,8 +79,7 @@ Window::Window()
 	Objects();
 	Adding_Shaders();
 
-	
-	//TEXTURES AND LIGHTTTTTTTTTTTTT
+	//textures and light
 	cursed_texture->load_texture();
 	main_light = new Light(0.9f, 1.0f, 1.0f, 0.5f, 10.0f, 10.0f, 0.0f, 0.9f);
 
@@ -106,14 +97,14 @@ Window::Window()
 	Camera* camera_h = new Camera(glm::vec3(-14.0f, 1.0f, -14.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.5f, *inter);
 
 	inside = false;
-	while (!glfwWindowShouldClose(main_window)) {
+
+	while (!glfwWindowShouldClose(main_window)){
 		GLfloat current_time = glfwGetTime();
 		deltaTime = current_time - lastTime;
 		lastTime = current_time;
 
 		glfwPollEvents();
 
-	
 		//npc->press_key_to_change_function();
 		cam.keyControl(this->get_keys(), deltaTime);
 		cam.mouseControl(this->get_x_change());
@@ -123,42 +114,14 @@ Window::Window()
 		//inter->keyControl(this->get_keys(), deltaTime);
 		//inter->mouseControl(this->get_x_change());
 
-
 		glClearColor(0.537f, 0.812f, 0.941f, 0.50f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // GL_DEPTH_BUFFER_BIT 
 
 		//try to initialize every mesh inside the loop, not separ
-
-	
-
 		shader_list.at(13)->Use_Shader();
-		//glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f ,0.0f, -5.0f));
-		glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(cam.position.x+1.0f, cam.position.y, cam.position.z-5.0f));
-		glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(cam.front.x, cam.front.y, cam.front.z));
-		glm::mat4 projection_matrix = glm::perspective(glm::radians(90.0f), (GLfloat)buffer_w / (GLfloat)buffer_h, 0.1f, 100.0f);
-		glm::mat4 view = cam.calculateViewMatrix();
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-
-
-		_model_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "model");
-		_projection_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "projection");
-		_rotation_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "rotation");
-		_view_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "view");
-		_scale_location = glGetUniformLocation(shader_list.at(13)->Shader_Program, "scale");
-		uniformAmbientColor = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.color");
-		uniformAmbientIntensity = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.ambient_intens");
-		uniform_dif_int = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.diffuse_intens");
-		uniform_dir = glGetUniformLocation(shader_list.at(13)->Shader_Program, "dir_light.direction");
-
-		glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
-		glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-		glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
-		glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
-
-
-		inter->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
-		inter->draw();
+		create_uniform(shader_list.at(13)->Shader_Program, cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f, 0.0f, cam.front.x, cam.front.y, cam.front.z, 90.f, 0.1f, 100.0f, 1.0f, 1.0f, 1.0f);
+		meshes.at(13)->pos = glm::vec3(cam.position.x + 1.0f, cam.position.y, cam.position.z - 5.0f);
+		meshes.at(13)->draw();
 
 		//XYZ
         shader_list.at(0)->Use_Shader();
@@ -171,40 +134,37 @@ Window::Window()
 		meshes.at(1)->draw();
 
 		//HOUSE
-       shader_list.at(2)->Use_Shader();
-       create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
+        shader_list.at(2)->Use_Shader();
+        create_uniform(shader_list.at(2)->Shader_Program, -15.0f, 1.7f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 3.0f, 3.0f, 3.0f);
 		meshes.at(2)->draw();
         
-
     //Random TETRAGONS
-	c = 2;
-   for (int i = 3; i < 9; i++) {
+	    c = 2;
+        for (int i = 3; i < 9; i++){
+	  
+	    shader_list.at(i)->Use_Shader();
+	    create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f);
+	    cursed_texture->use_texture();
+	    meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
+	  
+	    if (meshes.at(i)->collided != true){
+	 	   meshes.at(i)->draw();
+	    }
+	  
+	    if (Collision_Detection(inter, meshes.at(i)) == true){
+	    meshes.at(i)->collided = true;
+	    meshes.at(i)->VAO = 0;
+	    meshes.at(i)->VBO = 0;
+	    }
 
-	   shader_list.at(i)->Use_Shader();
-	   create_uniform(shader_list.at(i)->Shader_Program, 5.0f + c, 0.4f, 5.0f + c, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.4f, 0.4f, 0.4f);
-	   cursed_texture->use_texture();
-	   meshes.at(i)->pos = glm::vec3(5.0f + c, 0.4f, 5.0f + c);
-
-	   if (meshes.at(i)->collided != true) {
-		   meshes.at(i)->draw();
-	   }
-
-	   if (Collision_Detection(inter, meshes.at(i)) == true) {
-		   meshes.at(i)->collided = true;
-		   meshes.at(i)->VAO = 0;
-		   meshes.at(i)->VBO = 0;
-	   }
-
-	   c += 10.0f + i;
-	   c *= -1.2f;
-    }
-
+	    c += 10.0f + i;
+	    c *= -1.2f;
+        }
 
 		//object inside the house fixed
-	shader_list.at(9)->Use_Shader();
-	create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
-	meshes.at(9)->draw();
-
+	    shader_list.at(9)->Use_Shader();
+	    create_uniform(shader_list.at(9)->Shader_Program, -15.0f, .5f, -15.0f, 0.0f, 0.0f, 0.0f, 1.0f, 90.0f, 0.1f, 100.0f, 0.2f, 0.2f, 0.2f);
+	    meshes.at(9)->draw();
 
 		//door
         shader_list.at(10)->Use_Shader();
@@ -226,18 +186,16 @@ Window::Window()
 		glUseProgram(0);
 		glfwSwapBuffers(main_window);
 		
-	}
+	 }
 
 	//destroy objects
-	for (int i = 0; i < 6; i++) {
-		shader_list.at(i)->~Shader();
-		meshes.at(i)->~VisualObject();
+	for (int i = 0; i < 6; i++){
+	shader_list.at(i)->~Shader();
+	meshes.at(i)->~VisualObject();
 	}
 
 	cout << meshes.size();
 }
-
-
 
 
 
@@ -291,6 +249,8 @@ void Window::Objects()
 
 
 
+
+
 //Adds shaders to the objects
 void Window::Adding_Shaders()
 {
@@ -307,12 +267,11 @@ void Window::Adding_Shaders()
 	shader_list.push_back(house_shader);
 
 	for (int i = 0; i < 6; i++) { //3 ,4,5, 6,7,8
-		Shader* pickups_shader = new Shader();
-		pickups_shader->Create_from_file(TextShader, TexFragShader);
-		shader_list.push_back(pickups_shader);
+	Shader* pickups_shader = new Shader();
+	pickups_shader->Create_from_file(TextShader, TexFragShader);
+	shader_list.push_back(pickups_shader);
 	}
 	
-
 	Shader* object_inside_house_shader = new Shader(); //9
 	object_inside_house_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(object_inside_house_shader);
@@ -320,7 +279,6 @@ void Window::Adding_Shaders()
 	Shader* door_shader = new Shader(); //10
 	door_shader->Create_from_file(VShader, FShader);
 	shader_list.push_back(door_shader);
-
 
 	Shader* npc_shader = new Shader(); //11
 	npc_shader->Create_from_file(VShader, FShader);
@@ -342,15 +300,13 @@ void Window::Adding_Shaders()
 }
 
 //Matrices, model, view, projection
-void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle,
-	float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z)
+void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, float angle, float r_x, float r_y, float r_z, float perspective, float near, float far, float scale_x, float scale_y, float scale_z)
 {
 	glm::mat4 model_transform_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(m_x, m_y, m_z));
 	glm::mat4 rotation_matrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(r_x, r_y, r_z));
 	glm::mat4 projection_matrix = glm::perspective(glm::radians(perspective), (GLfloat)buffer_w / (GLfloat)buffer_h,near, far);
 	glm::mat4 view = cam.calculateViewMatrix();
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scale_x, scale_y, scale_z));
-
 
 	_model_location = 	   glGetUniformLocation(shader, "model");
 	_projection_location = glGetUniformLocation(shader, "projection");
@@ -362,15 +318,13 @@ void Window::create_uniform(GLuint shader, float m_x, float m_y, float m_z, floa
 	uniform_dif_int = glGetUniformLocation(shader, "dir_light.diffuse_intens");
 	uniform_dir = glGetUniformLocation(shader, "dir_light.direction");
 
-	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
-
 	glUniformMatrix4fv(_model_location, 1, GL_FALSE, glm::value_ptr(model_transform_matrix));
 	glUniformMatrix4fv(_projection_location, 1, GL_FALSE, glm::value_ptr(projection_matrix));
 	glUniformMatrix4fv(_rotation_location, 1, GL_FALSE, glm::value_ptr(rotation_matrix));
 	glUniformMatrix4fv(_view_location, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(_scale_location, 1, GL_FALSE, glm::value_ptr(scale));
 
-	
+	main_light->use_light(uniformAmbientIntensity, uniformAmbientColor, uniform_dif_int, uniform_dir);
 }
 
 
@@ -388,14 +342,15 @@ bool Window::Collision_Detection(VisualObject* object_1, VisualObject* object_2)
 
 
 
+
 void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 {
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
 	if (the_window->mouse_first_moved) {
-		the_window->last_coord_x = xPos;
-		the_window->last_coord_y = yPos;
-		the_window->mouse_first_moved = false;
+	the_window->last_coord_x = xPos;
+	the_window->last_coord_y = yPos;
+	the_window->mouse_first_moved = false;
 	}
 
 	the_window->x_move = xPos - the_window->last_coord_x;
@@ -414,30 +369,31 @@ void Window::Handle_Mouse(GLFWwindow* window, double xPos, double yPos)
 void Window::calculate_average_normals(VisualObject* obj, std::vector<Vertex> verts, unsigned int vector_size)
 {
 	for (int i = 0; i < vector_size; i++) {
-
-		if (i+2 >= vector_size)
-		{
-			return;
-		}
+	if (i+2 >= vector_size)
+	{
+	return;
+	}
 
 
 	
-		glm::vec3 v1(verts.at(i + 1).xyz_values.x - verts.at(i).xyz_values.x,
-			verts.at(i + 1).xyz_values.y - verts.at(i).xyz_values.y,
-			verts.at(i + 1).xyz_values.z - verts.at(i).xyz_values.z);
+	 glm::vec3 v1(verts.at(i + 1).xyz_values.x - verts.at(i).xyz_values.x,
+	 verts.at(i + 1).xyz_values.y - verts.at(i).xyz_values.y,
+	 verts.at(i + 1).xyz_values.z - verts.at(i).xyz_values.z);
+	 
+	 glm::vec3 v2(verts.at(i + 2).xyz_values.x - verts.at(i).xyz_values.x,
 
-		glm::vec3 v2(verts.at(i + 2).xyz_values.x - verts.at(i).xyz_values.x,
-			verts.at(i + 2).xyz_values.y - verts.at(i).xyz_values.y,
-			verts.at(i + 2).xyz_values.z - verts.at(i).xyz_values.z);
+	 verts.at(i + 2).xyz_values.y - verts.at(i).xyz_values.y,
+	 verts.at(i + 2).xyz_values.z - verts.at(i).xyz_values.z);
         
-		float n_x = (v1.y * v2.z) - (v1.z * v2.y);
-		float n_y = (v1.z * v2.x) - (v1.x * v2.z);
-		float n_z = (v1.x * v2.y) - (v1.y * v2.x);
-		glm::vec3 normal (n_x, n_y, n_z);
-		normal = glm::normalize(normal);
+	 float n_x = (v1.y * v2.z) - (v1.z * v2.y);
+	 float n_y = (v1.z * v2.x) - (v1.x * v2.z);
+	 float n_z = (v1.x * v2.y) - (v1.y * v2.x);
+
+	 glm::vec3 normal (n_x, n_y, n_z);
+	 normal = glm::normalize(normal);
 		//verts.at(i).normal_values = glm::vec3(n_x, n_y, n_z);
-		 obj->Vertex_Holder.at(i).normal_values +=normal;
-		 obj->Vertex_Holder.at(i+1).normal_values += normal;
+	 obj->Vertex_Holder.at(i).normal_values +=normal;
+	 obj->Vertex_Holder.at(i+1).normal_values += normal;
 		
 	}
 	std::cout << "calculated" << std::endl;
@@ -446,19 +402,27 @@ void Window::calculate_average_normals(VisualObject* obj, std::vector<Vertex> ve
 
 
 
+
 GLfloat Window::get_x_change()
 {
 	GLfloat theChange = x_move;
 	x_move = 0.0f;
+
 	return theChange;
 }
+
+
+
 
 GLfloat Window::get_y_change()
 {
 	GLfloat theChange = y_move;
 	y_move = 0.0f;
+
 	return theChange;
 }
+
+
 
 
 
@@ -476,31 +440,22 @@ void Window::Handle_Key(GLFWwindow* window, int key, int code, int action, int m
 	Window* the_window = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-		glfwSetWindowShouldClose(window, GL_TRUE);
+	glfwSetWindowShouldClose(window, GL_TRUE);
 	}
-
-	//if (key == GLFW_KEY_P && action == GLFW_PRESS) {
-	//	npc->Function_y();
-	//}
-
-	//if (key == GLFW_KEY_O && action == GLFW_PRESS) {
-	//	npc->Function_y_v_2();
-	//}
 
 	if (key >= 0 && key < 1024) {
-		if (action == GLFW_PRESS) {
-			the_window->keys[key] = true;
-			std::cout << "The key is pressed: " << key << std::endl;
-		}
+	if (action == GLFW_PRESS) {
+	the_window->keys[key] = true;
+	std::cout << "The key is pressed: " << key << std::endl;
+	}
 
-		else if (action == GLFW_RELEASE) {
-			the_window->keys[key] = false;
-			std::cout << "The kkey is released " << key << std::endl;
-		}
-
-
+	else if (action == GLFW_RELEASE) {
+	the_window->keys[key] = false;
+	std::cout << "The kkey is released " << key << std::endl;
+	}
 	}
 }
+
 
 
 

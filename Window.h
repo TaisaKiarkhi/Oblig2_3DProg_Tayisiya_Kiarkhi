@@ -77,6 +77,7 @@ public:
 	bool inside;
 
 	GLFWwindow* main_window;
+	
 
 	float c;
 };
