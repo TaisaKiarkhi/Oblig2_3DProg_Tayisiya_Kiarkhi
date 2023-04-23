@@ -29,7 +29,7 @@ void Heightmap::draw()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, Vertex_Holder.size());
+	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

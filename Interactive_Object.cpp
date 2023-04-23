@@ -2,31 +2,33 @@
 #include <Camera.h>
 
 Interactive_Object::Interactive_Object()
-{
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,    0.5f, 1.0f,   0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,    1.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+{                                       //xyz                        rgb                uv                normals
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,    0.0f, 0.0f,   0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f,    0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 	Vertex_Holder.push_back(Vertex{ 1.0f, -1.0f, 1.0f,     0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.5f, 1.0f,    0.0f, 0.0f, 0.0f });
-	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ 0.0f, 1.0f, 0.0f,      0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
+	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });    //8
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //9
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //10
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //11
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //12
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //13
-	
+Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });    //8
+Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //9
+Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //10
+Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //11
+Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //12
+Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //13
+
+
+
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
 	position_holder_x[1] = Vertex_Holder.at(9).xyz_values.x;
 	position_holder_x[2] = Vertex_Holder.at(10).xyz_values.x;
 	position_holder_x[3] = Vertex_Holder.at(12).xyz_values.x;
-
+	
 	position_holder_y[0] = Vertex_Holder.at(8).xyz_values.y;
 	position_holder_y[1] = Vertex_Holder.at(9).xyz_values.y;
 	position_holder_y[2] = Vertex_Holder.at(10).xyz_values.y;
@@ -41,8 +43,6 @@ void Interactive_Object::draw()
 {
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-
 	glDrawArrays(GL_TRIANGLES, 0, Vertex_Holder.size());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -70,6 +70,7 @@ void Interactive_Object::init()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+	
 }
 
 

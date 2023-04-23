@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Interactive_Object.h"
+#include "Tetragons.h"
 #include "Door.h"
 
 

@@ -5,6 +5,7 @@
 #include <glm/glm/glm.hpp>
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/gtx/transform.hpp>
+#include <NPC.h>
 class Interactive_Object : public VisualObject
 {
 public:
@@ -33,7 +34,7 @@ public:
 
 	void update();
 
-
+	NPC* collision_box = new NPC();
 
 
 	void move(float m_x, float m_z);

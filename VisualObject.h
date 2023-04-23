@@ -33,6 +33,7 @@ public:
 
 	float size_x;
 	float size_y;
+	float size_z;
 	
 };
 

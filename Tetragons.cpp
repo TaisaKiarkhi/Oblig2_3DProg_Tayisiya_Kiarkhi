@@ -1,5 +1,5 @@
 #include "Tetragons.h"
-
+#include <NPC.h>
 
 
 Tetragons::Tetragons()
@@ -16,21 +16,23 @@ Tetragons::Tetragons()
 	Vertex_Holder.push_back(Vertex{ -1.0f, -1.0f, 1.0f,    0.0f , 1.0f, 1.0f,   1.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 	Vertex_Holder.push_back(Vertex{ 0.0f, -1.0f, -1.0f,    0.0f , 1.0f, 1.0f,   0.0f, 0.0f,    0.0f, 0.0f, 0.0f });
 	
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });    //8
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9, -1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //9
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //10
-	Vertex_Holder.push_back(Vertex{ 1.5f, -0.9,  1.5f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //11
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f,  1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //12
-	Vertex_Holder.push_back(Vertex{ -1.5f, -0.9f, -1.5f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //13
+	//surface under the mesh to check where the obect is collided
+  Vertex_Holder.push_back(Vertex{-1.0f, -0.9f,-1.0f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });    //8
+  Vertex_Holder.push_back(Vertex{ 1.0f, -0.9, -1.0f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //9
+  Vertex_Holder.push_back(Vertex{ 1.0f, -0.9,  1.0f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //10
+  Vertex_Holder.push_back(Vertex{ 1.0f, -0.9,  1.0f,      0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f});	   //11
+  Vertex_Holder.push_back(Vertex{-1.0f, -0.9f, 1.0f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //12
+  Vertex_Holder.push_back(Vertex{-1.0f, -0.9f,-1.0f,    0.55f, 0.92f, 0.196f,   0.0f, 0.0f,   0.0f, 0.0f, 0.0f });	   //13
 
 
 
+	
 
 	position_holder_x[0] = Vertex_Holder.at(8).xyz_values.x;
 	position_holder_x[1] = Vertex_Holder.at(9).xyz_values.x;
 	position_holder_x[2] = Vertex_Holder.at(10).xyz_values.x;
 	position_holder_x[3] = Vertex_Holder.at(12).xyz_values.x;
-
+	
 	position_holder_y[0] = Vertex_Holder.at(8).xyz_values. y;
 	position_holder_y[1] = Vertex_Holder.at(9).xyz_values. y;
 	position_holder_y[2] = Vertex_Holder.at(10).xyz_values.y;
@@ -38,6 +40,7 @@ Tetragons::Tetragons()
 
 	size_x = 3;
 	size_y = 3;
+	size_z = 3;
 
 
 }

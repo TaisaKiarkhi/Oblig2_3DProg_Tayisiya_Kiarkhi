@@ -12,7 +12,7 @@ public:
 	void draw();
 	void init();
 	void ClearMesh();
-
+	glm::vec3 pos;
 	GLuint Offset_Buffer;
 };
 

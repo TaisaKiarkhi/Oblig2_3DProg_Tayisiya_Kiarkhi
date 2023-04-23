@@ -16,7 +16,7 @@ private:
 	int height;
 	int bitDepth;
 	unsigned char* data;
-	const char* file= "cursed_heightmap/Heightmap.png";
+	const char* file= "cursed_heightmap/U0kEbl.jpg";
 
 	const int strips = height - 1, verts_per_strip = width * 2;
 };
